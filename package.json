@@ -1,0 +1,27 @@
+{
+  "name": "2020sp-420-webwizards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mucsci-students/2020sp-420-WebWizards.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mucsci-students/2020sp-420-WebWizards/issues"
+  },
+  "homepage": "https://github.com/mucsci-students/2020sp-420-WebWizards#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
