@@ -1,25 +1,25 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
-function UMLClass (slots) {
+function UMLClass(slots) {
     this.name = slots.name;
 };
 
 UMLClass.instances = {};
 
 UMLClass.add = function (slots) {
-    UMLClass.instances[slots.name] = new UMLClass (slots);
-    console.log("Class "  + slots.name + " created.");
+    UMLClass.instances[slots.name] = new UMLClass(slots);
+    console.log("Class " + slots.name + " created.");
 };
 
 UMLClass.convertRec2Obj = function (classRow) {
     return new UMLClass(classRow);
 };
 
-UMLClass.retrieveAll = function() {
-    var key ="", keys=[], i=0, classString="", classes={};
+UMLClass.retrieveAll = function () {
+    var key = "", keys = [], i = 0, classString = "", classes = {};
 
-    try { 
-        if  (localStorage["storage"]) {
+    try {
+        if (localStorage["storage"]) {
             classString = localStorage["storage"];
         }
     } catch (e) {
@@ -28,9 +28,9 @@ UMLClass.retrieveAll = function() {
 
     if (classString) {
         classes = JSON.parse(classString);
-        keys=Object.keys(classes);
-        console.log(keys.length +" classes loaded.");
-        for (i=0; i < keys.length; i++) {
+        keys = Object.keys(classes);
+        console.log(keys.length + " classes loaded.");
+        for (i = 0; i < keys.length; i++) {
             key = keys[i];
             UMLClass.instances[key] = UMLClass.convertRec2Obj(classes[key]);
         }
@@ -50,7 +50,7 @@ UMLClass.update = function (slots) {
 
 UMLClass.destroy = function (name) {
     if (UMLClass.instances[name]) {
-        console.log ("Class " + name + " deleted.");
+        console.log("Class " + name + " deleted.");
         delete UMLClass.instances[name];
         UMLClass.saveAll();
     }
@@ -59,12 +59,12 @@ UMLClass.destroy = function (name) {
     }
 };
 
-UMLClass.saveAll = function() {
-    var classString="", error=false, numOfClasses = Object.keys(UMLClass.instances).length;
+UMLClass.saveAll = function () {
+    var classString = "", error = false, numOfClasses = Object.keys(UMLClass.instances).length;
     try {
         classString = JSON.stringify(UMLClass.instances);
         localStorage["storage"] = classString;
-    }  catch (e) {
+    } catch (e) {
         alert("Error writing to Local Storage\n" + e);
         error = true;
     }
@@ -73,17 +73,16 @@ UMLClass.saveAll = function() {
     }
 };
 
-UMLClass.clearData = function() {
-    if (confirm("Delete all data?")) {
+UMLClass.clearData = function () {
         localStorage["storage"] = "{}";
         UMLClass.instances = {};
-    }
-    
 };
 
 
-UMLClass.exportFile = function() {
+UMLClass.exportFile = function () {
     //reference :https://www.codevoila.com/post/30/export-json-data-to-downloadable-file-using-javascript
+
+    UMLClass.saveAll();
 
     let exportString = localStorage["storage"];
     let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(exportString);
@@ -93,5 +92,24 @@ UMLClass.exportFile = function() {
     linkElement.setAttribute('href', dataUri);
     linkElement.setAttribute('download', defaultFileName);
     linkElement.click();
+
+};
+
+UMLClass.loadFile = function (f) {
+
+    UMLClass.clearData();
+    //https://humanwhocodes.com/blog/2012/05/15/working-with-files-in-javascript-part-2/
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var contents = event.target.result;
+        console.log(contents);
+        localStorage["storage"] = contents;
+        UMLClass.retrieveAll();
+    }
+    reader.onerror = function () {
+        alert("File could not be read");
+    }
+
+    reader.readAsText(f);
 
 };

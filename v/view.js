@@ -1,9 +1,12 @@
+//reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s04.html
+
 pl.v.createClass = {
     setupUserInterface: function () {
         var addButton = document.forms["UMLClass"].add;
         UMLClass.retrieveAll();
         addButton.addEventListener("click",
             pl.v.createClass.handleAddButtonClickEvent);
+
         window.addEventListener("beforeunload", function () {
             UMLClass.saveAll();
         });
@@ -47,9 +50,10 @@ pl.v.clearAll = {
     },
 
     handleClearAllButtonClickEvent: function () {
-        UMLClass.clearData();
-        pl.v.retrieveAndListAllClasses.updateView();
-
+        if (confirm("Are you sure you want to clear the database?")) {
+            UMLClass.clearData();
+            pl.v.retrieveAndListAllClasses.updateView();
+        }
     }
 };
 
@@ -71,6 +75,19 @@ pl.v.retrieveAndListAllClasses = {
     }
 };
 
+pl.v.load = {
+    setupUserInterface: function () {
+        var loadButton = document.forms["UMLClass"].load;
+        loadButton.addEventListener("click", pl.v.load.handleLoadButton);
+    },
+
+    handleLoadButton: function () {
+        var loadFile = document.getElementById("loadfile").files[0];
+        UMLClass.loadFile(loadFile);
+        pl.v.retrieveAndListAllClasses.updateView();
+    }
+};
+
 pl.v.export = {
     setupUserInterface: function () {
         var exportButton = document.forms["UMLClass"].export;
@@ -81,3 +98,14 @@ pl.v.export = {
         UMLClass.exportFile();
     }
 };
+
+pl.v.refresh = {
+    setupUserInterface: function () {
+        var refreshButton = document.forms["UMLClass"].refresh;
+        refreshButton.addEventListener("click", pl.v.refresh.handleRefreshButtonClickEvent);
+    },
+
+    handleRefreshButtonClickEvent: function () {
+        pl.v.retrieveAndListAllClasses.updateView();
+    }
+}
