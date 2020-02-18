@@ -1,4 +1,5 @@
 pl.c.parseCommand = function (command) {
+    console.log(command);
     args = command.split(" ");
 
     switch (args[0]) {

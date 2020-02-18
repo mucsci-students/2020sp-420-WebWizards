@@ -13,8 +13,11 @@
     <script src="v/guiView.js"></script>
     <script src="v/instructions.js"></script>
     <script src="c/setUpGUI.js"></script>
+    <script src="v/cliView.js"></script>
+    <script src="c/parser.js"></script>
     <script>
         window.addEventListener("load", pl.c.setUpGUI);
+        window.addEventListener("load", pl.v.commandLine.setupUserInterface);
     </script>
 </head>
 
@@ -47,10 +50,12 @@
     </form>
 
     <hr />
-    <div><label>
-            >
-            <input name="cli">
-        </label></div>
+    <form id="CLIForm">
+        <div><label>
+                >
+                <input id="cli">
+            </label></div>
+    </form>
     <hr />
     <table id="classes">
         <caption>Classes</caption>
