@@ -6,6 +6,7 @@ pl.v.commandLine = {
     setupUserInterface: function () {
         var cli = document.getElementById("cli");
         console.log("user interface");
+        
         //submits form if ENTER pressed
         cli.addEventListener("keydown", function (event) {
             if (event.keyCode === 13) {
