@@ -91,7 +91,7 @@ pl.v.load = {
     setupUserInterface: function () {
         // var loadButton = document.forms["UMLClass"].load;
         var loadButton = document.createElement("button");
-        loadButton.innerHTML = "Load from File";
+        loadButton.innerHTML = "Load Data from File";
         var loadSelector = document.createElement("input");
         loadSelector.type = "file";
         loadSelector.id = "loadfile";
@@ -112,7 +112,7 @@ pl.v.export = {
     setupUserInterface: function () {
         // var exportButton = document.forms["UMLClass"].export;
         var exportButton = document.createElement("button");
-        exportButton.innerHTML = "Export";
+        exportButton.innerHTML = "Export Data to File";
         document.forms["UMLClass"].append(exportButton);
 
         exportButton.addEventListener("click", pl.v.export.handleExportButtonClickEvent);
