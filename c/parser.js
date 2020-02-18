@@ -3,15 +3,22 @@ pl.c.parseCommand = function (command) {
     args = command.split(" ");
 
     switch (args[0]) {
-        case "add":    
-        var slots = {
-                name: args[1]
-            };
-            UMLClass.add(slots);
+        case "add":
+
+            for (i = 1; i < args.length; i++) {
+                var slots = {
+                    name: args[i]
+                };
+                UMLClass.add(slots);
+            }
             break;
+
         case "delete":
-            UMLClass.destroy(args[1]);
+            for (i = 1; i < args.length; i++) {
+                UMLClass.destroy(args[i]);
+            }
             break;
+
         case "export":
             UMLClass.exportFile();
             break;
