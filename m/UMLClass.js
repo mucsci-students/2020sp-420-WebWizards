@@ -2,6 +2,8 @@
 
 function UMLClass(slots) {
     this.name = slots.name;
+    this.vars = [];
+    this.methods = [];
 };
 
 UMLClass.instances = {};
@@ -37,16 +39,19 @@ UMLClass.retrieveAll = function () {
     }
 };
 
-/*
+
 UMLClass.update = function (slots) {
     var umlclass = UMLClass.instances[slots.name];
-    if (umlclass.name !== slots.name) {
-
+    if (umlclass.vars !== slots.vars) {
+        umlclass.vars = slots.vars;
+    }
+    if (umlclass.methods !== slots.methods) {
+        umlclass.methods = slots.methods;
     }
     console.log("Class " + slots.name + " modified");
 
 };
-*/
+
 
 UMLClass.destroy = function (name) {
     if (UMLClass.instances[name]) {
