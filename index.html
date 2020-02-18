@@ -12,16 +12,9 @@
     <script src="m/UMLClass.js"></script>
     <script src="v/guiView.js"></script>
     <script src="v/instructions.js"></script>
+    <script src="c/setUpGUI.js"></script>
     <script>
-        window.addEventListener("load", pl.v.createClass.setupUserInterface);
-        window.addEventListener("load", pl.v.deleteClass.setupUserInterface);
-        window.addEventListener("load", pl.v.clearAll.setupUserInterface);
-        window.addEventListener("load", pl.v.retrieveAndListAllClasses.updateView);
-        window.addEventListener("load", pl.v.export.setupUserInterface);
-        window.addEventListener("load", pl.v.load.setupUserInterface);
-        window.addEventListener("load", pl.v.refresh.setupUserInterface);
-
-
+        window.addEventListener("load", pl.c.setUpGUI);
     </script>
 </head>
 
@@ -32,7 +25,7 @@
     <button type="button" name="instructions" onclick="showInstructions()">Show/Hide Instructions</button>
     <p id="instructions"></p>
 
-    <hr>
+    <hr />
     <form id="UMLClass">
         <div><label>
                 Class name:
@@ -53,6 +46,11 @@
 
     </form>
 
+    <hr />
+    <div><label>
+            >
+            <input name="cli">
+        </label></div>
     <hr />
     <table id="classes">
         <caption>Classes</caption>

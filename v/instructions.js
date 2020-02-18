@@ -5,6 +5,7 @@ To <em>add</em> a class, type a new class name in the text box and click <strong
 </br></br>To <em>save</em> a JSON file representing the current classes, click <strong>Export Data to File</strong>.\
 </br></br>To <em>load</em> a JSON file into the editor, select a file with <strong>Choose File</strong>, then click <strong>Load Data from File</strong>. \
 You may need to click <strong>Refresh View</strong> to see the classes displayed."
+
 var showing = false;
 
 showInstructions = function () {
