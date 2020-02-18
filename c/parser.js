@@ -1,5 +1,4 @@
 pl.c.parseCommand = function (command) {
-    console.log(command);
     args = command.split(" ");
 
     switch (args[0]) {
@@ -23,5 +22,17 @@ pl.c.parseCommand = function (command) {
             UMLClass.exportFile();
             break;
 
+        case "clear":
+            if (confirm("Are you sure you want to clear the database?"))
+                UMLClass.clearData();
+            break;
+
+        case "help":
+            javascript: alert("commands:\n\
+            >add class-name [class-name ...]\n\
+            >delete class-name [class-name ...]\n\
+            >export\
+            >clear\
+            ");
     }
 }
