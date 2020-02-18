@@ -1,15 +1,17 @@
-pl.c.parseCommand = function (command) {
+pl.c.parseCommand = function (command, program) {
     args = command.split(" ");
+    console.log(program);
+    switch (program) {
+        default:
+            pl.c.defaultParser(args);
+            break;
+    }
+};
 
+pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
-
-            for (i = 1; i < args.length; i++) {
-                var slots = {
-                    name: args[i]
-                };
-                UMLClass.add(slots);
-            }
+            pl.c.addParser(args.slice(1));
             break;
 
         case "delete":
@@ -31,8 +33,17 @@ pl.c.parseCommand = function (command) {
             javascript: alert("commands:\n\
             >add class-name [class-name ...]\n\
             >delete class-name [class-name ...]\n\
-            >export\
+            >export\n\
             >clear\
             ");
+    }
+};
+
+pl.c.addParser = function (args) {
+    for (i = 0; i < args.length; i++) {
+        var slots = {
+            name: args[i]
+        };
+        UMLClass.add(slots)
     }
 }
