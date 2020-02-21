@@ -4,6 +4,8 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="umlCss.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>
         UML Editor
     </title>
@@ -25,10 +27,15 @@
 </head>
 
 <body>
-    <h1> UML Editor Prototype (Basic HTML/JS version) </h1>
-    <p>
-        Welcome to our UML Editor prototype.
+    <h1 class = navBar> Welcome to our UML Editor!</h1>
 
+    <div id = mode>
+        <button type="button" name="cliMode" class="btn btn-primary btn-block">Click Here for CLI Mode (needs connection)</button>
+
+        <button type="button" name="guiMode" class="btn btn-primary btn-block">Click Here for Gui Mode (needs connection)</button>
+    </div>    
+
+    <p class = instructions>        
         </br></br>
 
         To <em>add</em> a class, type a new class name in the text box and click <strong>Add</strong>.
@@ -51,32 +58,61 @@
 
     </p>
     <hr>
-    <form id="UMLClass">
-        <div><label>
-                Class name:
-                <input name="name" />
-            </label></div>
-        <div><button type="button" name="add">Add</button></div>
-        <div><button type="button" name="delete">Delete</button></div>
-        <div><button type="button" name="clearAll">Delete All Classes</button></div>
-        </br>
-        <div><button type="button" name="export">Export Data to File</button></div>
-        <div><button type="button" name="load">Load Data from File</button>
-            <input type="file" id="loadfile">
-        </div>
-        <div><button type="button" name="refresh">Refresh View</button></div>
-    </form>
 
+    <form  id="UMLClass">
+        <label>
+                Enter Class Name:
+                <input name="name" />
+        </label>
+
+        <div class= container-fluid>
+
+            <div class="row">
+            <div class="col-sm-6"    
+            <div class = buttons>
+                <div><button type="button" name="add" class="btn btn-success btn-block" >Add</button></div>
+                </br>
+
+                <div><button type="button" name="delete" class="btn btn-warning btn-block">Delete</button></div>
+                </br>
+
+                <div><button type="button" name="clearAll" class="btn btn-danger btn-block">Delete All Classes</button></div>
+                </br>
+
+                <div><button type="button" name="export" class="btn btn-warning btn-block">Export Data to File</button></div>
+                </br>
+
+                <div><button type="button" name="load" class="btn btn-info btn-block">Load Data from File</button>
+
+                <input type="file" id="loadfile">
+                </div>
+                </br>
+
+                <div><button type="button" name="refresh" class="btn btn-success btn-block">Refresh View</button></div>
+                </br>  
+            </div>
+
+                   <div class="col-sm-6">
+                    <div class =classesBox>
+                        <table id="classes">
+                        <caption>Classes</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        </table>
+                    </div>
+                 </div> 
+            </div>                
+        </div> 
+            </div>  
+
+    </form>
     <hr />
-    <table id="classes">
-        <caption>Classes</caption>
-        <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+
+
 </body>
 
 </html>

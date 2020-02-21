@@ -1,0 +1,40 @@
+body {
+  border: 10px solid;
+  border-radius: 5px;
+  border-color: black;
+  font-family: sans-serif;
+}
+
+h1 {
+  background-color: yellow;
+  margin-left: 20px;
+
+}
+
+caption{
+	font-size: 20pt;
+	color: black;
+}
+
+.navBar{
+  background-color: black;
+  color: yellow;
+  padding: 20px;
+  text-align: center;
+}
+
+.classesBox{
+	border: 10px solid;
+	border-color: yellow;
+	border-radius: 2px;
+}
+
+.instructions{
+	border: 10px solid;
+	border-color: yellow;
+	border-radius: 2px;
+}
+
+.buttons{
+	width: 50%;
+}
