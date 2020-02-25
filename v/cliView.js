@@ -24,3 +24,10 @@ pl.v.commandLine = {
         pl.v.retrieveAndListAllClasses.updateView();
     }
 };
+
+pl.v.cliLoad = function () {
+    var loadSelector = document.createElement("input");
+    loadSelector.type = "file";
+    var loadFile = loadSelector.files[0];
+    UMLClass.loadFile(loadFile);
+}

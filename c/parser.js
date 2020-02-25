@@ -31,6 +31,7 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "load":
+            pl.v.cliLoad();
             break;
 
         case "rename":
