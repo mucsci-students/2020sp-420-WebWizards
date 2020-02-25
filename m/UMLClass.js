@@ -1,22 +1,28 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
+//defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 function UMLClass(name) {
     this.name = name;
     this.vars = [];
     this.methods = [];
 };
 
+//all active UMLClasses are stored in this map, referenced by their name
 UMLClass.instances = {};
 
+//creates a new UMLClass and adds it to UMLClass.instances by name
 UMLClass.add = function (name) {
     UMLClass.instances[name] = new UMLClass(name);
     console.log("Class " + name + " created.");
 };
 
+//converts record [from local storage] to UMLClass object
 UMLClass.convertRec2Obj = function (classRow) {
     return new UMLClass(classRow.name);
 };
 
+
+//parses JSON data from local storage; then iterates through the data and adds each UMLClass to UMLClass.instances
 UMLClass.retrieveAll = function () {
     var key = "", keys = [], i = 0, classString = "", classes = {};
 
@@ -54,6 +60,7 @@ UMLClass.update = function (slots) {
 };
 */
 
+//given UMLClass name, finds class in UMLClass.instances and deletes the instance
 UMLClass.destroy = function (name) {
     if (UMLClass.instances[name]) {
         console.log("Class " + name + " deleted.");
@@ -65,6 +72,8 @@ UMLClass.destroy = function (name) {
     }
 };
 
+
+//writes the current state of UMLClass.instances to localstorage["storage"]
 UMLClass.saveAll = function () {
     var classString = "", error = false, numOfClasses = Object.keys(UMLClass.instances).length;
     try {
@@ -79,12 +88,14 @@ UMLClass.saveAll = function () {
     }
 };
 
+//resets UMLClass.instances and localstorage["storage"]
 UMLClass.clearData = function () {
         localStorage["storage"] = "{}";
         UMLClass.instances = {};
 };
 
 
+//downloads JSON file with a copy of local storage to local device
 UMLClass.exportFile = function () {
     //reference :https://www.codevoila.com/post/30/export-json-data-to-downloadable-file-using-javascript
 
@@ -101,6 +112,7 @@ UMLClass.exportFile = function () {
 
 };
 
+//given JSON file, writes the file into local storage
 UMLClass.loadFile = function (f) {
 
     UMLClass.clearData();
