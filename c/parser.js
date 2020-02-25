@@ -1,5 +1,6 @@
 pl.c.parseCommand = function (command, program) {
-    args = command.toLowerCase().split(" ");
+    args = command.split(" ");
+    args[0] = args[0].toLowerCase();
     console.log(program);
     switch (program) {
         default:
