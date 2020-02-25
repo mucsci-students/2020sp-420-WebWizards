@@ -1,8 +1,8 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
-function UMLClass(slots) {
-    this.name = slots.name;
+function UMLClass(name) {
+    this.name = name;
     this.vars = [];
     this.methods = [];
 };
@@ -11,14 +11,14 @@ function UMLClass(slots) {
 UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
-UMLClass.add = function (slots) {
-    UMLClass.instances[slots.name] = new UMLClass(slots);
-    console.log("Class " + slots.name + " created.");
+UMLClass.add = function (name) {
+    UMLClass.instances[name] = new UMLClass(name);
+    console.log("Class " + name + " created.");
 };
 
 //converts record [from local storage] to UMLClass object
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow);
+    return new UMLClass(classRow.name);
 };
 
 
@@ -45,18 +45,20 @@ UMLClass.retrieveAll = function () {
     }
 };
 
+UMLClass.rename = function (oldName, newName) {
+    //TODO
+}
+
+/*
 UMLClass.update = function (slots) {
     var umlclass = UMLClass.instances[slots.name];
-    if (umlclass.vars !== slots.vars) {
-        umlclass.vars = slots.vars;
-    }
-    if (umlclass.methods !== slots.methods) {
-        umlclass.methods = slots.methods;
+    if (umlclass.name !== slots.name) {
+
     }
     console.log("Class " + slots.name + " modified");
 
 };
-
+*/
 
 //given UMLClass name, finds class in UMLClass.instances and deletes the instance
 UMLClass.destroy = function (name) {
