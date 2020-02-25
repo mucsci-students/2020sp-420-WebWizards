@@ -1,20 +1,20 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
-function UMLClass(slots) {
-    this.name = slots.name;
+function UMLClass(name) {
+    this.name = name;
     this.vars = [];
     this.methods = [];
 };
 
 UMLClass.instances = {};
 
-UMLClass.add = function (slots) {
-    UMLClass.instances[slots.name] = new UMLClass(slots);
-    console.log("Class " + slots.name + " created.");
+UMLClass.add = function (name) {
+    UMLClass.instances[name] = new UMLClass(name);
+    console.log("Class " + name + " created.");
 };
 
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow);
+    return new UMLClass(classRow.name);
 };
 
 UMLClass.retrieveAll = function () {
@@ -39,19 +39,20 @@ UMLClass.retrieveAll = function () {
     }
 };
 
+UMLClass.rename = function (oldName, newName) {
+    //TODO
+}
 
+/*
 UMLClass.update = function (slots) {
     var umlclass = UMLClass.instances[slots.name];
-    if (umlclass.vars !== slots.vars) {
-        umlclass.vars = slots.vars;
-    }
-    if (umlclass.methods !== slots.methods) {
-        umlclass.methods = slots.methods;
+    if (umlclass.name !== slots.name) {
+
     }
     console.log("Class " + slots.name + " modified");
 
 };
-
+*/
 
 UMLClass.destroy = function (name) {
     if (UMLClass.instances[name]) {

@@ -13,10 +13,7 @@ pl.v.createClass = {
     },
     handleAddButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
-        var slots = {
-            name: formEl.name.value
-        };
-        UMLClass.add(slots);
+        UMLClass.add(formEl.name.value);
         formEl.reset();
         pl.v.retrieveAndListAllClasses.updateView();
     }
