@@ -30,12 +30,22 @@ pl.c.defaultParser = function (args) {
                 UMLClass.clearData();
             break;
 
+        case "load":
+            break;
+
+        case "rename":
+            UMLClass.rename(args[1], args[2]);
+            break;
+
         case "help":
             javascript: alert("commands:\n\
             >add class-name [class-name ...]\n\
             >delete class-name [class-name ...]\n\
             >export\n\
-            >clear\
+            >clear\n\
+            >load\n\
+            >rename-class current-class-name new-class-name\n\
+            >\n\
             ");
     }
 };
