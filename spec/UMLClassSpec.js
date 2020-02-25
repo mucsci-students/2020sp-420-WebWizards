@@ -1,11 +1,7 @@
 // TEST FILE FOR UML CLASS SOURCE FILE
 
-describe("UML class", function () {
-    var = slots;
-
+describe("classes are added", function () {
+    var newClass;
+    expect(UMLClass.add(newClass)).toBe(UMLClass.instances[slots.name] = new UMLClass(newClass));
+    
     });
-
-describe("Navigation", function () {
-	
-
-	});

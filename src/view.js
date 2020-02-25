@@ -1,5 +1,5 @@
 //reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s04.html
-
+var pl = { m:{}, v:{}, c:{}};
 pl.v.createClass = {
     setupUserInterface: function () {
         var addButton = document.forms["UMLClass"].add;
