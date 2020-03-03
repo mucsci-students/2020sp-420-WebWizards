@@ -1,8 +1,9 @@
 //defines an Edge relationship as the names of two classes, given as parameters
 function Edge(classOne, classTwo) {
-    Edge.start = classOne.name;
-    Edge.end = classTwo.name;
-}
+    this.start = classOne;
+    this.end = classTwo;
+    console.log ("Edge " + this.start + " => " + this.end + " created");
+};
 
 //array that stores Edges
 Edge.instances = [];
@@ -15,7 +16,7 @@ Edge.add = function (classOne, classTwo) {
 //given two UMLClass's, removes any Edges between them
 Edge.destroy = function (classOne, classTwo) {
     for (c of Edge.instances) {
-        if ((c.start === classOne.name)&&(c.end === classTwo.name)) {
+        if ((c.start === classOne)&&(c.end === classTwo)) {
             delete c;
         }
     }
@@ -28,4 +29,12 @@ Edge.deleteClassRelationships = function(umlclass) {
             delete c;
         }
     }
+};
+
+Edge.returnHumanReadableString = function() {
+    var edgeString = "Edges:\n";
+    for (i of Edge.instances) {
+        edgeString += (i.start + " => " + i.end + "\n");
+    }
+    return edgeString;
 };

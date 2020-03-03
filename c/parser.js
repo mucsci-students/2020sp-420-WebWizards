@@ -12,8 +12,10 @@ pl.c.parseCommand = function (command, program) {
 pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
-            pl.c.addParser(args.slice(1));
-            break;
+            for (i = 1; i < args.length; i++) {
+       
+                UMLClass.add(args[i])
+            }            break;
 
         case "delete":
             for (i = 1; i < args.length; i++) {
@@ -38,6 +40,14 @@ pl.c.defaultParser = function (args) {
             UMLClass.rename(args[1], args[2]);
             break;
 
+        case "add-edge":
+            Edge.add(args[1], args[2]);
+            break;
+
+        case "list-edges":
+            alert(Edge.returnHumanReadableString());
+            break;
+
         case "help":
             javascript: alert("commands:\n\
             >add class-name [class-name ...]\n\
@@ -46,14 +56,9 @@ pl.c.defaultParser = function (args) {
             >clear\n\
             >load\n\
             >rename-class current-class-name new-class-name\n\
+            >add-edge start-class end-class\n\
+            >list-edges\n\
             >\n\
             ");
     }
 };
-
-pl.c.addParser = function (args) {
-    for (i = 0; i < args.length; i++) {
-       
-        UMLClass.add(args[i])
-    }
-}
