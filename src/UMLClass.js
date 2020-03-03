@@ -12,8 +12,13 @@ UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
 UMLClass.add = function (name) {
+    if (name in UMLClass.instances) {
+    console.log("Class " + name + " already exist.")
+        return null;
+    }
     UMLClass.instances[name] = new UMLClass(name);
     console.log("Class " + name + " created.");
+    return name;
 };
 
 //converts record [from local storage] to UMLClass object
@@ -62,12 +67,15 @@ UMLClass.update = function (slots) {
 UMLClass.destroy = function (name) {
     if (UMLClass.instances[name]) {
         console.log("Class " + name + " deleted.");
+        return null;
         delete UMLClass.instances[name];
         UMLClass.saveAll();
     }
     else {
         console.log("There is no class with name " + name + " in the database.");
+        return null;
     }
+
 };
 
 

@@ -1,11 +1,35 @@
 // TEST FILE FOR UML CLASS SOURCE FILE
 
-describe("UML class", function () {
-    var = slots;
-
+// TESTS CONSOLE LOG FOR ADD CASES:
+describe("should test for UMLclass.add console ouput", function () {
+    beforeEach(function() {
+    	spyOn(console, 'log');
     });
 
-describe("Navigation", function () {
-	
+    it ("given empty, will add class", function() {
+    	expect(UMLClass.add("car")).toBe("car");
+    	expect(console.log).toHaveBeenCalled();
+    });
 
-	});
+    it ("in the case of duplicates, will not add class again", function() {
+		expect(UMLClass.add("car")).toBe(null);
+    });
+
+});
+
+//TESTS CONSOLE LOG FOR DELETE CASES:
+describe("should test for UMLclass.destroy console ouput", function () {
+    beforeEach(function() {
+    	spyOn(console, 'log');
+    });
+
+    it ("if class given exist, will delete it", function() {
+    	expect(UMLClass.destroy("car")).toBe(null);
+    	expect(console.log).toHaveBeenCalled();
+    });
+
+    it ("if class given doesn't exist", function() {
+		expect(UMLClass.add("car")).toBe(null);
+    });
+   
+});

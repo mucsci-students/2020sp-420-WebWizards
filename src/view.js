@@ -1,6 +1,8 @@
 //reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s04.html
 
-pl.v.createClass = {
+view = {}
+
+view.createClass = {
     setupUserInterface: function () {
         var addButton = document.forms["UMLClass"].add;
         UMLClass.retrieveAll();
@@ -19,7 +21,7 @@ pl.v.createClass = {
     }
 };
 
-pl.v.deleteClass = {
+view.deleteClass = {
     setupUserInterface: function () {
         var deleteButton = document.forms["UMLClass"].delete;
         deleteButton.addEventListener("click",
@@ -39,7 +41,7 @@ pl.v.deleteClass = {
     }
 };
 
-pl.v.clearAll = {
+view.clearAll = {
     setupUserInterface: function () {
         var clearAllButton = document.forms["UMLClass"].clearAll;
         clearAllButton.addEventListener("click",
@@ -54,7 +56,7 @@ pl.v.clearAll = {
     }
 };
 
-pl.v.retrieveAndListAllClasses = {
+view.retrieveAndListAllClasses = {
 
     updateView: function () {
         var tableBodyEl = document.querySelector("table#classes>tbody");
@@ -72,7 +74,7 @@ pl.v.retrieveAndListAllClasses = {
     }
 };
 
-pl.v.load = {
+view.load = {
     setupUserInterface: function () {
         var loadButton = document.forms["UMLClass"].load;
         loadButton.addEventListener("click", pl.v.load.handleLoadButton);
@@ -85,7 +87,7 @@ pl.v.load = {
     }
 };
 
-pl.v.export = {
+view.export = {
     setupUserInterface: function () {
         var exportButton = document.forms["UMLClass"].export;
         exportButton.addEventListener("click", pl.v.export.handleExportButtonClickEvent);
@@ -96,7 +98,7 @@ pl.v.export = {
     }
 };
 
-pl.v.refresh = {
+view.refresh = {
     setupUserInterface: function () {
         var refreshButton = document.forms["UMLClass"].refresh;
         refreshButton.addEventListener("click", pl.v.refresh.handleRefreshButtonClickEvent);
