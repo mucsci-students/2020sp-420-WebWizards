@@ -38,7 +38,6 @@ UMLClass.retrieveAll = function () {
 };
 
 UMLClass.rename = function (oldName, newName) {
-//TODO
 }
 
 /*
