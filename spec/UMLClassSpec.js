@@ -1,5 +1,6 @@
 // TEST FILE FOR UML CLASS SOURCE FILE
 
+<<<<<<< HEAD
 // TESTS CONSOLE LOG FOR ADD CASES:
 describe("should test for UMLclass.add console ouput", function () {
     beforeEach(function() {
@@ -33,3 +34,10 @@ describe("should test for UMLclass.destroy console ouput", function () {
     });
    
 });
+=======
+describe("classes are added", function () {
+    var newClass;
+    expect(UMLClass.add(newClass)).toBe(UMLClass.instances[slots.name] = new UMLClass(newClass));
+    
+    });
+>>>>>>> d972c1c490aae2d0402ee4b974287e3dc44c2046

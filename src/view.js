@@ -1,8 +1,13 @@
 //reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s04.html
+<<<<<<< HEAD
 
 view = {}
 
 view.createClass = {
+=======
+var pl = { m:{}, v:{}, c:{}};
+pl.v.createClass = {
+>>>>>>> d972c1c490aae2d0402ee4b974287e3dc44c2046
     setupUserInterface: function () {
         var addButton = document.forms["UMLClass"].add;
         UMLClass.retrieveAll();
