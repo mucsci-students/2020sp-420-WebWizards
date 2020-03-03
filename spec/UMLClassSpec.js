@@ -29,7 +29,7 @@ describe("should test for UMLclass.destroy console ouput", function () {
     });
 
     it ("if class given doesn't exist", function() {
-		expect(UMLClass.add("car")).toEqual(null);
+		expect(UMLClass.destroy("car")).toEqual(null);
     });
    
 });
