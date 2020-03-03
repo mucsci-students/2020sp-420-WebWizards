@@ -48,6 +48,10 @@ pl.c.defaultParser = function (args) {
             alert(Edge.returnHumanReadableString());
             break;
 
+        case "delete-edge":
+            Edge.destroy(args[1], args[2]);
+            break;
+
         case "help":
             javascript: alert("commands:\n\
             >add class-name [class-name ...]\n\
@@ -57,8 +61,13 @@ pl.c.defaultParser = function (args) {
             >load\n\
             >rename-class current-class-name new-class-name\n\
             >add-edge start-class end-class\n\
+            >delete-edge start-class end-class\n\
             >list-edges\n\
             >\n\
             ");
+            break;
+        default:
+            alert("Command not recognized");
+            break;
     }
 };
