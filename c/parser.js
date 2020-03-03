@@ -20,6 +20,7 @@ pl.c.defaultParser = function (args) {
         case "delete":
             for (i = 1; i < args.length; i++) {
                 UMLClass.destroy(args[i]);
+                Edge.deleteClassRelationships(args[i]);
             }
             break;
 

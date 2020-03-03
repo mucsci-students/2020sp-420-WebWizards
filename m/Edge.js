@@ -33,10 +33,18 @@ Edge.destroy = function (classOne, classTwo) {
 
 //given one UMLClass, deletes all relationships associated with that class
 Edge.deleteClassRelationships = function (umlclass) {
-    for (c of Edge.instances) {
-        if ((c.start === umlclass.name) || (c.end === umlclass.name)) {
-            delete c;
+    var edgeIndex = -1;
+    for (i of Edge.instances) {
+        if ((i.start === umlclass) || (i.end === umlclass)) {
+            edgeIndex = Edge.instances.indexOf(i);
         }
+    }
+
+    if (edgeIndex !== -1) {
+        Edge.instances.splice(edgeIndex, 1);
+    }
+    else {
+        alert("Edge not found");
     }
 };
 
