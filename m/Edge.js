@@ -10,8 +10,10 @@ Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
 Edge.add = function (classOne, classTwo) {
-    if (classOne && classTwo)
+    if (UMLClass.instances[classOne] && UMLClass.instances[classTwo])
         Edge.instances.push(new Edge(classOne, classTwo));
+    else
+        alert("Edge requires two valid class names!");
 };
 
 //given two UMLClass's, removes any Edges between them
@@ -33,19 +35,18 @@ Edge.destroy = function (classOne, classTwo) {
 
 //given one UMLClass, deletes all relationships associated with that class
 Edge.deleteClassRelationships = function (umlclass) {
-    var edgeIndex = -1;
+    var edgeIndexes = [];
+
     for (i of Edge.instances) {
         if ((i.start === umlclass) || (i.end === umlclass)) {
-            edgeIndex = Edge.instances.indexOf(i);
+            edgeIndexes.push(Edge.instances.indexOf(i));
         }
     }
 
-    if (edgeIndex !== -1) {
-        Edge.instances.splice(edgeIndex, 1);
+    for (i of edgeIndexes) {
+        Edge.instances.splice(i - edgeIndexes.indexOf(i), 1);
     }
-    else {
-        alert("Edge not found");
-    }
+    
 };
 
 Edge.returnHumanReadableString = function () {
@@ -55,3 +56,7 @@ Edge.returnHumanReadableString = function () {
     }
     return edgeString;
 };
+
+Edge.reset = function () {
+    Edge.instances = [];
+}

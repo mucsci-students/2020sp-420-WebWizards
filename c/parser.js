@@ -13,9 +13,9 @@ pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-       
+
                 UMLClass.add(args[i])
-            }            break;
+            } break;
 
         case "delete":
             for (i = 1; i < args.length; i++) {
@@ -29,8 +29,10 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "clear":
-            if (confirm("Are you sure you want to clear the database?"))
+            if (confirm("Are you sure you want to clear the database?")) {
                 UMLClass.clearData();
+                Edge.reset();
+            }
             break;
 
         case "load":
@@ -45,12 +47,17 @@ pl.c.defaultParser = function (args) {
             Edge.add(args[1], args[2]);
             break;
 
+
+        case "delete-edge":
+            Edge.destroy(args[1], args[2]);
+            break;
+
         case "list-edges":
             alert(Edge.returnHumanReadableString());
             break;
 
-        case "delete-edge":
-            Edge.destroy(args[1], args[2]);
+        case "clear-edges":
+            Edge.reset();
             break;
 
         case "help":
@@ -64,6 +71,7 @@ pl.c.defaultParser = function (args) {
             >add-edge start-class end-class\n\
             >delete-edge start-class end-class\n\
             >list-edges\n\
+            >clear-edges\n\
             >\n\
             ");
             break;
