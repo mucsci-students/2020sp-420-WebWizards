@@ -10,7 +10,7 @@ To Download our UML:
 
 
 
-If you want to use the Graphical User Interface (GUI):
+USING THE GRAPHICAL USER INTERFACE (GUI):
 
   To add a class, type a new class name in the text box and click Add. 
 
@@ -24,7 +24,7 @@ If you want to use the Graphical User Interface (GUI):
 
 
 
-If you want to use the Command Line Interface (CLI):
+USING THE COMMAND LINE INTERFACE (CLI):
 
   To add a class, type “add” followed by the new class name and press Enter.
 
@@ -33,3 +33,15 @@ If you want to use the Command Line Interface (CLI):
   To clear all classes in the database, type “clear” and then press enter. A confirmation message will be displayed, click “OK” to clear the database. 
 
   To export all classes type “export” and press Enter.
+
+
+
+RELATIONSHIPS:
+  
+    To add a relationship, type "add-edge" followed by the name of the source and then followed by the destination and press Enter.
+  
+    To view all of the current relationships, type "list-edges" and press Enter.
+  
+    To delete an relationship, type "delete-edge" followed by a the source and destination of the edge you want to delete and press Enter. 
+  
+    To delete all of the stored edges, type "clear-edges" and press Enter.
