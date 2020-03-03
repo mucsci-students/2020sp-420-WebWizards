@@ -53,9 +53,7 @@ pl.c.defaultParser = function (args) {
 
 pl.c.addParser = function (args) {
     for (i = 0; i < args.length; i++) {
-        var slots = {
-            name: args[i]
-        };
-        UMLClass.add(slots)
+       
+        UMLClass.add(args[i])
     }
 }
