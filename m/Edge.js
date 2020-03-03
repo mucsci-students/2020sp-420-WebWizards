@@ -10,7 +10,8 @@ Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
 Edge.add = function (classOne, classTwo) {
-    Edge.instances.push(new Edge(classOne, classTwo));
+    if (classOne&&classTwo)
+        Edge.instances.push(new Edge(classOne, classTwo));
 };
 
 //given two UMLClass's, removes any Edges between them
