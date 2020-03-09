@@ -1,10 +1,9 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
-function UMLClass(name) {
+function UMLClass(name, vars = [], methods = []) {
     this.name = name;
-    this.vars = [];
-    this.methods = [];
+
 };
 
 //all active UMLClasses are stored in this map, referenced by their name
@@ -16,9 +15,43 @@ UMLClass.add = function (name) {
     console.log("Class " + name + " created.");
 };
 
+UMLClass.addVar = function(className, varName) {
+    if (UMLClass.instances[className]) {
+        UMLClass.instances[className].vars.push(varName);
+    }
+};
+
+UMLClass.addMethod = function(className, methodName) {
+    if (UMLClass.instances[className]) {
+        UMLClass.instances[className].methods.push(methodName);
+    } 
+};
+
+UMLClass.deleteVar = function (className, varName) {
+    if (UMLClass.instances[className]) {
+        var indexToDelete = UMLClass.instances[className].vars.findIndex(varName);
+        while (indexToDelete != -1) {
+            UMLClass.instances[className].vars.splice(indexToDelete, 1);
+            indexToDelete = UMLClass.instances[className].vars.findIndex(varName);
+
+        }
+    }
+};
+
+UMLClass.deleteVar = function (className, methodName) {
+    if (UMLClass.instances[className]) {
+        var indexToDelete = UMLClass.instances[className].methods.findIndex(methodName);
+        while (indexToDelete != -1) {
+            UMLClass.instances[className].methods.splice(indexToDelete, 1);
+            indexToDelete = UMLClass.instances[className].methods.findIndex(methodName);
+
+        }
+    }
+};
+
 //converts record [from local storage] to UMLClass object
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow.name);
+    return new UMLClass(classRow.name, classRow.vars, classRow.methods);
 };
 
 
