@@ -84,7 +84,7 @@ pl.c.defaultParser = function (args) {
             >export\n\
             >clear\n\
             >load\n\
-            >rename-class current-class-name new-class-name\n\
+            >rename current-class-name new-class-name\n\
             >add-var class-name var-name\n\
             >add-method class-name method-name\n\
             >delete-var class-name var-name\n\

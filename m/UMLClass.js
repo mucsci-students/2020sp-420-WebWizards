@@ -97,8 +97,15 @@ UMLClass.retrieveAll = function () {
 };
 
 UMLClass.rename = function (oldName, newName) {
-    //TODO
-}
+    //reference: https://stackoverflow.com/questions/542232/in-javascript-how-can-i-perform-a-global-replace-on-string-with-a-variable-insi
+    UMLClass.saveAll();
+    const classString = localStorage["storage"];
+    const regex = new RegExp(oldName, "g");
+    const newClassString = classString.replace(regex, newName);
+    localStorage["storage"] = newClassString;
+    UMLClass.instances = {};
+    UMLClass.retrieveAll();
+};
 
 /*
 UMLClass.update = function (slots) {
