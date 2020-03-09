@@ -43,6 +43,22 @@ pl.c.defaultParser = function (args) {
             UMLClass.rename(args[1], args[2]);
             break;
 
+        case "add-var":
+            UMLClass.addVar(args[1], args[2]);
+            break;
+
+        case "add-method":
+            UMLClass.addMethod(args[1], args[2]);
+            break;
+
+        case "delete-var":
+            UMLClass.deleteVar(args[1], args[2]);
+            break;
+        
+        case "delete-method":
+            UMLClass.deleteMethod(args[1], args[2]);
+            break;
+
         case "add-edge":
             Edge.add(args[1], args[2]);
             break;
@@ -60,6 +76,7 @@ pl.c.defaultParser = function (args) {
             Edge.reset();
             break;
 
+
         case "help":
             javascript: alert("commands:\n\
             >add class-name [class-name ...]\n\
@@ -68,6 +85,10 @@ pl.c.defaultParser = function (args) {
             >clear\n\
             >load\n\
             >rename-class current-class-name new-class-name\n\
+            >add-var class-name var-name\n\
+            >add-method class-name method-name\n\
+            >delete-var class-name var-name\n\
+            >delete-var class-name method-name\n\
             >add-edge start-class end-class\n\
             >delete-edge start-class end-class\n\
             >list-edges\n\
