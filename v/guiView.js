@@ -79,6 +79,8 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
             row = new_tableBody.insertRow();
             row.insertCell(-1).textContent = UMLClass.instances[key].name;
+            row.insertCell(-1).textContent = UMLClass.instances[key].vars.join(", ");
+            row.insertCell(-1).textContent = UMLClass.instances[key].methods.join(", ");
         }
         tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }
