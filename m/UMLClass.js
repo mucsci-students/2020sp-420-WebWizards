@@ -3,6 +3,8 @@
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 function UMLClass(name, vars = [], methods = []) {
     this.name = name;
+    this.vars = vars;
+    this.methods = methods;
 
 };
 
@@ -15,36 +17,52 @@ UMLClass.add = function (name) {
     console.log("Class " + name + " created.");
 };
 
-UMLClass.addVar = function(className, varName) {
+UMLClass.addVar = function (className, varName) {
     if (UMLClass.instances[className]) {
         UMLClass.instances[className].vars.push(varName);
     }
 };
 
-UMLClass.addMethod = function(className, methodName) {
+UMLClass.addMethod = function (className, methodName) {
     if (UMLClass.instances[className]) {
         UMLClass.instances[className].methods.push(methodName);
-    } 
+    }
 };
 
 UMLClass.deleteVar = function (className, varName) {
     if (UMLClass.instances[className]) {
-        var indexToDelete = UMLClass.instances[className].vars.findIndex(varName);
-        while (indexToDelete != -1) {
-            UMLClass.instances[className].vars.splice(indexToDelete, 1);
-            indexToDelete = UMLClass.instances[className].vars.findIndex(varName);
+        var varIndex = -1;
 
+        for (v of UMLClass.instances[className].vars) {
+            if (v === varName) {
+                varIndex = UMLClass.instances[className].vars.indexOf(v);
+            }
+        }
+
+        if (varIndex !== -1) {
+            UMLClass.instances[className].vars.splice(varIndex, 1);
+        }
+        else {
+            alert("variable not found");
         }
     }
 };
 
-UMLClass.deleteVar = function (className, methodName) {
+UMLClass.deleteMethod = function (className, methodName) {
     if (UMLClass.instances[className]) {
-        var indexToDelete = UMLClass.instances[className].methods.findIndex(methodName);
-        while (indexToDelete != -1) {
-            UMLClass.instances[className].methods.splice(indexToDelete, 1);
-            indexToDelete = UMLClass.instances[className].methods.findIndex(methodName);
+        var methodIndex = -1;
 
+        for (m of UMLClass.instances[className].methods) {
+            if (m === methodName) {
+                methodIndex = UMLClass.instances[className].methods.indexOf(m);
+            }
+        }
+
+        if (methodIndex !== -1) {
+            UMLClass.instances[className].methods.splice(methodIndex, 1);
+        }
+        else {
+            alert("variable not found");
         }
     }
 };
@@ -123,8 +141,8 @@ UMLClass.saveAll = function () {
 
 //resets UMLClass.instances and localstorage["storage"]
 UMLClass.clearData = function () {
-        localStorage["storage"] = "{}";
-        UMLClass.instances = {};
+    localStorage["storage"] = "{}";
+    UMLClass.instances = {};
 };
 
 
