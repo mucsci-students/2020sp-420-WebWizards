@@ -12,12 +12,15 @@ pl.c.parseCommand = function (command, program) {
 pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
-            pl.c.addParser(args.slice(1));
-            break;
+            for (i = 1; i < args.length; i++) {
+
+                UMLClass.add(args[i])
+            } break;
 
         case "delete":
             for (i = 1; i < args.length; i++) {
                 UMLClass.destroy(args[i]);
+                Edge.deleteClassRelationships(args[i]);
             }
             break;
 
@@ -26,8 +29,10 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "clear":
-            if (confirm("Are you sure you want to clear the database?"))
+            if (confirm("Are you sure you want to clear the database?")) {
                 UMLClass.clearData();
+                Edge.reset();
+            }
             break;
 
         case "load":
@@ -38,6 +43,23 @@ pl.c.defaultParser = function (args) {
             UMLClass.rename(args[1], args[2]);
             break;
 
+        case "add-edge":
+            Edge.add(args[1], args[2]);
+            break;
+
+
+        case "delete-edge":
+            Edge.destroy(args[1], args[2]);
+            break;
+
+        case "list-edges":
+            alert(Edge.returnHumanReadableString());
+            break;
+
+        case "clear-edges":
+            Edge.reset();
+            break;
+
         case "help":
             javascript: alert("commands:\n\
             >add class-name [class-name ...]\n\
@@ -46,14 +68,15 @@ pl.c.defaultParser = function (args) {
             >clear\n\
             >load\n\
             >rename-class current-class-name new-class-name\n\
+            >add-edge start-class end-class\n\
+            >delete-edge start-class end-class\n\
+            >list-edges\n\
+            >clear-edges\n\
             >\n\
             ");
+            break;
+        default:
+            alert("Command not recognized");
+            break;
     }
 };
-
-pl.c.addParser = function (args) {
-    for (i = 0; i < args.length; i++) {
-       
-        UMLClass.add(args[i])
-    }
-}
