@@ -1,0 +1,49 @@
+h1 {
+  background-color: yellow;
+  margin-left: 20px;
+
+}
+
+caption{
+	font-size: 20pt;
+	color: black;
+}
+
+.navBar{
+  background-color: black;
+  color: yellow;
+  padding: 20px;
+  text-align: center;
+}
+
+.classesBox{
+	border: 10px solid;
+	border-color: yellow;
+	border-radius: 2px;
+}
+
+.instructions{
+	border: 10px solid;
+	border-color: yellow;
+	border-radius: 2px;
+}
+
+.buttons{
+	width: 25%;
+}
+
+#dragBox {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+}
+
+#mydragBox {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}

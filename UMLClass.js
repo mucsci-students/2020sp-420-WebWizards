@@ -1,20 +1,26 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
-function UMLClass(slots) {
-    this.name = slots.name;
+//model for app
+
+
+
+function UMLClass(name) {
+    this.name = name;
     this.vars = [];
     this.methods = [];
 };
 
+
+//initialze empty umlClass
 UMLClass.instances = {};
 
-UMLClass.add = function (slots) {
-    UMLClass.instances[slots.name] = new UMLClass(slots);
-    console.log("Class " + slots.name + " created.");
+UMLClass.add = function (name) {
+    UMLClass.instances[name] = new UMLClass(name);
+    console.log("Class " + name + " created.");
 };
 
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow);
+    return new UMLClass(classRow.name);
 };
 
 UMLClass.retrieveAll = function () {
