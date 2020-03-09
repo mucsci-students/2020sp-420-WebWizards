@@ -8,15 +8,17 @@
         UML Editor
     </title>
 
-    <link rel="stylesheet" type="text/css" href="umlCss2.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <script src="initialize.js"></script>
-    <script src="UMLClass.js"></script>
-    <script src="view.js"></script>
+    <script src="c/initialize.js"></script>
+    <script src="m/UMLClass.js"></script>
+    <script src="v/guiView.js"></script>
+    <script src="v/instructions.js"></script>
+    <script src="c/setUpGUI.js"></script>
+    <script src="v/cliView.js"></script>
+    <script src="c/parser.js"></script>
+    <script src="m/Edge.js"></script>
     <script>
+        window.addEventListener("load", pl.c.setUpGUI);
+        window.addEventListener("load", pl.v.commandLine.setupUserInterface);
         window.addEventListener("load", pl.v.createClass.setupUserInterface);
         window.addEventListener("load", pl.v.deleteClass.setupUserInterface);
         window.addEventListener("load", pl.v.clearAll.setupUserInterface);
@@ -130,12 +132,28 @@
     
 
     <hr />
-    <!-- display class with name, relatedTo and Attribute names -->
+    <form id="CLIForm">
+        <div><label>
+                >
+                <input id="cli"> type 'help' to see commands
+            </label></div>
+    </form>
+    <hr />
     <table id="classes">
         <caption>Classes</caption>
         <thead>
             <tr>
                 <th>Name</th>
+            </tr>
+            <tr>
+                <th>
+                    Variables
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Methods
+                </th>
             </tr>
         </thead>
         <tbody></tbody>
