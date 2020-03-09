@@ -1,9 +1,3 @@
-h1 {
-  background-color: yellow;
-  margin-left: 20px;
-
-}
-
 caption{
 	font-size: 20pt;
 	color: black;
@@ -16,11 +10,7 @@ caption{
   text-align: center;
 }
 
-.classesBox{
-	border: 10px solid;
-	border-color: yellow;
-	border-radius: 2px;
-}
+
 
 .instructions{
 	border: 10px solid;
@@ -44,6 +34,21 @@ caption{
   padding: 10px;
   cursor: move;
   z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+
+#classBox {
+  position: absolute;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 2px solid black;
+}
+
+#classBoxName {
+  padding: 10px;
+  cursor: default;
+ 
   background-color: #2196F3;
   color: #fff;
 }

@@ -1,0 +1,184 @@
+<!-- reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03.html-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        UML Editor
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="umlCss2.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="initialize.js"></script>
+    <script src="UMLClass.js"></script>
+    <script src="view.js"></script>
+    <script>
+        window.addEventListener("load", pl.v.createClass.setupUserInterface);
+        window.addEventListener("load", pl.v.deleteClass.setupUserInterface);
+        window.addEventListener("load", pl.v.clearAll.setupUserInterface);
+        window.addEventListener("load", pl.v.retrieveAndListAllClasses.updateView);
+        window.addEventListener("load", pl.v.export.setupUserInterface);
+        window.addEventListener("load", pl.v.load.setupUserInterface);
+        window.addEventListener("load", pl.v.refresh.setupUserInterface);
+
+        $(document).ready(function(){
+            $("#myBtn").click(function(){
+            $("#modalExample").modal();
+           });
+        });
+
+
+        $(document).ready(function(){
+            $("#myBtn2").click(function(){
+            $("#modalExample").modal();
+           });
+        });
+
+
+        $(document).ready(function(){
+            $("#myBtn3").click(function(){
+            $("#modalExample").modal();
+           });
+        });
+
+
+        $(document).ready(function(){
+            $("#myBtn4").click(function(){
+            $("#modalExample").modal();
+           });
+        });
+
+        $(document).ready(function(){
+            $("#myBtn5").click(function(){
+            $("#modalExample").modal();
+           });
+        });
+
+    </script>
+</head>
+
+<body>
+    <h1 class = navBar> Welcome to our UML Editor!</h1>
+
+     <div id = mode>
+        <button type="button" name="cliMode" class="btn btn-warning btn-block">Click Here for CLI Mode (needs connection)</button>
+
+        <button type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui Mode (needs connection)</button>
+    </div>
+    <!--
+    <p>
+        Welcome to our UML Editor prototype.
+
+        </br></br>
+
+        To <em>add</em> a class, type a new class name in the text box and click <strong>Add</strong>.
+
+        </br></br>
+        To <em>delete</em> a class, enter the name of the class you would like to delete in the text box and click
+        <strong>Delete</strong>.
+        </br></br>
+        To <em>clear</em> the database, click <strong>Delete All Classes</strong>.
+
+        </br></br>
+        To <em>save</em> a JSON file representing the current classes, click <strong>Export Data to File</strong>.
+
+        </br></br>
+        To <em>load</em> a JSON file into the editor, select a file with <strong>Choose File</strong>, then click
+        <strong>Load Data from File</strong>. You may need to click <strong>Refresh View</strong> to see the classes
+        displayed.
+
+    -->
+
+    <div class="container">
+  <h1>UML Class Options</h1>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-success btn-lg" id="myBtn">Add Class</button>
+  <button type="button" class="btn btn-danger btn-lg" id="myBtn2">Delete Class</button>
+  <button type="button" class="btn btn-warning btn-lg" id="myBtn3">Export Data to File</button>
+  <button type="button" class="btn btn-info btn-lg" id="myBtn4"> Load Data from a file</button>
+  <button type="button" class="btn btn-warning btn-lg" id="myBtn5"> Delete all classes</button>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalExample" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> Fill in the class name</h4>
+        </div>
+        <div class="modal-body">
+         
+         <hr>
+        <form id="UMLClass">
+        <div>
+        <label>
+                Class name:
+                <input name="name" />
+        </label>
+        <br>
+        <label>
+                Methods(needs connected):
+                <input name="name" />
+        </label> ex. methodName1() 
+
+        <br>
+        <label>
+                Relatedionships(needs connected):
+                <input name="name" />
+        </label>
+        </div>
+
+        <div><button type="button" name="add">Add</button></div>
+        <div><button type="button" name="delete">Delete</button></div>
+        <div><button type="button" name="clearAll">Delete All Classes</button></div>
+        </br>
+        <div><button type="button" name="export">Export Data to File</button></div>
+        <div><button type="button" name="load">Load Data from File</button>
+            <input type="file" id="loadfile">
+        </div>
+        <div><button type="button" name="refresh">Refresh View</button></div>
+    </form>
+
+    <hr />
+
+
+        </div>
+        <div class="modal-footer">
+            <p> Please review all changes before exiting </p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+    <table id="classes">
+        <thead>
+            <tr>
+                <th> Class Names</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+<!--
+<div id="classBox">
+  <div id="classBoxName">Class Name</div>
+  <p> Attributes</p>
+  <p>Relationships</p>
+</div>
+-->
+</body>
+
+
+
+</html>
