@@ -12,15 +12,17 @@ To Download our UML:
 
 USING THE GRAPHICAL USER INTERFACE (GUI):
 
-  To add a class, type a new class name in the text box and click Add. 
+  To add a class, type a new class name in the text box and click Add and reload page. 
 
-  To delete a class, enter the name of the class you would like to delete in the text box and click Delete. 
+  To delete a class, enter the name of the class you would like to delete in the text box and click Delete and reload page. 
 
-  To clear the database, click Delete All Classes. A confirmation message will be displayed, click “OK” to clear the database. 
+  To clear the database, click Delete All Classes. A confirmation message will be displayed, click “OK” to clear the database and reload page. 
 
-  To save a JSON file representing the current classes, click Export Data to File. 
+  To save a JSON file representing the current classes, click Export Data to File and reload page.
 
-  To load a JSON file into the editor, select a file with Choose File, then click Load Data from File. You may need to click Refresh View to see the classes displayed.
+  To load a JSON file into the editor, select a file with Choose File, then click Load Data from File. You may need to click Refresh View to see the classes displayed and reload page.
+  
+  
 
 
 
