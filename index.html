@@ -10,63 +10,52 @@
 
     <script src="c/initialize.js"></script>
     <script src="m/UMLClass.js"></script>
-    <script src="v/view.js"></script>
+    <script src="v/guiView.js"></script>
+    <script src="v/instructions.js"></script>
+    <script src="c/setUpGUI.js"></script>
+    <script src="v/cliView.js"></script>
+    <script src="c/parser.js"></script>
     <script>
-        window.addEventListener("load", pl.v.createClass.setupUserInterface);
-        window.addEventListener("load", pl.v.deleteClass.setupUserInterface);
-        window.addEventListener("load", pl.v.clearAll.setupUserInterface);
-        window.addEventListener("load", pl.v.retrieveAndListAllClasses.updateView);
-        window.addEventListener("load", pl.v.export.setupUserInterface);
-        window.addEventListener("load", pl.v.load.setupUserInterface);
-        window.addEventListener("load", pl.v.refresh.setupUserInterface);
-
-
+        window.addEventListener("load", pl.c.setUpGUI);
+        window.addEventListener("load", pl.v.commandLine.setupUserInterface);
     </script>
 </head>
 
 <body>
     <h1> UML Editor Prototype (Basic HTML/JS version) </h1>
-    <p>
-        Welcome to our UML Editor prototype.
-
-        </br></br>
-
-        To <em>add</em> a class, type a new class name in the text box and click <strong>Add</strong>.
-
-        </br></br>
-        To <em>delete</em> a class, enter the name of the class you would like to delete in the text box and click
-        <strong>Delete</strong>.
-        </br></br>
-        To <em>clear</em> the database, click <strong>Delete All Classes</strong>.
-
-        </br></br>
-        To <em>save</em> a JSON file representing the current classes, click <strong>Export Data to File</strong>.
-
-        </br></br>
-        To <em>load</em> a JSON file into the editor, select a file with <strong>Choose File</strong>, then click
-        <strong>Load Data from File</strong>. You may need to click <strong>Refresh View</strong> to see the classes
-        displayed.
 
 
+    <button type="button" name="instructions" onclick="showInstructions()">Show/Hide Instructions</button>
+    <p id="instructions"></p>
 
-    </p>
-    <hr>
+    <hr />
     <form id="UMLClass">
         <div><label>
                 Class name:
                 <input name="name" />
             </label></div>
+        <!-- 
         <div><button type="button" name="add">Add</button></div>
         <div><button type="button" name="delete">Delete</button></div>
         <div><button type="button" name="clearAll">Delete All Classes</button></div>
         </br>
+       
         <div><button type="button" name="export">Export Data to File</button></div>
         <div><button type="button" name="load">Load Data from File</button>
-            <input type="file" id="loadfile">
+          
         </div>
         <div><button type="button" name="refresh">Refresh View</button></div>
+        <input type="file" id="loadfile"></br>     -->
+
     </form>
 
+    <hr />
+    <form id="CLIForm">
+        <div><label>
+                >
+                <input id="cli"> type 'help' to see commands
+            </label></div>
+    </form>
     <hr />
     <table id="classes">
         <caption>Classes</caption>
