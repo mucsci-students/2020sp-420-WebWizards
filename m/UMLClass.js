@@ -1,10 +1,11 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
-function UMLClass(name) {
+function UMLClass(name, vars = [], methods = []) {
     this.name = name;
-    this.vars = [];
-    this.methods = [];
+    this.vars = vars;
+    this.methods = methods;
+
 };
 
 //all active UMLClasses are stored in this map, referenced by their name
@@ -16,9 +17,59 @@ UMLClass.add = function (name) {
     console.log("Class " + name + " created.");
 };
 
+UMLClass.addVar = function (className, varName) {
+    if (UMLClass.instances[className]) {
+        UMLClass.instances[className].vars.push(varName);
+    }
+};
+
+UMLClass.addMethod = function (className, methodName) {
+    if (UMLClass.instances[className]) {
+        UMLClass.instances[className].methods.push(methodName);
+    }
+};
+
+UMLClass.deleteVar = function (className, varName) {
+    if (UMLClass.instances[className]) {
+        var varIndex = -1;
+
+        for (v of UMLClass.instances[className].vars) {
+            if (v === varName) {
+                varIndex = UMLClass.instances[className].vars.indexOf(v);
+            }
+        }
+
+        if (varIndex !== -1) {
+            UMLClass.instances[className].vars.splice(varIndex, 1);
+        }
+        else {
+            alert("variable not found");
+        }
+    }
+};
+
+UMLClass.deleteMethod = function (className, methodName) {
+    if (UMLClass.instances[className]) {
+        var methodIndex = -1;
+
+        for (m of UMLClass.instances[className].methods) {
+            if (m === methodName) {
+                methodIndex = UMLClass.instances[className].methods.indexOf(m);
+            }
+        }
+
+        if (methodIndex !== -1) {
+            UMLClass.instances[className].methods.splice(methodIndex, 1);
+        }
+        else {
+            alert("variable not found");
+        }
+    }
+};
+
 //converts record [from local storage] to UMLClass object
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow.name);
+    return new UMLClass(classRow.name, classRow.vars, classRow.methods);
 };
 
 
@@ -96,8 +147,8 @@ UMLClass.saveAll = function () {
 
 //resets UMLClass.instances and localstorage["storage"]
 UMLClass.clearData = function () {
-        localStorage["storage"] = "{}";
-        UMLClass.instances = {};
+    localStorage["storage"] = "{}";
+    UMLClass.instances = {};
 };
 
 
