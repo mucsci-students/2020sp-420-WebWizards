@@ -1,0 +1,121 @@
+<!-- reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03.html-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="umlCss.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>
+        UML Editor
+    </title>
+
+    <script src="src/initialize.js"></script>
+    <script src="src/UMLClass.js"></script>
+    <script src="src/guiview.js"></script>
+    <script>
+        window.addEventListener("load", pl.v.createClass.setupUserInterface);
+        window.addEventListener("load", pl.v.deleteClass.setupUserInterface);
+        window.addEventListener("load", pl.v.clearAll.setupUserInterface);
+        window.addEventListener("load", pl.v.retrieveAndListAllClasses.updateView);
+        window.addEventListener("load", pl.v.export.setupUserInterface);
+        window.addEventListener("load", pl.v.load.setupUserInterface);
+        window.addEventListener("load", pl.v.refresh.setupUserInterface);
+
+    </script>
+</head>
+
+<body>
+    <h1 class = navBar> Welcome to our UML Editor!</h1>
+
+    <div id = mode>
+        <button type="button" name="cliMode" class="btn btn-primary btn-block">Click Here for CLI Mode (needs connection)</button>
+
+        <button type="button" name="guiMode" class="btn btn-primary btn-block">Click Here for Gui Mode (needs connection)</button>
+    </div>    
+
+    <p class = instructions>        
+        </br></br>
+
+        To <em>add</em> a class, type a new class name in the text box and click <strong>Add</strong>.
+
+        </br></br>
+        To <em>delete</em> a class, enter the name of the class you would like to delete in the text box and click
+        <strong>Delete</strong>.
+        </br></br>
+        To <em>clear</em> the database, click <strong>Delete All Classes</strong>.
+
+        </br></br>
+        To <em>save</em> a JSON file representing the current classes, click <strong>Export Data to File</strong>.
+
+        </br></br>
+        To <em>load</em> a JSON file into the editor, select a file with <strong>Choose File</strong>, then click
+        <strong>Load Data from File</strong>. You may need to click <strong>Refresh View</strong> to see the classes
+        displayed.
+
+
+
+    </p>
+    <hr>
+
+    <form  id="UMLClass">
+        <label>
+                Enter Class Name:
+                <input name="name" />
+        </label>
+
+        <div class= container-fluid>
+
+            <div class="row">
+            <div class="col-sm-6"    
+            <div class = buttons>
+                <div><button type="button" name="add" class="btn btn-success btn-block" >Add</button></div>
+                </br>
+
+                <div><button type="button" name="delete" class="btn btn-warning btn-block">Delete</button></div>
+                </br>
+
+                <div><button type="button" name="clearAll" class="btn btn-danger btn-block">Delete All Classes</button></div>
+                </br>
+
+                <div><button type="button" name="export" class="btn btn-warning btn-block">Export Data to File</button></div>
+                </br>
+
+                <div><button type="button" name="load" class="btn btn-info btn-block">Load Data from File</button>
+
+                <input type="file" id="loadfile">
+                </div>
+                </br>
+
+                <div><button type="button" name="refresh" class="btn btn-success btn-block">Refresh View</button></div>
+                </br>  
+            </div>
+                   
+
+
+
+                   <div class="col-sm-6">
+                    <div class =classesBox>
+                        <table id="classes">
+                        <caption>Classes</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <br>
+                        </table>
+
+                    </div>
+                 </div> 
+            </div>                
+        </div> 
+            </div>  
+
+    </form>
+    <hr />
+
+</body>
+
+</html>

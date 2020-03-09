@@ -4,4 +4,4 @@
 //m -> model
 //v -> view
 //c -> controller
-var pl = { m:{}, v: {}, c:{}};
+var pl = { m:{}, v:{}, c:{}};
