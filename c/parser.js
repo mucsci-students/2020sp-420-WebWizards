@@ -67,7 +67,7 @@ pl.c.defaultParser = function (args) {
             >export\n\
             >clear\n\
             >load\n\
-            >rename-class current-class-name new-class-name\n\
+            >rename current-class-name new-class-name\n\
             >add-edge start-class end-class\n\
             >delete-edge start-class end-class\n\
             >list-edges\n\

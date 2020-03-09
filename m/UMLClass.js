@@ -46,8 +46,13 @@ UMLClass.retrieveAll = function () {
 };
 
 UMLClass.rename = function (oldName, newName) {
-    //TODO
-}
+    const classString = localStorage["storage"];
+    const regex = new RegExp(oldName, "g");
+    const newClassString = classString.replace(regex, newName);
+    localStorage["storage"] = newClassString;
+    UMLClass.instances = [];
+    UMLClass.retrieveAll();
+};
 
 /*
 UMLClass.update = function (slots) {
