@@ -157,6 +157,8 @@ UMLClass.saveAll = function () {
 UMLClass.clearData = function () {
     localStorage["storage"] = "{}";
     UMLClass.instances = {};
+    return Object.entries(UMLClass).length == 0;
+
 };
 
 
