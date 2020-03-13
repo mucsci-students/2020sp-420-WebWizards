@@ -45,6 +45,11 @@ describe("should test two cases for UMLclass.destroy", function () {
     it ("if class given doesn't exist", function() {
 		expect(UMLClass.destroy("car")).toEqual(null);
     });
+
+    it ("if clear all, then all data should be cleared", function() {
+        expect(UMLClass.clearData()).toEqual(false);
+
+    });
    
 });
 
