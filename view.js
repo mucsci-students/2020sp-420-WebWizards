@@ -2,11 +2,7 @@
 
 pl.v.createClass = {
     setupUserInterface: function () {
-        //var addButton = document.forms["UMLClass"].add;
-        var addButton = document.createElement("button");
-        addButton.innerHTML = "Add";
-        document.forms["UMLClass"].append(addButton);
-
+        var addButton = document.forms["UMLClass"].add;
         UMLClass.retrieveAll();
         addButton.addEventListener("click",
             pl.v.createClass.handleAddButtonClickEvent);
@@ -25,11 +21,7 @@ pl.v.createClass = {
 
 pl.v.deleteClass = {
     setupUserInterface: function () {
-        // var deleteButton = document.forms["UMLClass"].delete;
-        var deleteButton = document.createElement("button");
-        deleteButton.innerHTML = "Delete";
-        document.forms["UMLClass"].append(deleteButton);
-
+        var deleteButton = document.forms["UMLClass"].delete;
         deleteButton.addEventListener("click",
             pl.v.deleteClass.handleDeleteButtonClickEvent);
         window.addEventListener("beforeunload", function () {
@@ -49,11 +41,7 @@ pl.v.deleteClass = {
 
 pl.v.clearAll = {
     setupUserInterface: function () {
-        // var clearAllButton = document.forms["UMLClass"].clearAll;
-        var clearAllButton = document.createElement("button");
-        clearAllButton.innerHTML = "Delete All Classes";
-        document.forms["UMLClass"].append(clearAllButton);
-
+        var clearAllButton = document.forms["UMLClass"].clearAll;
         clearAllButton.addEventListener("click",
             pl.v.clearAll.handleClearAllButtonClickEvent);
     },
@@ -79,8 +67,6 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
             row = new_tableBody.insertRow();
             row.insertCell(-1).textContent = UMLClass.instances[key].name;
-            row.insertCell(-1).textContent = UMLClass.instances[key].vars.join(", ");
-            row.insertCell(-1).textContent = UMLClass.instances[key].methods.join(", ");
         }
         tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }
@@ -88,15 +74,7 @@ pl.v.retrieveAndListAllClasses = {
 
 pl.v.load = {
     setupUserInterface: function () {
-        // var loadButton = document.forms["UMLClass"].load;
-        var loadButton = document.createElement("button");
-        loadButton.innerHTML = "Load Data from File";
-        var loadSelector = document.createElement("input");
-        loadSelector.type = "file";
-        loadSelector.id = "loadfile";
-        document.forms["UMLClass"].append(loadButton);
-        document.forms["UMLClass"].append(loadSelector);
-
+        var loadButton = document.forms["UMLClass"].load;
         loadButton.addEventListener("click", pl.v.load.handleLoadButton);
     },
 
@@ -109,11 +87,7 @@ pl.v.load = {
 
 pl.v.export = {
     setupUserInterface: function () {
-        // var exportButton = document.forms["UMLClass"].export;
-        var exportButton = document.createElement("button");
-        exportButton.innerHTML = "Export Data to File";
-        document.forms["UMLClass"].append(exportButton);
-
+        var exportButton = document.forms["UMLClass"].export;
         exportButton.addEventListener("click", pl.v.export.handleExportButtonClickEvent);
     },
 
@@ -124,11 +98,7 @@ pl.v.export = {
 
 pl.v.refresh = {
     setupUserInterface: function () {
-        // var refreshButton = document.forms["UMLClass"].refresh;
-        var refreshButton = document.createElement("button");
-        refreshButton.innerHTML = "Refresh";
-        document.forms["UMLClass"].append(refreshButton);
-
+        var refreshButton = document.forms["UMLClass"].refresh;
         refreshButton.addEventListener("click", pl.v.refresh.handleRefreshButtonClickEvent);
     },
 
