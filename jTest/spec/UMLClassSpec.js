@@ -15,12 +15,12 @@ the it() block is an explanation of what the function you're testing should do.
 VERY commonly, it reads like a sentence beginning with the word "should"
 */
 // TESTS FOR ADD CASES:
-describe("should test two cases for UMLclass.add", function () {
+describe("Tests two cases for UMLclass.add", function () {
     //beforeEach(function() {
     	//spyOn(console, 'log');
     //});
 
-    it ("given empty, will add class", function() {
+    it ("should add class given empty instance", function() {
     	expect(UMLClass.add("car")).toEqual("car");
     	//expect(console.log).toHaveBeenCalled();
     });
@@ -32,14 +32,11 @@ describe("should test two cases for UMLclass.add", function () {
 });
 
 //TESTS FOR DELETE CASES:
-describe("should test two cases for UMLclass.destroy", function () {
-    //beforeEach(function() {
-    	//spyOn(console, 'log');
-    //});
+describe("Tests two cases for UMLclass.destroy", function () {
+   
 
     it ("if class given exist, will delete it", function() {
     	expect(UMLClass.destroy("car")).toEqual(null);
-    	//expect(console.log).toHaveBeenCalled();
     });
 
     it ("if class given doesn't exist", function() {
@@ -50,6 +47,18 @@ describe("should test two cases for UMLclass.destroy", function () {
         expect(UMLClass.clearData()).toEqual(false);
 
     });
-   
 });
+
+
+//TEST FOR RELATIONSHIPS(EDGES):
+describe("Tests Relationship(Edge) creations", function(){
+
+    it("should define a relationship between two exisiting classes", function() {
+        //expect(Edge.add("car, carB")).toEqual(Edge("car, carB"));
+    });
+
+});
+
+
+   
 
