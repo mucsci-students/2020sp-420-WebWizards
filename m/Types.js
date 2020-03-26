@@ -1,6 +1,6 @@
 /* 
 Decided to put the relationship types we will be defining into an enumerator so that 
-we can use them as identify edge types 
+we can use them to identify edge types 
 */
 
 const TypeRel = {
