@@ -51,10 +51,18 @@ describe("Tests two cases for UMLclass.destroy", function () {
 
 
 //TEST FOR RELATIONSHIPS(EDGES):
-describe("Tests Relationship(Edge) creations", function(){
+describe("Tests Relationship(Edge) creations", function() {
+
+    //beforeEach(function() {
+        //Edge = Edge(classOne, classTwo;
+    //});
 
     it("should define a relationship between two exisiting classes", function() {
-        //expect(Edge.add("car, carB")).toEqual(Edge("car, carB"));
+        expect(Edge.add("car carB")).toEqual(Edge("car, carB"));
+    });
+
+    it("should delete an exisiting relationship between two exisiting classes", function() {
+        expect(Edge.destroy("car carB")).toEqual(null);
     });
 
 });

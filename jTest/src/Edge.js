@@ -1,8 +1,9 @@
 //defines an Edge relationship as the names of two classes, given as parameters
 function Edge(classOne, classTwo) {
+    if(Edge(classOne classTwo))
     this.start = classOne;
     this.end = classTwo;
-    console.log("Edge " + this.start + " => " + this.end + " created");
+    console.log("Edge " + this.start + " => " + this.end + " created");     
 };
 
 //array that stores Edges
@@ -12,6 +13,7 @@ Edge.instances = [];
 Edge.add = function (classOne, classTwo) {
     if (UMLClass.instances[classOne] && UMLClass.instances[classTwo])
         Edge.instances.push(new Edge(classOne, classTwo));
+        console.log("Edge " + this.start + " => " + this.end + " created");
         return Edge(classOne,classTwo);
     else
         alert("Edge requires two valid class names!");
@@ -23,6 +25,7 @@ Edge.destroy = function (classOne, classTwo) {
     for (i of Edge.instances) {
         if ((i.start === classOne) && (i.end === classTwo)) {
             edgeIndex = Edge.instances.indexOf(i);
+            return null;
         }
     }
 
