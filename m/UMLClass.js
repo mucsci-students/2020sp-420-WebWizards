@@ -14,7 +14,7 @@ UMLClass.instances = {};
 //creates a new UMLClass and adds it to UMLClass.instances by name
 UMLClass.add = function (name) {
     if (name in UMLClass.instances) {
-    console.log("Class " + name + " already exist.")
+        console.log("Class " + name + " already exist.")
         return null;
     }
     UMLClass.instances[name] = new UMLClass(name);

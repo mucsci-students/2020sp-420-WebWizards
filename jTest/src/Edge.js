@@ -14,7 +14,7 @@ Edge.add = function (classOne, classTwo) {
     if (UMLClass.instances[classOne] && UMLClass.instances[classTwo])
         Edge.instances.push(new Edge(classOne, classTwo));
         console.log("Edge " + this.start + " => " + this.end + " created");
-        return Edge(classOne,classTwo);
+        //return Edge(classOne,classTwo);
     else
         alert("Edge requires two valid class names!");
 };
