@@ -8,7 +8,7 @@
         UML Editor
     </title>
 
-    <link rel="stylesheet" type="text/css" href="umlCss2.css">
+    <link rel="stylesheet" type="text/css" href="cssKl.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -178,11 +178,15 @@
         <div class="modal-body">
         <form id="UMLClass">
             <div>
-            <label>
-                    Class name:
-                    <input name="name" />
-            </label>
-            <br>
+                <div id = "classBox">
+                    <div id="classBoxName">
+                        <label>
+                            Class name:
+                            <input name="name" />
+                        </label>
+                        <br>
+                    </div>
+                </div>
             </div>
 
             <div id="addButton"><button type="button" name="add">Add</button></div>
