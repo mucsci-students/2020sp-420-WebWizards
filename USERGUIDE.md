@@ -40,10 +40,10 @@ USING THE COMMAND LINE INTERFACE (CLI):
 
 RELATIONSHIPS:
   
-    To add a relationship, type "add-edge" followed by the name of the source and then followed by the destination and press Enter.
+   To add a relationship, type "add-edge" followed by the name of the source and then followed by the destination and press Enter.
   
-    To view all of the current relationships, type "list-edges" and press Enter.
+   To view all of the current relationships, type "list-edges" and press Enter.
   
-    To delete an relationship, type "delete-edge" followed by a the source and destination of the edge you want to delete and press Enter. 
+   To delete an relationship, type "delete-edge" followed by a the source and destination of the edge you want to delete and press Enter. 
   
-    To delete all of the stored edges, type "clear-edges" and press Enter.
+   To delete all of the stored edges, type "clear-edges" and press Enter.
