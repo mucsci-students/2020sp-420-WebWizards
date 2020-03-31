@@ -38,17 +38,20 @@ caption{
   color: #fff;
 }
 
+
 #classBox {
   position: absolute;
-  background-color: #f1f1f1;
+  z-index: 9;
+  background-color: white;
   text-align: center;
-  border: 2px solid black;
+  border: 5px solid black;
 }
 
 #classBoxName {
   padding: 10px;
-  cursor: default;
- 
-  background-color: #2196F3;
-  color: #fff;
+  cursor: move;
+  z-index: 10;
+  background-color: yellow;
+  color: black;
+  border: 2px solid gray;
 }
