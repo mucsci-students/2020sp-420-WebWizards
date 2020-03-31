@@ -27,87 +27,80 @@
     <script>
         window.addEventListener("load", pl.c.setUpGUI);
         window.addEventListener("load", pl.v.commandLine.setupUserInterface);
-        window.addEventListener("load", pl.v.createClass.setupUserInterface);
-        window.addEventListener("load", pl.v.deleteClass.setupUserInterface);
-        window.addEventListener("load", pl.v.clearAll.setupUserInterface);
-        window.addEventListener("load", pl.v.retrieveAndListAllClasses.updateView);
-        window.addEventListener("load", pl.v.export.setupUserInterface);
-        window.addEventListener("load", pl.v.load.setupUserInterface);
-        window.addEventListener("load", pl.v.refresh.setupUserInterface);
 
-     $(document).ready(function(){
-            $("#addBtn").click(function(){
-            $("#addModal").modal();
-            $("#deleteButton").hide();
-            $("#editButton").hide();
-            $("#deleteAllButton").hide();
-            $("#exportButton").hide();
-            $("#loadButton").hide();
-            
-           });
+        $(document).ready(function () {
+            $("#addBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
+
+            });
         });
 
 
-        $(document).ready(function(){
-            $("#deleteBtn").click(function(){
-            $("#addModal").modal();
-            $("#addButton").hide();
-            $("#editButton").hide();
-            $("#deleteAllButton").hide();
-            $("#exportButton").hide();
-            $("#loadButton").hide();
+        $(document).ready(function () {
+            $("#deleteBtn").click(function () {
+                $("#addModal").modal();
+                $("#addButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
 
-           });
+            });
         });
 
 
-        $(document).ready(function(){
-            $("#editBtn").click(function(){
-            $("#addModal").modal();
-            $("#deleteButton").hide();
-            $("#addButton").hide();
-            $("#deleteAllButton").hide();
-            $("#exportButton").hide();
-            $("#loadButton").hide();
-            
-           });
+        $(document).ready(function () {
+            $("#editBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#addButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
+
+            });
         });
 
 
-        $(document).ready(function(){
-            $("#exportBtn").click(function(){
-            $("#addModal").modal();
-            $("#deleteButton").hide();
-            $("#editButton").hide();
-            $("#deleteAllButton").hide();
-            $("#addButton").hide();
-            $("#loadButton").hide();
-            
-           });
+        $(document).ready(function () {
+            $("#exportBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#addButton").hide();
+                $("#loadButton").hide();
+
+            });
         });
 
-        $(document).ready(function(){
-            $("#loadBtn").click(function(){
-            $("#addModal").modal();
-            $("#deleteButton").hide();
-            $("#editButton").hide();
-            $("#deleteAllButton").hide();
-            $("#exportButton").hide();
-            $("#addButton").hide();
-            
-           });
+        $(document).ready(function () {
+            $("#loadBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#addButton").hide();
+
+            });
         });
 
-        $(document).ready(function(){
-            $("#deleteAllBtn").click(function(){
-            $("#addModal").modal();
-            $("#deleteButton").hide();
-            $("#editButton").hide();
-            $("#addButton").hide();
-            $("#exportButton").hide();
-            $("#loadButton").hide();
-        
-           });
+        $(document).ready(function () {
+            $("#deleteAllBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#addButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
+
+            });
         });
 
 
@@ -117,16 +110,19 @@
 </head>
 
 <body>
-    <h1 class = navBar> Welcome to our UML Editor!</h1>
+    <h1 class=navBar> Welcome to our UML Editor!</h1>
 
-    <div id = mode>
-        <button type="button" name="cliMode" class="btn btn-warning btn-block">Click Here for CLI Mode (needs connection)</button>
+    <div id=mode>
+        <button type="button" name="cliMode" class="btn btn-warning btn-block">Click Here for CLI Mode (needs
+            connection)</button>
 
-        <button type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui Mode (needs connection)</button>
+        <button type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui Mode (needs
+            connection)</button>
     </div>
 
     <!-- buttons for navigation -->
     <div class="container">
+
     
       <h1>UML Class Options</h1>
       <!-- Trigger the modal with a button -->
@@ -188,24 +184,15 @@
             </label>
             <br>
             </div>
-
-            <div id="addButton"><button type="button" name="add">Add</button></div>
-            <div id="deleteButton"><button type="button" name="delete">Delete</button></div>
-            <div id="editButton"><button type="button" name="edit">Edit</button></div>
-            <div id="deleteAllButton"><button type="button" name="clearAll">Delete All Classes</button></div>
-            <div id="exportButton"><button type="button" name="export">Export Data to File</button></div>
-            <div id="loadButton"><button type="button" name="load">Load Data from File</button>
-                <input type="file" id="loadfile">
-            </div>
-            <div id="refreshButton"><button type="button" name="refresh">Refresh View</button></div>         
-        </form>
-        <!-- footer -->
-        </div>
-            <div class="modal-footer">
-                <p> Please review all changes before pushing button </p>
+                    </div>
+                    </form>
+                    <!-- footer -->
+                </div>
+                <div class="modal-footer">
+                    <p> Please review all changes before pushing button </p>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div id="classBox" draggable="true" ondragstart='onDragStart(event);'>
