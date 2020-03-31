@@ -124,9 +124,9 @@ UMLClass.update = function (slots) {
 UMLClass.destroy = function (name) {
     if (UMLClass.instances[name]) {
         console.log("Class " + name + " deleted.");
-        return null;
         delete UMLClass.instances[name];
         UMLClass.saveAll();
+        return null;
     }
     else {
         console.log("There is no class with name " + name + " in the database.");
