@@ -72,13 +72,10 @@ UMLClass.deleteMethod = function (className, methodName) {
     }
 };
 
-//converts record [from local storage] to UMLClass object
 UMLClass.convertRec2Obj = function (classRow) {
     return new UMLClass(classRow.name, classRow.vars, classRow.methods);
 };
 
-
-//parses JSON data from local storage; then iterates through the data and adds each UMLClass to UMLClass.instances
 UMLClass.retrieveAll = function () {
     var key = "", keys = [], i = 0, classString = "", classes = {};
 
