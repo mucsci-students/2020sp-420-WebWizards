@@ -63,7 +63,7 @@ pl.c.defaultParser = function (args) {
             Edge.add(args[1], args[2]);
             break;
 
-        case "add-type":
+        case "modify-type":
             Edge.modifyRelationshipType(args[1], args[2], args[3]);
             break;
 
