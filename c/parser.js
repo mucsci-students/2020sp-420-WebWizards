@@ -13,7 +13,6 @@ pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-
                 UMLClass.add(args[i])
             } break;
 

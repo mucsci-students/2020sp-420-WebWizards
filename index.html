@@ -24,14 +24,7 @@
     <script>
         window.addEventListener("load", pl.c.setUpGUI);
         window.addEventListener("load", pl.v.commandLine.setupUserInterface);
-        window.addEventListener("load", pl.v.createClass.setupUserInterface);
-        window.addEventListener("load", pl.v.deleteClass.setupUserInterface);
-        window.addEventListener("load", pl.v.clearAll.setupUserInterface);
-        window.addEventListener("load", pl.v.retrieveAndListAllClasses.updateView);
-        window.addEventListener("load", pl.v.export.setupUserInterface);
-        window.addEventListener("load", pl.v.load.setupUserInterface);
-        window.addEventListener("load", pl.v.refresh.setupUserInterface);
-
+       
      $(document).ready(function(){
             $("#addBtn").click(function(){
             $("#addModal").modal();
@@ -149,6 +142,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <tbody></tbody>
             </tr>
             <tr>
                 <th>
@@ -161,7 +155,6 @@
                 </th>
             </tr>
         </thead>
-        <tbody></tbody>
     </table>
 
 
