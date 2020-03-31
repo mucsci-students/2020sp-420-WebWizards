@@ -1,8 +1,12 @@
+//array that stores types
+const types = ['inheritance', 'composition', 'aggregation'];
+
 //defines an Edge relationship as the names of two classes, given as parameters
-function Edge(classOne, classTwo) {
+function Edge(classOne, classTwo, edgeType = "null") {
     this.start = classOne;
     this.end = classTwo;
-    console.log("Edge " + this.start + " => " + this.end + " created");
+    this.type = edgeType;
+    console.log("Edge " + this.start + " => " + this.end + " created of type " + edgeType);   
 };
 
 //array that stores Edges
@@ -10,10 +14,31 @@ Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
 Edge.add = function (classOne, classTwo) {
-    if (UMLClass.instances[classOne] && UMLClass.instances[classTwo])
+    if(Edge(classOne, classTwo) in Edge.instances) {
+        alert("Edge already exist!");
+        return null;
+    }
+    if (UMLClass.instances[classOne] && UMLClass.instances[classTwo]) {
         Edge.instances.push(new Edge(classOne, classTwo));
-    else
+    }   
+    else {
         alert("Edge requires two valid class names!");
+    }
+};
+
+Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
+    if (!(newType in types)) {
+        for (i of Edge.instances) {
+            if ((i.start === classOne) && (i.end === classTwo)) {
+                i.type = newType;
+                break;
+            }
+        }
+    }
+    /*else {
+        alert("Not valid type!")
+    }*/
+
 };
 
 //given two UMLClass's, removes any Edges between them
@@ -29,7 +54,7 @@ Edge.destroy = function (classOne, classTwo) {
         Edge.instances.splice(edgeIndex, 1);
     }
     else {
-        alert("Edge not found");
+        alert("Edge not found!");
     }
 };
 
@@ -52,11 +77,11 @@ Edge.deleteClassRelationships = function (umlclass) {
 Edge.returnHumanReadableString = function () {
     var edgeString = "Edges:\n";
     for (i of Edge.instances) {
-        edgeString += (i.start + " => " + i.end + "\n");
+        edgeString += (i.start + " => " + i.end + " of type " + i.type);
     }
     return edgeString;
 };
 
 Edge.reset = function () {
     Edge.instances = [];
-}
+};
