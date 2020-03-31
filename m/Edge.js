@@ -1,9 +1,12 @@
+//array that stores types
+const types = ['inheritance', 'composition', 'aggregation'];
+
 //defines an Edge relationship as the names of two classes, given as parameters
 function Edge(classOne, classTwo, edgeType = "null") {
     this.start = classOne;
     this.end = classTwo;
-    this.edgeType = type;
-    console.log("Edge " + this.start + " => " + this.end + " created");   
+    this.type = edgeType;
+    console.log("Edge " + this.start + " => " + this.end + " created of type " + edgeType);   
 };
 
 //array that stores Edges
@@ -12,7 +15,7 @@ Edge.instances = [];
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
 Edge.add = function (classOne, classTwo) {
     if(Edge(classOne, classTwo) in Edge.instances) {
-        console.log("Edge already created");
+        alert("Edge already exist!");
         return null;
     }
     if (UMLClass.instances[classOne] && UMLClass.instances[classTwo]) {
@@ -23,14 +26,19 @@ Edge.add = function (classOne, classTwo) {
     }
 };
 
-Edge.addEdgeOfType = function (classOne, classTwo, type) {
-    if (Edge(classOne, classTwo) in Edge.instances) {
-        return null;
+Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
+    if (!(newType in types)) {
+        for (i of Edge.instances) {
+            if ((i.start === classOne) && (i.end === classTwo)) {
+                i.type = newType;
+                break;
+            }
+        }
     }
-    if (UMLClass.instances[classOne] && UMLClass.instances[classTwo]) {
-        Edge.instances.push(new Edge(classOne, classTwo, type));
-        console.log("Edge " + classOne + " => " + classTwo + " is of type " + type); 
-    }
+    /*else {
+        alert("Not valid type!")
+    }*/
+
 };
 
 //given two UMLClass's, removes any Edges between them
@@ -46,7 +54,7 @@ Edge.destroy = function (classOne, classTwo) {
         Edge.instances.splice(edgeIndex, 1);
     }
     else {
-        alert("Edge not found");
+        alert("Edge not found!");
     }
 };
 
@@ -69,11 +77,11 @@ Edge.deleteClassRelationships = function (umlclass) {
 Edge.returnHumanReadableString = function () {
     var edgeString = "Edges:\n";
     for (i of Edge.instances) {
-        edgeString += (i.start + " => " + i.end + "\n");
+        edgeString += (i.start + " => " + i.end + " of type " + i.type);
     }
     return edgeString;
 };
 
 Edge.reset = function () {
     Edge.instances = [];
-}
+};
