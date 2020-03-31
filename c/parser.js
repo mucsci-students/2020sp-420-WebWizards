@@ -13,7 +13,6 @@ pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-
                 UMLClass.add(args[i])
             } break;
 
@@ -63,6 +62,9 @@ pl.c.defaultParser = function (args) {
             Edge.add(args[1], args[2]);
             break;
 
+        case "modify-type":
+            Edge.modifyRelationshipType(args[1], args[2], args[3]);
+            break;
 
         case "delete-edge":
             Edge.destroy(args[1], args[2]);
