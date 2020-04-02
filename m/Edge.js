@@ -27,7 +27,7 @@ Edge.add = function (classOne, classTwo) {
 //Given two UMLClasses and a valid type, will change the defaulted type of relationship to
 //passed type, if and only-if type is valid
 Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
-    if (newType == 'inheritance' || newType == 'aggregation' || newType == 'composition') {
+    if (newType == 'inheritance' || newType == 'aggregation' || newType == 'composition' || newType == 'realization') {
         for (i of Edge.instances) {
             if ((i.start === classOne) && (i.end === classTwo)) {
                 i.type = newType;
@@ -84,10 +84,13 @@ Edge.returnHumanReadableString = function () {
             edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
         }
         if (i.type == 'inheritance'){
-            edgeString += (i.start + " ===> " + i.end + " of type " + i.type);
+            edgeString += (i.start + " ----> " + i.end + " of type " + i.type);
         }
         if (i.type == 'aggregation'){
             edgeString += (i.start + " ---<> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'realization'){
+            edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
     }
     return edgeString;
