@@ -1,4 +1,5 @@
 
+
 //defines an Edge relationship as the names of two classes and a defaulted type of composition
 function Edge(classOne, classTwo, edgeType = "composition") {
     this.start = classOne;
@@ -41,7 +42,6 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
     else {
         alert("Non-valid type entered!")
     }
-
 };
 
 //given two UMLClass's, removes any Edges between them
@@ -92,6 +92,7 @@ Edge.returnHumanReadableString = function () {
         if (i.type == 'realization'){
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
+
     }
     return edgeString;
 };

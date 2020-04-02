@@ -128,6 +128,7 @@ UMLClass.destroy = function (name) {
         console.log("Class " + name + " deleted.");
         delete UMLClass.instances[name];
         UMLClass.saveAll();
+        return null;
     }
     else {
         console.log("There is no class with name " + name + " in the database.");
