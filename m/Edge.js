@@ -1,5 +1,5 @@
 
-//defines an Edge relationship as the names of two classes, given as parameters
+//defines an Edge relationship as the names of two classes and a defaulted type of composition
 function Edge(classOne, classTwo, edgeType = "composition") {
     this.start = classOne;
     this.end = classTwo;
@@ -24,6 +24,8 @@ Edge.add = function (classOne, classTwo) {
     }
 };
 
+//Given two UMLClasses and a valid type, will change the defaulted type of relationship to
+//passed type, if and only-if type is valid
 Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
     if (newType == 'inheritance' || newType == 'aggregation' || newType == 'composition') {
         for (i of Edge.instances) {
