@@ -4,7 +4,7 @@ function Edge(classOne, classTwo, edgeType = "composition") {
     this.start = classOne;
     this.end = classTwo;
     this.type = edgeType;
-    console.log("Edge " + this.start + " => " + this.end + " created of type " + edgeType);   
+    console.log("Edge " + classOne + " => " + classTwo + " created of type " + edgeType);   
 };
 
 //array that stores Edges
