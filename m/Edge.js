@@ -84,10 +84,10 @@ Edge.returnHumanReadableString = function () {
             edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
         }
         if (i.type == 'inheritance'){
-            edgeString += (i.start + " ----> " + i.end + " of type " + i.type);
+            edgeString += (i.start + " -----> " + i.end + " of type " + i.type);
         }
         if (i.type == 'aggregation'){
-            edgeString += (i.start + " ---<> " + i.end + " of type " + i.type);
+            edgeString += (i.start + " ----<> " + i.end + " of type " + i.type);
         }
         if (i.type == 'realization'){
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
