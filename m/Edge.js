@@ -1,8 +1,6 @@
-//array that stores types
-const types = ['inheritance', 'composition', 'aggregation'];
 
 //defines an Edge relationship as the names of two classes, given as parameters
-function Edge(classOne, classTwo, edgeType = "null") {
+function Edge(classOne, classTwo, edgeType = "composition") {
     this.start = classOne;
     this.end = classTwo;
     this.type = edgeType;
@@ -27,7 +25,7 @@ Edge.add = function (classOne, classTwo) {
 };
 
 Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
-    if (!(newType in types)) {
+    if (newType == 'inheritance' || newType == 'aggregation' || newType == 'composition') {
         for (i of Edge.instances) {
             if ((i.start === classOne) && (i.end === classTwo)) {
                 i.type = newType;
@@ -35,9 +33,9 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
             }
         }
     }
-    /*else {
-        alert("Not valid type!")
-    }*/
+    else {
+        alert("Non-valid type entered!")
+    }
 
 };
 
@@ -77,7 +75,15 @@ Edge.deleteClassRelationships = function (umlclass) {
 Edge.returnHumanReadableString = function () {
     var edgeString = "Edges:\n";
     for (i of Edge.instances) {
-        edgeString += (i.start + " => " + i.end + " of type " + i.type);
+        if (i.type == 'composition'){
+            edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'inheritance'){
+            edgeString += (i.start + " ===> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'aggregation'){
+            edgeString += (i.start + " ---<> " + i.end + " of type " + i.type);
+        }
     }
     return edgeString;
 };
