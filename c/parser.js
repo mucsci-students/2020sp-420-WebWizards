@@ -92,6 +92,7 @@ pl.c.defaultParser = function (args) {
             >delete-var class-name var-name\n\
             >delete-var class-name method-name\n\
             >add-edge start-class end-class\n\
+            >modify-type start-class end-class type \n\
             >delete-edge start-class end-class\n\
             >list-edges\n\
             >clear-edges\n\

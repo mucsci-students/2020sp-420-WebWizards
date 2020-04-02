@@ -31,6 +31,9 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
                 i.type = newType;
                 break;
             }
+            else {
+                alert("Edge not found!");
+            }
         }
     }
     else {
