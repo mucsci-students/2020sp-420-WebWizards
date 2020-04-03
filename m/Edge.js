@@ -1,12 +1,11 @@
-//array that stores types
-const types = ['inheritance', 'composition', 'aggregation'];
 
-//defines an Edge relationship as the names of two classes, given as parameters
-function Edge(classOne, classTwo, edgeType = "null") {
+
+//defines an Edge relationship as the names of two classes and a defaulted type of composition
+function Edge(classOne, classTwo, edgeType = "composition") {
     this.start = classOne;
     this.end = classTwo;
     this.type = edgeType;
-    console.log("Edge " + this.start + " => " + this.end + " created of type " + edgeType);   
+    console.log("Edge " + classOne + " => " + classTwo + " created of type " + edgeType);   
 };
 
 //array that stores Edges
@@ -26,19 +25,23 @@ Edge.add = function (classOne, classTwo) {
     }
 };
 
+//Given two UMLClasses and a valid type, will change the defaulted type of relationship to
+//passed type, if and only-if type is valid
 Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
-    if (!(newType in types)) {
+    if (newType == 'inheritance' || newType == 'aggregation' || newType == 'composition' || newType == 'realization') {
         for (i of Edge.instances) {
             if ((i.start === classOne) && (i.end === classTwo)) {
                 i.type = newType;
                 break;
             }
+            else {
+                alert("Edge not found!");
+            }
         }
     }
-    /*else {
-        alert("Not valid type!")
-    }*/
-
+    else {
+        alert("Non-valid type entered!")
+    }
 };
 
 //given two UMLClass's, removes any Edges between them
@@ -77,7 +80,19 @@ Edge.deleteClassRelationships = function (umlclass) {
 Edge.returnHumanReadableString = function () {
     var edgeString = "Edges:\n";
     for (i of Edge.instances) {
-        edgeString += (i.start + " => " + i.end + " of type " + i.type);
+        if (i.type == 'composition'){
+            edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'inheritance'){
+            edgeString += (i.start + " -----> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'aggregation'){
+            edgeString += (i.start + " ----<> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'realization'){
+            edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
+        }
+
     }
     return edgeString;
 };

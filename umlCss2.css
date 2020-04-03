@@ -1,6 +1,6 @@
 caption{
-	font-size: 20pt;
-	color: black;
+  font-size: 20pt;
+  color: black;
 }
 
 .navBar{
@@ -13,13 +13,13 @@ caption{
 
 
 .instructions{
-	border: 10px solid;
-	border-color: yellow;
-	border-radius: 2px;
+  border: 10px solid;
+  border-color: yellow;
+  border-radius: 2px;
 }
 
 .buttons{
-	width: 25%;
+  width: 25%;
 }
 
 #dragBox {
