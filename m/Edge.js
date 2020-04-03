@@ -1,4 +1,5 @@
-
+module.exports = Edge.add;
+module.exports = Edge.destroy;
 
 //defines an Edge relationship as the names of two classes and a defaulted type of composition
 function Edge(classOne, classTwo, edgeType = "composition") {
