@@ -102,6 +102,8 @@ Edge.returnHumanReadableString = function () {
         if (i.type == 'realization') {
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
+
+        edgeString += "\n";
     }
     return edgeString;
 };
