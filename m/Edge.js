@@ -12,12 +12,12 @@ function Edge(classOne, classTwo, edgeType = "composition") {
 Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
-Edge.add = function (classOne, classTwo) {
+Edge.add = function (classOne, classTwo, umlinstances) {
     if (Edge.exists(classOne, classTwo)) {
         alert("Edge already exists!");
         return null;
     }
-    if (UMLClass.instances[classOne] && UMLClass.instances[classTwo]) {
+    if (umlinstances[classOne] && umlinstances[classTwo]) {
         Edge.instances.push(new Edge(classOne, classTwo));
     }
     else {
@@ -102,7 +102,6 @@ Edge.returnHumanReadableString = function () {
         if (i.type == 'realization') {
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
-
     }
     return edgeString;
 };

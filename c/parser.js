@@ -59,7 +59,7 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "add-edge":
-            Edge.add(args[1], args[2]);
+            Edge.add(args[1], args[2], UMLClass.instances);
             break;
 
         case "modify-type":
