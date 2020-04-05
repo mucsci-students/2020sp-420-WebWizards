@@ -33,7 +33,6 @@ pl.c.defaultParser = function (args) {
                 save.clearData();
                 UMLClass.reset();
                 Edge.reset();
-=
             }
             break;
 

@@ -12,7 +12,7 @@ pl.v.createClass = {
             pl.v.createClass.handleAddButtonClickEvent);
 
         window.addEventListener("beforeunload", function () {
-            UMLClass.saveAll();
+            save.saveLocal();
         });
     },
     handleAddButtonClickEvent: function () {

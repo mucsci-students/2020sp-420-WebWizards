@@ -77,6 +77,7 @@ save = {
         reader.onload = function (event) {
             var contents = event.target.result;
             localStorage["storage"] = contents;
+            console.log(contents);
             this.retrieveAll();
         }
 
