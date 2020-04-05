@@ -42,6 +42,8 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
         for (i of Edge.instances) {
             if ((i.start === classOne) && (i.end === classTwo)) {
                 i.type = newType;
+                console.log("Edge type changed to " + newType);
+                console.log(Edge.returnHumanReadableString());
                 break;
             }
             else {
@@ -88,7 +90,7 @@ Edge.deleteClassRelationships = function (umlclass) {
 };
 
 Edge.convertRec2Obj = function (edgeRow) {
-    return new Edge(edgeRow.start, edgeRow.end, edgeRow.edgeType);
+    return new Edge(edgeRow.start, edgeRow.end, edgeRow.type);
 };
 
 Edge.retrieveAll = function (edgeString) {

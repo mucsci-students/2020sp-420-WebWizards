@@ -66,6 +66,8 @@ pl.c.defaultParser = function (args) {
 
         case "modify-type":
             Edge.modifyRelationshipType(args[1], args[2], args[3]);
+            console.log("--" + Edge.returnHumanReadableString());
+            save.saveLocal(UMLClass.instances, Edge.instances);
             break;
 
         case "delete-edge":
