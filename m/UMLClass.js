@@ -1,8 +1,9 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
-module.exports = UMLClass.add;
-module.exports = UMLClass.destroy;
-module.exports = UMLClass.clearData;
+/* export function statements for jasmine testing */
+//module.exports = UMLClass.add;
+//module.exports = UMLClass.destroy;
+//module.exports = UMLClass.clearData;
 
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 function UMLClass(name, vars = [], methods = []) {
