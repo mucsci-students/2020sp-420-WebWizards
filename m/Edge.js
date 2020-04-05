@@ -5,25 +5,35 @@ function Edge(classOne, classTwo, edgeType = "composition") {
     this.start = classOne;
     this.end = classTwo;
     this.type = edgeType;
-    console.log("Edge " + classOne + " => " + classTwo + " created of type " + edgeType);   
+    console.log("Edge " + classOne + " => " + classTwo + " created of type " + edgeType);
 };
 
 //array that stores Edges
 Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
-Edge.add = function (classOne, classTwo) {
-    if(Edge(classOne, classTwo) in Edge.instances) {
-        alert("Edge already exist!");
+Edge.add = function (classOne, classTwo, umlinstances) {
+    if (Edge.exists(classOne, classTwo)) {
+        alert("Edge already exists!");
         return null;
     }
-    if (UMLClass.instances[classOne] && UMLClass.instances[classTwo]) {
+    if (umlinstances[classOne] && umlinstances[classTwo]) {
         Edge.instances.push(new Edge(classOne, classTwo));
-    }   
+    }
     else {
         alert("Edge requires two valid class names!");
     }
 };
+
+Edge.exists = function (classOne, classTwo) {
+    var returnVal = false;
+    for (i of Edge.instances) {
+        if ((i.start === classOne) && (i.end === classTwo)) {
+            returnVal = true;
+        }
+    }
+    return returnVal;
+}
 
 //Given two UMLClasses and a valid type, will change the defaulted type of relationship to
 //passed type, if and only-if type is valid
@@ -74,25 +84,39 @@ Edge.deleteClassRelationships = function (umlclass) {
     for (i of edgeIndexes) {
         Edge.instances.splice(i - edgeIndexes.indexOf(i), 1);
     }
-    
+
+};
+
+Edge.convertRec2Obj = function (edgeRow) {
+    return new Edge(edgeRow.start, edgeRow.end, edgeRow.edgeType);
+};
+
+Edge.retrieveAll = function (edgeString) {
+    edges = JSON.parse(edgeString);
+    console.log(edges.length + " edges loaded.");
+    for (i = 0; i < edges.length; i++) {
+        Edge.instances[i] = Edge.convertRec2Obj(edges[i]);
+    }
+
 };
 
 Edge.returnHumanReadableString = function () {
     var edgeString = "Edges:\n";
     for (i of Edge.instances) {
-        if (i.type == 'composition'){
+        if (i.type == 'composition') {
             edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
         }
-        if (i.type == 'inheritance'){
+        if (i.type == 'inheritance') {
             edgeString += (i.start + " -----> " + i.end + " of type " + i.type);
         }
-        if (i.type == 'aggregation'){
+        if (i.type == 'aggregation') {
             edgeString += (i.start + " ----<> " + i.end + " of type " + i.type);
         }
-        if (i.type == 'realization'){
+        if (i.type == 'realization') {
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
 
+        edgeString += "\n";
     }
     return edgeString;
 };
