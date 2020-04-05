@@ -104,6 +104,8 @@ pl.v.load = {
     handleLoadButton: function () {
         var loadFile = document.getElementById("loadfile").files[0];
         save.loadFile(loadFile);
+        UMLClass.retrieveAll(save.retrieveUMLClassString);
+        Edge.retrieveAll(save.retrieveEdgeString);
         pl.v.retrieveAndListAllClasses.updateView();
     }
 };

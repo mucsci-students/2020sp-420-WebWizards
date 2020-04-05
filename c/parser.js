@@ -26,7 +26,7 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "export":
-            UMLClass.exportFile();
+            save.exportFile();
             break;
 
         case "clear":

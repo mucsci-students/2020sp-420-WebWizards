@@ -59,8 +59,6 @@ save = {
     exportFile: function () {
         //reference :https://www.codevoila.com/post/30/export-json-data-to-downloadable-file-using-javascript
 
-        this.saveLocal();
-
         let exportString = localStorage["storage"];
         let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(exportString);
         let defaultFileName = 'umlData.json';
