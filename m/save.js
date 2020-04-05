@@ -1,7 +1,4 @@
-pl.m.save = {
-
-    DELIMITER: "^^",
-    LOCALNAME: "storage",
+save = {
 
     saveLocal: function (umlinstances, edgeinstances) {
 
@@ -13,7 +10,7 @@ pl.m.save = {
         try {
             classString = JSON.stringify(umlinstances);
             edgeString = JSON.stringify(edgeinstances);
-            localStorage[LOCALNAME] = classString + DELIMITER + edgeString;
+            localStorage["storage"] = classString + "^^" + edgeString;
         } catch (e) {
             alert("Error writing to Local Storage\n" + e);
             error = true;
@@ -26,46 +23,44 @@ pl.m.save = {
 
     retrieveAll: function () {
         try {
-            if (localStorage[LOCALNAME]) {
-                const dataArray = localStorage[LOCALNAME].split("^^");
-                const umlstring = localString[0];
-                const edgestring = localString[1];
+            if (localStorage["storage"]) {
+                const dataArray = localStorage["storage"].split("^^");
+                return dataArray;
             }
         } catch (e) {
             alert("Error when reading from Local Storage\n" + e);
         }
 
-        return dataArray;
     },
 
-    retrieveUMLClassString : function () {
+    retrieveUMLClassString: function () {
         return this.retrieveAll()[0];
     },
 
-    retrieveEdgeString : function () {
+    retrieveEdgeString: function () {
         return this.retrieveAll()[1];
     },
 
-    rename : function (oldName, newName) {
+    rename: function (oldName, newName) {
         this.saveLocal();
-        const dataString = localStorage[LOCALNAME];
+        const dataString = localStorage["storage"];
         const regex = new RegExp(oldName, "&&");
         const newDataString = dataString.replace(regex, newName);
-        localStorage[LOCALNAME] = newDataString;
+        localStorage["storage"] = newDataString;
 
         this.retrieveAll();
     },
 
-    clearData : function () {
-        localStorage[LOCALNAME] = "{}" + DELIMITER + "{}";
+    clearData: function () {
+        localStorage["storage"] = "{}" + "^^" + "[]";
     },
 
-    exportFile : function () {
+    exportFile: function () {
         //reference :https://www.codevoila.com/post/30/export-json-data-to-downloadable-file-using-javascript
 
         this.saveLocal();
 
-        let exportString = localStorage[LOCALNAME];
+        let exportString = localStorage["storage"];
         let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(exportString);
         let defaultFileName = 'umlData.json';
 
@@ -76,17 +71,17 @@ pl.m.save = {
 
     },
 
-    loadFile : function () {
+    loadFile: function () {
         this.clearData();
         //https://humanwhocodes.com/blog/2012/05/15/working-with-files-in-javascript-part-2/
         var reader = new FileReader();
-        reader.onload = function(event) {
+        reader.onload = function (event) {
             var contents = event.target.result;
-            localStorage[LOCALNAME] = contents;
+            localStorage["storage"] = contents;
             this.retrieveAll();
         }
 
-        reader.onerror = function() {
+        reader.onerror = function () {
             alert("File could not be read!");
         }
 

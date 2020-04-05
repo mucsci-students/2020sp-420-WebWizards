@@ -13,8 +13,9 @@ pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-                UMLClass.add(args[i])
-            } break;
+                UMLClass.add(args[i]);
+            }
+            break;
 
         case "delete":
             for (i = 1; i < args.length; i++) {
@@ -29,8 +30,7 @@ pl.c.defaultParser = function (args) {
 
         case "clear":
             if (confirm("Are you sure you want to clear the database?")) {
-                UMLClass.clearData();
-                Edge.reset();
+                save.clearData();
             }
             break;
 
@@ -39,7 +39,7 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "rename":
-            UMLClass.rename(args[1], args[2]);
+            save.rename(args[1], args[2]);
             break;
 
         case "add-var":
@@ -103,4 +103,6 @@ pl.c.defaultParser = function (args) {
             alert("Command not recognized");
             break;
     }
+    save.saveLocal(UMLClass.instances, Edge.instances);
+
 };
