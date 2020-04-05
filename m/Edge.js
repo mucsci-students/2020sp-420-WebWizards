@@ -42,8 +42,6 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
         for (i of Edge.instances) {
             if ((i.start === classOne) && (i.end === classTwo)) {
                 i.type = newType;
-                console.log("Edge type changed to " + newType);
-                console.log(Edge.returnHumanReadableString());
                 break;
             }
             else {
