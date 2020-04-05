@@ -12,7 +12,7 @@ pl.v.createClass = {
             pl.v.createClass.handleAddButtonClickEvent);
 
         window.addEventListener("beforeunload", function () {
-            save.saveLocal();
+            save.saveLocal(UMLClass.instances, Edge.instances);
         });
     },
     handleAddButtonClickEvent: function () {
@@ -33,7 +33,7 @@ pl.v.deleteClass = {
         deleteButton.addEventListener("click",
             pl.v.deleteClass.handleDeleteButtonClickEvent);
         window.addEventListener("beforeunload", function () {
-            save.saveLocal();
+            save.saveLocal(UMLClass.instances, Edge.instances);
         });
 
     },
@@ -104,8 +104,8 @@ pl.v.load = {
     handleLoadButton: function () {
         var loadFile = document.getElementById("loadfile").files[0];
         save.loadFile(loadFile);
-        UMLClass.retrieveAll(save.retrieveUMLClassString);
-        Edge.retrieveAll(save.retrieveEdgeString);
+        UMLClass.retrieveAll(save.retrieveUMLClassString());
+        Edge.retrieveAll(save.retrieveEdgeString());
         pl.v.retrieveAndListAllClasses.updateView();
     }
 };
