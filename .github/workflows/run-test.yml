@@ -23,11 +23,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
-    - npm install
-      env:
-        CI: true
-
-    - npm test
-      env:
-        CI: true
+ 
+    - name: Install Dependencies 
+      run: npm install
+      
+    - name: Test with Jasmine
+      run: |
+       npm install jasmine --save-dev
+       npm run test-init
+       npm test
