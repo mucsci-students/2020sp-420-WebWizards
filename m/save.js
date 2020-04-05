@@ -52,7 +52,6 @@ save = {
     },
 
     clearData: function () {
-        console.log("save clearData called");
         localStorage["storage"] = "{}^^[]";
     },
 
@@ -70,15 +69,14 @@ save = {
 
     },
 
-    loadFile: function () {
-        this.clearData();
+    loadFile: function (f) {
         //https://humanwhocodes.com/blog/2012/05/15/working-with-files-in-javascript-part-2/
         var reader = new FileReader();
         reader.onload = function (event) {
             var contents = event.target.result;
             localStorage["storage"] = contents;
             console.log(contents);
-            this.retrieveAll();
+            this.saveLocal();
         }
 
         reader.onerror = function () {
@@ -86,5 +84,6 @@ save = {
         }
 
         reader.readAsText(f);
+
     }
 };
