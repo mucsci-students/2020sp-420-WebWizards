@@ -50,7 +50,7 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
             }
         }
         if (!edgeFound)
-            alert("Edge to modify not found!");
+            alert("Edge to modify does not exist!");
     }
     else {
         alert("Non-valid type entered!")
@@ -70,7 +70,7 @@ Edge.destroy = function (classOne, classTwo) {
         Edge.instances.splice(edgeIndex, 1);
     }
     else {
-        alert("Edge not found!");
+        alert("Edge does not exist!");
     }
 };
 
