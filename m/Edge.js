@@ -39,15 +39,16 @@ Edge.exists = function (classOne, classTwo) {
 //passed type, if and only-if type is valid
 Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
     if (newType == 'inheritance' || newType == 'aggregation' || newType == 'composition' || newType == 'realization') {
+        var edgeFound = false;
         for (i of Edge.instances) {
             if ((i.start === classOne) && (i.end === classTwo)) {
+                edgeFound = true;
                 i.type = newType;
                 break;
             }
-            else {
-                alert("Edge not found!");
-            }
         }
+        if (!edgeFound)
+            alert("Edge to modify not found!");
     }
     else {
         alert("Non-valid type entered!")
