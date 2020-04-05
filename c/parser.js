@@ -10,7 +10,6 @@ pl.c.parseCommand = function (command, program) {
 };
 
 pl.c.defaultParser = function (args) {
-    var saveInstancesToLocal = true;
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
@@ -32,13 +31,14 @@ pl.c.defaultParser = function (args) {
         case "clear":
             if (confirm("Are you sure you want to clear the database?")) {
                 save.clearData();
-                saveInstancesToLocal = false;
+                UMLClass.reset();
+                Edge.reset();
+=
             }
             break;
 
         case "load":
             pl.v.cliLoad();
-            saveInstancesToLocal = false;
             break;
 
         case "rename":
@@ -104,10 +104,8 @@ pl.c.defaultParser = function (args) {
             break;
         default:
             alert("Command not recognized");
-            saveInstancesToLocal = false;
             break;
     }
-    if (saveInstancesToLocal)
-        save.saveLocal(UMLClass.instances, Edge.instances);
+    save.saveLocal(UMLClass.instances, Edge.instances);
 
 };

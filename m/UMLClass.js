@@ -103,6 +103,6 @@ UMLClass.destroy = function (name) {
     }
 };
 
-UMLClass.resetInstances = function() {
+UMLClass.reset = function() {
     UMLClass.instances = {};
 };
