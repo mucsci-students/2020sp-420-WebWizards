@@ -52,7 +52,8 @@ save = {
     },
 
     clearData: function () {
-        localStorage["storage"] = "{}" + "^^" + "[]";
+        console.log("save clearData called");
+        localStorage["storage"] = "{}^^[]";
     },
 
     exportFile: function () {

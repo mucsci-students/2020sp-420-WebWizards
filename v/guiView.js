@@ -73,6 +73,7 @@ pl.v.retrieveAndListAllClasses = {
         var new_tableBody = document.createElement('tbody');
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
+        Edge.retrieveAll(save.retrieveEdgeString());
         keys = Object.keys(UMLClass.instances);
 
         for (i = 0; i < keys.length; i++) {

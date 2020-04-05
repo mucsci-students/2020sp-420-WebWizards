@@ -87,6 +87,19 @@ Edge.deleteClassRelationships = function (umlclass) {
 
 };
 
+Edge.convertRec2Obj = function (edgeRow) {
+    return new Edge(edgeRow.start, edgeRow.end, edgeRow.edgeType);
+};
+
+Edge.retrieveAll = function (edgeString) {
+    edges = JSON.parse(edgeString);
+    console.log(edges.length + " edges loaded.");
+    for (i = 0; i < edges.length; i++) {
+        Edge.instances[i] = Edge.convertRec2Obj(edges[i]);
+    }
+
+};
+
 Edge.returnHumanReadableString = function () {
     var edgeString = "Edges:\n";
     for (i of Edge.instances) {
