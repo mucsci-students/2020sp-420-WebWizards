@@ -17,14 +17,20 @@ function UMLClass(name, vars = [], methods = []) {
 UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
-UMLClass.add = function (name) {
-    //if(name == null || name)
+UMLClass.add = function (name, vars = "", methods = "") {
     if (name in UMLClass.instances) {
-        alert("Class " + name + " already exist.");
+        alert("Class with name " + name + " already exists.");
         return null;
     }
 
-    UMLClass.instances[name] = new UMLClass(name);
+    if ((vars === "") && (methods === "")) {
+        UMLClass.instances[name] = new UMLClass(name);
+    } else if (methods === "") {
+        UMLClass.instances[name] = new UMLClass(name, vars.split(","));
+    } else {
+        UMLClass.instances[name] = new UMLClass(name, [], methods.split(","));
+    }
+    UMLClass.instances[name] = new UMLClass(name, vars.split(","), methods.split(","));
     console.log("Class " + name + " created.");
     return name;
 };
@@ -108,6 +114,6 @@ UMLClass.destroy = function (name) {
     }
 };
 
-UMLClass.reset = function() {
+UMLClass.reset = function () {
     UMLClass.instances = {};
 };
