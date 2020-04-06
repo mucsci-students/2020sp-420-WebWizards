@@ -7,17 +7,17 @@ pl.v.createClass = {
         addButton.innerHTML = "Add";
         document.forms["UMLClass"].append(addButton);
 
-        UMLClass.retrieveAll();
+        UMLClass.retrieveAll(save.retrieveUMLClassString());
         addButton.addEventListener("click",
             pl.v.createClass.handleAddButtonClickEvent);
 
         window.addEventListener("beforeunload", function () {
-            UMLClass.saveAll();
+            save.saveLocal(UMLClass.instances, Edge.instances);
         });
     },
     handleAddButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
-        UMLClass.add(formEl.name.value);
+        UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
         pl.v.retrieveAndListAllClasses.updateView();
     }
@@ -33,7 +33,7 @@ pl.v.deleteClass = {
         deleteButton.addEventListener("click",
             pl.v.deleteClass.handleDeleteButtonClickEvent);
         window.addEventListener("beforeunload", function () {
-            UMLClass.saveAll();
+            save.saveLocal(UMLClass.instances, Edge.instances);
         });
 
     },
@@ -60,7 +60,7 @@ pl.v.clearAll = {
 
     handleClearAllButtonClickEvent: function () {
         if (confirm("Are you sure you want to clear the database?")) {
-            UMLClass.clearData();
+            save.clearData();
             pl.v.retrieveAndListAllClasses.updateView();
         }
     }
@@ -72,7 +72,8 @@ pl.v.retrieveAndListAllClasses = {
         var tableBodyEl = document.querySelector("table#classes>tbody");
         var new_tableBody = document.createElement('tbody');
         var keys = [], key = "", row = {}, i = 0;
-        UMLClass.retrieveAll();
+        UMLClass.retrieveAll(save.retrieveUMLClassString());
+        Edge.retrieveAll(save.retrieveEdgeString());
         keys = Object.keys(UMLClass.instances);
 
         for (i = 0; i < keys.length; i++) {
@@ -102,7 +103,9 @@ pl.v.load = {
 
     handleLoadButton: function () {
         var loadFile = document.getElementById("loadfile").files[0];
-        UMLClass.loadFile(loadFile);
+        save.loadFile(loadFile);
+        UMLClass.retrieveAll(save.retrieveUMLClassString());
+        Edge.retrieveAll(save.retrieveEdgeString());
         pl.v.retrieveAndListAllClasses.updateView();
     }
 };
@@ -118,7 +121,7 @@ pl.v.export = {
     },
 
     handleExportButtonClickEvent: function () {
-        UMLClass.exportFile();
+        save.exportFile();
     }
 };
 

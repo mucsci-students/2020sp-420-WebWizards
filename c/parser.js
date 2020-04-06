@@ -13,9 +13,9 @@ pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-
-                UMLClass.add(args[i])
-            } break;
+                UMLClass.add(args[i]);
+            }
+            break;
 
         case "delete":
             for (i = 1; i < args.length; i++) {
@@ -25,12 +25,13 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "export":
-            UMLClass.exportFile();
+            save.exportFile();
             break;
 
         case "clear":
             if (confirm("Are you sure you want to clear the database?")) {
-                UMLClass.clearData();
+                save.clearData();
+                UMLClass.reset();
                 Edge.reset();
             }
             break;
@@ -40,7 +41,7 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "rename":
-            UMLClass.rename(args[1], args[2]);
+            save.rename(args[1], args[2]);
             break;
 
         case "add-var":
@@ -54,15 +55,20 @@ pl.c.defaultParser = function (args) {
         case "delete-var":
             UMLClass.deleteVar(args[1], args[2]);
             break;
-        
+
         case "delete-method":
             UMLClass.deleteMethod(args[1], args[2]);
             break;
 
         case "add-edge":
-            Edge.add(args[1], args[2]);
+            Edge.add(args[1], args[2], UMLClass.instances);
             break;
 
+        case "modify-type":
+            Edge.modifyRelationshipType(args[1], args[2], args[3]);
+            console.log("--" + Edge.returnHumanReadableString());
+            save.saveLocal(UMLClass.instances, Edge.instances);
+            break;
 
         case "delete-edge":
             Edge.destroy(args[1], args[2]);
@@ -90,6 +96,7 @@ pl.c.defaultParser = function (args) {
             >delete-var class-name var-name\n\
             >delete-var class-name method-name\n\
             >add-edge start-class end-class\n\
+            >modify-type start-class end-class type \n\
             >delete-edge start-class end-class\n\
             >list-edges\n\
             >clear-edges\n\
@@ -100,4 +107,6 @@ pl.c.defaultParser = function (args) {
             alert("Command not recognized");
             break;
     }
+    save.saveLocal(UMLClass.instances, Edge.instances);
+
 };

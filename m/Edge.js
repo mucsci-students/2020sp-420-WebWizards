@@ -1,19 +1,60 @@
-//defines an Edge relationship as the names of two classes, given as parameters
-function Edge(classOne, classTwo) {
+/* export function statements for jasmine testing */
+//module.exports = Edge.add;
+//module.exports = Edge.destroy;
+
+//defines an Edge relationship as the names of two classes and a defaulted type of composition
+function Edge(classOne, classTwo, edgeType = "composition") {
     this.start = classOne;
     this.end = classTwo;
-    console.log("Edge " + this.start + " => " + this.end + " created");
+    this.type = edgeType;
+    console.log("Edge " + classOne + " => " + classTwo + " created of type " + edgeType);
 };
 
 //array that stores Edges
 Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
-Edge.add = function (classOne, classTwo) {
-    if (UMLClass.instances[classOne] && UMLClass.instances[classTwo])
+Edge.add = function (classOne, classTwo, umlinstances) {
+    if (Edge.exists(classOne, classTwo)) {
+        alert("Edge already exists!");
+        return null;
+    }
+    if (umlinstances[classOne] && umlinstances[classTwo]) {
         Edge.instances.push(new Edge(classOne, classTwo));
-    else
+    }
+    else {
         alert("Edge requires two valid class names!");
+    }
+};
+
+Edge.exists = function (classOne, classTwo) {
+    var returnVal = false;
+    for (i of Edge.instances) {
+        if ((i.start === classOne) && (i.end === classTwo)) {
+            returnVal = true;
+        }
+    }
+    return returnVal;
+}
+
+//Given two UMLClasses and a valid type, will change the defaulted type of relationship to
+//passed type, if and only-if type is valid
+Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
+    if (newType == 'inheritance' || newType == 'aggregation' || newType == 'composition' || newType == 'realization') {
+        var edgeFound = false;
+        for (i of Edge.instances) {
+            if ((i.start === classOne) && (i.end === classTwo)) {
+                edgeFound = true;
+                i.type = newType;
+                break;
+            }
+        }
+        if (!edgeFound)
+            alert("Edge to modify does not exist!");
+    }
+    else {
+        alert("Non-valid type entered!")
+    }
 };
 
 //given two UMLClass's, removes any Edges between them
@@ -29,7 +70,7 @@ Edge.destroy = function (classOne, classTwo) {
         Edge.instances.splice(edgeIndex, 1);
     }
     else {
-        alert("Edge not found");
+        alert("Edge does not exist!");
     }
 };
 
@@ -46,17 +87,43 @@ Edge.deleteClassRelationships = function (umlclass) {
     for (i of edgeIndexes) {
         Edge.instances.splice(i - edgeIndexes.indexOf(i), 1);
     }
-    
+
+};
+
+Edge.convertRec2Obj = function (edgeRow) {
+    return new Edge(edgeRow.start, edgeRow.end, edgeRow.type);
+};
+
+Edge.retrieveAll = function (edgeString) {
+    edges = JSON.parse(edgeString);
+    console.log(edges.length + " edges loaded.");
+    for (i = 0; i < edges.length; i++) {
+        Edge.instances[i] = Edge.convertRec2Obj(edges[i]);
+    }
+
 };
 
 Edge.returnHumanReadableString = function () {
     var edgeString = "Edges:\n";
     for (i of Edge.instances) {
-        edgeString += (i.start + " => " + i.end + "\n");
+        if (i.type == 'composition') {
+            edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'inheritance') {
+            edgeString += (i.start + " -----> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'aggregation') {
+            edgeString += (i.start + " ----<> " + i.end + " of type " + i.type);
+        }
+        if (i.type == 'realization') {
+            edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
+        }
+
+        edgeString += "\n";
     }
     return edgeString;
 };
 
 Edge.reset = function () {
     Edge.instances = [];
-}
+};

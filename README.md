@@ -1,49 +1,26 @@
-# 2020sp-420-WebWizards
+# WebWizards UML Editor - Developer Guide
 
-UML Instructions
+## Running the application
+This application is created with "plain vanilla" HTML, Javascript, and CSS -- so you should be able to [clone the repository](https://github.com/mucsci-students/2020sp-420-WebWizards.git) and open index.html in your favorite web browser.
 
-To Download our UML:
+## Directory structure
+The root directory has three main subfolders, **c**, **m**, and **v** -- which stand for "control", "model", and "view" respectively. Model and View files should be stand-alone -- i.e., should not be making calls to classes outside their own!
 
-  1. Go to our GitHub: https://github.com/mucsci-students/2020sp-420-WebWizards 
-  2. Download our current release or download our most recent develop branch. 
-  3. Once you have downloaded our UML then you can save the folder on your desktop and simply open the HTML file and the UML will open in a Browser. 
+### Model files
+#### UMLClass.js
+Defines the UMLClass class. Each UMLClass is defined as having a string `name`, and string arrays `vars` and `methods`.
+UMLClass's for a session are stored in the map ( `{}` ) `UMLClass.instances`, and are referenced by name.
 
+So if you created a UMLClass named `classOne`, you could reference it by calling `UMLClass.instances[classOne]`.
 
+#### Edge.js
+An Edge (relationship between two classes) is defined as having fields `start` (start class name), `end` (end class name), and `type` (type of relationship between the classes). They are stored in the array `Edge.instances`.
 
-USING THE GRAPHICAL USER INTERFACE (GUI):
+#### save.js
+The functions in this file expect copies of UMLClass.instances and Edge.instances and save and load them to the location localStorage["storage"].
 
-  To add a class, type a new class name in the text box and click Add and reload page. 
-
-  To delete a class, enter the name of the class you would like to delete in the text box and click Delete and reload page. 
-
-  To clear the database, click Delete All Classes. A confirmation message will be displayed, click “OK” to clear the database and reload page. 
-
-  To save a JSON file representing the current classes, click Export Data to File and reload page.
-
-  To load a JSON file into the editor, select a file with Choose File, then click Load Data from File. You may need to click Refresh View to see the classes displayed and reload page.
-  
-  
-
-
-
-USING THE COMMAND LINE INTERFACE (CLI):
-
-  To add a class, type “add” followed by the new class name and press Enter.
-
-  To delete a class, type “delete” followed by the class name that you would like to delete and press Enter.
-
-  To clear all classes in the database, type “clear” and then press enter. A confirmation message will be displayed, click “OK” to clear the database. 
-
-  To export all classes type “export” and press Enter.
-
-
-
-RELATIONSHIPS:
-  
-    To add a relationship, type "add-edge" followed by the name of the source and then followed by the destination and press Enter.
-  
-    To view all of the current relationships, type "list-edges" and press Enter.
-  
-    To delete an relationship, type "delete-edge" followed by a the source and destination of the edge you want to delete and press Enter. 
-  
-    To delete all of the stored edges, type "clear-edges" and press Enter.
+### Control files
+#### setUpGUI.js
+contains the function pl.c.setUpGUI(), which is called by index.html upon page load. setUpGUI() calls a number of functions in v/guiView.js
+#### parser.js
+is largely composed of a switch statement that defines the response to CLI input
