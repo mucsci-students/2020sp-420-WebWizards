@@ -17,7 +17,7 @@ pl.v.createClass = {
     },
     handleAddButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
-        UMLClass.add(formEl.name.value);
+        UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
         pl.v.retrieveAndListAllClasses.updateView();
     }
