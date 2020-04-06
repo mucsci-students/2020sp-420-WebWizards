@@ -15,11 +15,11 @@ the it() block is an explanation of what the function you're testing should do.
 VERY commonly, it reads like a sentence beginning with the word "should"
 */
 
-var /*UMLClass.*/add =require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//UMLClass");
-var /*UMLClass.*/destroy=require("//Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//UMLClass");
-var /*UMLClass.*/clearData=require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//UMLClass");
-var /*Edge.*/add = require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//Edge");
-var /*Edge.*/destroy=require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//Edge");
+var /*UMLClass.*/add =require("../m/UMLClass.js");
+var /*UMLClass.*/destroy=require("../m/UMLClass.js");
+var /*UMLClass.*/clearData=require("../m/UMLClass.js");
+var /*Edge.*/add = require("../m/Edge.js");
+var /*Edge.*/destroy=require("../m/Edge.js");
 
 // TESTS FOR ADD CASES:
 describe("Tests two cases for UMLclass.add", function () {
