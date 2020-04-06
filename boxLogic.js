@@ -1,28 +1,30 @@
-function onDragStart(event) {
-  event
-    .dataTransfer
-    .setData('text/plain', event.target.id);
+const classBox = document.querySelector('.classBox');
+const dropArea = document.querySelectorAll('.dropArea');  //puts in loop since multiple node list
 
-  event
-    .currentTarget
-    .style
-  }
+//Listeners for fill (our box) if to fix uncaught null
+classBox.addEventListener('dragstart', dragStart);
+classBox.addEventListener('dragend', dragEnd);
+classBox.addEventListener('dragover', dragOver);
 
-function onDragOver(event) {
-    event.preventDefault();
-  }
 
-function onDrop(event) {
-  const id = event
-    .dataTransfer
-    .getData('text');
-  
-  const draggableElement = document.getElementById(id);
-  const dropzone = event.target;
-    
-  dropzone.appendChild(document.getElementById(id));
-  
-  event
-    .dataTransfer
-    .clearData();
+
+//Drag Functions
+
+function dragStart(){
+  console.log('drag start');
+  //setTimeout(() => , 0 )    for lag issue
+
+
 }
+
+function dragEnd() {
+  console.log('drag end');
+}
+
+function dragOver(e) {
+  e.preventDefault()
+  console.log('drag over');
+
+}
+
+
