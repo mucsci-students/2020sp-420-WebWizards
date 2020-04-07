@@ -21,12 +21,15 @@ var Edge=require("../m/Edge");
 */
 
 require('app-module-path').addPath(__dirname + "/../");
+var UMLClass = require("m/UMLClass").UMLClass;
+var Edge = require("m/Edge").Edge;
+/*
 var add =require("m/UMLClass");
 var destroy=require("m/UMLClass");
 var clearData=require("m/UMLClass");
 var add = require("m/Edge");
 var destroy=require("m/Edge");
-
+*/
 
 // TESTS FOR ADD CASES:
 describe("Tests two cases for UMLclass.add", function () {

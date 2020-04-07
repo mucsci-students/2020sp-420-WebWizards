@@ -127,3 +127,5 @@ Edge.returnHumanReadableString = function () {
 Edge.reset = function () {
     Edge.instances = [];
 };
+
+module && (module.exports = {Edge: Edge});
