@@ -1,5 +1,6 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
+
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 function UMLClass(name, vars = [], methods = []) {
     this.name = name;

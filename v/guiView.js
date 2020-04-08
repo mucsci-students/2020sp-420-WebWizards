@@ -77,10 +77,12 @@ pl.v.retrieveAndListAllClasses = {
 
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
-            row = new_tableBody.insertRow();
-            row.insertCell(-1).textContent = UMLClass.instances[key].name;
-            row.insertCell(-1).textContent = UMLClass.instances[key].vars.join(", ");
-            row.insertCell(-1).textContent = UMLClass.instances[key].methods.join(", ");
+            row1 = new_tableBody.insertRow();
+            row2 = new_tableBody.insertRow();
+            row3 = new_tableBody.insertRow();
+            row1.insertCell(-1).textContent = UMLClass.instances[key].name;
+            row2.insertCell(-1).textContent = UMLClass.instances[key].vars.join(", ");
+            row3.insertCell(-1).textContent = UMLClass.instances[key].methods.join(", ");
         }
         tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }

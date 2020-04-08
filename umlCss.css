@@ -76,5 +76,10 @@ tr{
 
 }
 
+table{
+  cursor: move;
+  padding-left: 10px;
+}
+
 
 

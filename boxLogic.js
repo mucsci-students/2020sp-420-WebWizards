@@ -33,7 +33,7 @@ function dragEnd() {
   dm[parseInt(offset[2])].style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
   dm[parseInt(offset[2])].style.top = (event.clientY + parseInt(offset[1], 10)) + 'px';
   event.preventDefault();
-  return false;
+
 }
 
 function dragOver(e) {
