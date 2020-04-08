@@ -15,39 +15,44 @@ the it() block is an explanation of what the function you're testing should do.
 VERY commonly, it reads like a sentence beginning with the word "should"
 */
 
-var /*UMLClass.*/add =require("../m/UMLClass.js");
-var /*UMLClass.*/destroy=require("../m/UMLClass.js");
-var /*UMLClass.*/clearData=require("../m/UMLClass.js");
-var /*Edge.*/add = require("../m/Edge.js");
-var /*Edge.*/destroy=require("../m/Edge.js");
+require('app-module-path').addPath(__dirname + "/../");
+var UMLClass = require("m/UMLClass").UMLClass;
+var Edge = require("m/Edge").Edge;
+/*
+var add =require("m/UMLClass");
+var destroy=require("m/UMLClass");
+var clearData=require("m/UMLClass");
+var add = require("m/Edge");
+var destroy=require("m/Edge");
+*/
 
 // TESTS FOR ADD CASES:
 describe("Tests two cases for UMLclass.add", function () {
     //beforeEach(function() {
-    	//spyOn(console, 'log');
+        //spyOn(console, 'log');
     //});
 
     it ("should add class given empty instance", function() {
-    	expect(UMLClass.add("car")).toEqual("car");
-    	//expect(console.log).toHaveBeenCalled();
+        expect(UMLClass.add("car")).toEqual("car");
+        //expect(console.log).toHaveBeenCalled();
     });
 
     it ("in the case of duplicates, will not add class again", function() {
-		expect(UMLClass.add("car")).toEqual(null);
+                expect(UMLClass.add("car")).toEqual(null);
     });
 
 });
 
 //TESTS FOR DELETE CASES:
 describe("Tests two cases for UMLclass.destroy", function () {
-   
+
 
     it ("if class given exist, will delete it", function() {
-    	expect(UMLClass.destroy("car")).toEqual(null);
+        expect(UMLClass.destroy("car")).toEqual(null);
     });
 
     it ("if class given doesn't exist", function() {
-		expect(UMLClass.destroy("car")).toEqual(null);
+                expect(UMLClass.destroy("car")).toEqual(null);
     });
 
     it ("if clear all, then all data should be cleared", function() {
