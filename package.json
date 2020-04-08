@@ -4,8 +4,8 @@
   "description": "",
   "main": "boxLogic.js",
   "scripts": {
-      "test-init": "jasmine init",
-      "test": "jasmine"
+    "test-init": "jasmine init",
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   "devDependencies": {
     "jasmine": "^3.5.0"
   },
-    "dependencies": {
+  "dependencies": {
     "app-module-path": "^2.2.0"
   }
 }

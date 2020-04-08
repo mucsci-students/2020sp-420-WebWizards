@@ -14,7 +14,7 @@ UMLClass.instances = {};
 //creates a new UMLClass and adds it to UMLClass.instances by name
 UMLClass.add = function (name, vars = "", methods = "") {
     if (name in UMLClass.instances) {
-        alert("Class with name " + name + " already exists.");
+        console.log("Class with name " + name + " already exists.");
         return null;
     }
 
@@ -56,7 +56,8 @@ UMLClass.deleteVar = function (className, varName) {
             UMLClass.instances[className].vars.splice(varIndex, 1);
         }
         else {
-            alert("variable not found");
+            console.log("variable not found");
+            return null;
         }
     }
 };
@@ -75,7 +76,8 @@ UMLClass.deleteMethod = function (className, methodName) {
             UMLClass.instances[className].methods.splice(methodIndex, 1);
         }
         else {
-            alert("variable not found");
+            console.log("variable not found");
+            return null;
         }
     }
 };
