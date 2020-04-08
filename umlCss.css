@@ -1,3 +1,7 @@
+html{
+  height: 100%;
+}
+
 caption{
   font-size: 20pt;
   color: black;
@@ -24,26 +28,53 @@ caption{
 
 
 .classBox {
+  position: relative;
+  display: inline-block;
   position: absolute;
   background-color: white;
   text-align: center;
   border: 5px solid black;
-  height: 150px;
-  width: 150px;
+
 
 }
 
 .classBoxName {
+
   padding: 10px;
   cursor: move;
   background-color: yellow;
   color: black;
-  border: 2px solid gray;
+  border: 1px solid black;
 }
+
+.classBox2 {
+  position: relative;
+  display: inline-block;
+  position: absolute;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  top: 400px;
+  right: 50px;
+
+}
+
+.classBoxName2 {
+  padding: 10px;
+  cursor: move;
+  color: black;
+  border: 1px solid black;
+  width: 400px;
+  height: 200px;
+}
+
+
 
 tr{
   border: 2px solid;
   padding-bottom: 10px;
 
 }
+
+
 

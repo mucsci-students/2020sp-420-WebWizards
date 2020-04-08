@@ -15,12 +15,12 @@ UMLClass.instances = {};
 UMLClass.add = function (name) {
     //if(name == null || name)
     if (name in UMLClass.instances) {
-        alert("Class " + name + " already exist.");
+        alert("Class " + name + " already exist.");  //needs to be replaced with proper error message
         return null;
     }
 
     UMLClass.instances[name] = new UMLClass(name);
-    console.log("Class " + name + " created.");
+    console.log("Class " + name + " created.");    //maybe some sort of success message?
     return name;
 };
 
@@ -103,6 +103,8 @@ UMLClass.destroy = function (name) {
     }
 };
 
+
+// set UML class to empty
 UMLClass.reset = function() {
     UMLClass.instances = {};
 };

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#addBtn").click(function () {
-        $("#addModal").modal();
+        $("#classModal").modal();
         $("#deleteButton").hide();
         $("#editButton").hide();
         $("#deleteAllButton").hide();
@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#deleteBtn").click(function () {
-        $("#addModal").modal();
+        $("#classModal").modal();
         $("#addButton").hide();
         $("#editButton").hide();
         $("#deleteAllButton").hide();
@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#editBtn").click(function () {
-        $("#addModal").modal();
+        $("#classModal").modal();
         $("#deleteButton").hide();
         $("#addButton").hide();
         $("#deleteAllButton").hide();
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#exportBtn").click(function () {
-        $("#addModal").modal();
+        $("#classModal").modal();
         $("#deleteButton").hide();
         $("#editButton").hide();
         $("#deleteAllButton").hide();
@@ -51,7 +51,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#loadBtn").click(function () {
-        $("#addModal").modal();
+        $("#classModal").modal();
         $("#deleteButton").hide();
         $("#editButton").hide();
         $("#deleteAllButton").hide();
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#deleteAllBtn").click(function () {
-        $("#addModal").modal();
+        $("#classModal").modal();
         $("#deleteButton").hide();
         $("#editButton").hide();
         $("#addButton").hide();

@@ -2,7 +2,6 @@
 
 pl.v.createClass = {
     setupUserInterface: function () {
-        //var addButton = document.forms["UMLClass"].add;
         var addButton = document.createElement("button");
         addButton.innerHTML = "Add";
         document.forms["UMLClass"].append(addButton);
