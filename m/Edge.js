@@ -104,7 +104,7 @@ Edge.retrieveAll = function (edgeString) {
 };
 
 Edge.returnHumanReadableString = function () {
-    var edgeString = "Edges:\n";
+    var edgeString = "Edges:<br>";
     for (i of Edge.instances) {
         if (i.type == 'composition') {
             edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
@@ -119,7 +119,7 @@ Edge.returnHumanReadableString = function () {
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
 
-        edgeString += "\n";
+        edgeString += "<br>";
     }
     return edgeString;
 };
