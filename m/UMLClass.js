@@ -27,10 +27,10 @@ UMLClass.add = function (name, vars = "", methods = "") {
         UMLClass.instances[name] = new UMLClass(name);
     } else if (methods === "") {
         UMLClass.instances[name] = new UMLClass(name, vars.split(","));
-    } else {
+    } else if (vars === "") {
         UMLClass.instances[name] = new UMLClass(name, [], methods.split(","));
-    }
-    UMLClass.instances[name] = new UMLClass(name, vars.split(","), methods.split(","));
+    } else
+        UMLClass.instances[name] = new UMLClass(name, vars.split(","), methods.split(","));
     console.log("Class " + name + " created.");
     return name;
 };
