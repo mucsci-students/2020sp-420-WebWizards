@@ -91,9 +91,14 @@ pl.c.defaultParser = function (args) {
             Edge.reset();
             break;
 
+        case "list-classes":
+            outputString = UMLClass.returnHumanReadableString() + outputString;
+            break;
+
 
         case "help":
             outputString = ("commands:<br>\
+            >list-classes<br>\
             >add class-name [class-name ...]<br>\
             >delete class-name [class-name ...]<br>\
             >export<br>\
