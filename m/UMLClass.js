@@ -122,7 +122,6 @@ UMLClass.returnHumanReadableString = function () {
     outputString = "";
     for (i in UMLClass.instances) {
         outputString += ("Name: " + i + "; Variables: " + UMLClass.instances[i].vars.join() + "; Methods: " + UMLClass.instances[i].methods.join() + "</br>");
-        console.log(outputString);
     }
     return outputString;
 };
