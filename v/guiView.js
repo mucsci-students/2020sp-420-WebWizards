@@ -80,8 +80,8 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
             row = new_tableBody.insertRow();
             row.insertCell(-1).textContent = UMLClass.instances[key].name;
-            row.insertCell(-1).textContent = UMLClass.instances[key].vars.join(", ");
-            row.insertCell(-1).textContent = UMLClass.instances[key].methods.join(", ");
+            row.insertCell(-1).textContent = UMLClass.instances[key].vars.map(e => e.type + " " + e.name).join();
+            row.insertCell(-1).textContent = UMLClass.instances[key].methods.map(e => e.type + " " + e.name).join();
         }
         tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }
