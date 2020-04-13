@@ -56,7 +56,7 @@ UMLClass.deleteVar = function (className, varName) {
         var varIndex = -1;
 
         for (v of UMLClass.instances[className].vars) {
-            if (v === varName) {
+            if (v.name === varName) {
                 varIndex = UMLClass.instances[className].vars.indexOf(v);
             }
         }
@@ -75,7 +75,7 @@ UMLClass.deleteMethod = function (className, methodName) {
         var methodIndex = -1;
 
         for (m of UMLClass.instances[className].methods) {
-            if (m === methodName) {
+            if (m.name === methodName) {
                 methodIndex = UMLClass.instances[className].methods.indexOf(m);
             }
         }
@@ -85,6 +85,26 @@ UMLClass.deleteMethod = function (className, methodName) {
         }
         else {
             alert("variable not found");
+        }
+    }
+};
+
+UMLClass.changeVarType = function (className, varName, newType) {
+    if (UMLClass.instances[className]) {
+        for (v of UMLClass.instances[className].vars) {
+            if (v.name === varName) {
+                v.type = newType;
+            }
+        }
+    }
+};
+
+UMLClass.changeVarType = function (className, methodName, newType) {
+    if (UMLClass.instances[className]) {
+        for (m of UMLClass.instances[className].methods) {
+            if (m.name === methodName) {
+                m.type = newType;
+            }
         }
     }
 };
