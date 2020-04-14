@@ -22,6 +22,16 @@ caption{
   width: 25%;
 }
 
+#cliOutput {
+  border: 5px solid;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  overflow-y: scroll;
+  height: 350px;
+  width: 60%;
+}
+
 #dragBox {
   position: absolute;
   z-index: 9;

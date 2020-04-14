@@ -18,7 +18,7 @@ pl.v.commandLine = {
 
     handleCommandLineSubmit: function () {
         var formEl = document.forms["CLIForm"];
-        pl.c.parseCommand(formEl.cli.value, programID);
+        document.getElementById("cliOutput").innerHTML = (pl.c.parseCommand(formEl.cli.value, programID)) + document.getElementById("cliOutput").innerHTML;
         console.log("handle command line submit");
         formEl.reset();
         pl.v.retrieveAndListAllClasses.updateView();

@@ -1,6 +1,12 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
+/* export function statements for jasmine testing */
+//module.exports = UMLClass.add;
+//module.exports = UMLClass.destroy;
+//module.exports = UMLClass.clearData;
+
 //defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
+>>>>>> develop
 function UMLClass(name, vars = [], methods = []) {
     this.name = name;
     this.vars = vars;
@@ -34,7 +40,7 @@ UMLClass.add = function (name, vars = "", methods = "") {
     }
 
     UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
-
+  
     console.log("Class " + name + " created.");
     return name;
 };
@@ -140,4 +146,12 @@ UMLClass.destroy = function (name) {
 
 UMLClass.reset = function () {
     UMLClass.instances = {};
+};
+
+UMLClass.returnHumanReadableString = function () {
+    outputString = "";
+    for (i in UMLClass.instances) {
+        outputString += ("Name: " + i + "; Variables: " + UMLClass.instances[i].vars.join() + "; Methods: " + UMLClass.instances[i].methods.join() + "</br>");
+    }
+    return outputString;
 };

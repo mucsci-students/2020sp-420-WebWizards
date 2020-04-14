@@ -1,4 +1,6 @@
-
+/* export function statements for jasmine testing */
+//module.exports = Edge.add;
+//module.exports = Edge.destroy;
 
 //defines an Edge relationship as the names of two classes and a defaulted type of composition
 function Edge(classOne, classTwo, edgeType = "composition") {
@@ -48,7 +50,7 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
             }
         }
         if (!edgeFound)
-            alert("Edge to modify not found!");
+            alert("Edge to modify does not exist!");
     }
     else {
         alert("Non-valid type entered!")
@@ -68,7 +70,7 @@ Edge.destroy = function (classOne, classTwo) {
         Edge.instances.splice(edgeIndex, 1);
     }
     else {
-        alert("Edge not found!");
+        alert("Edge does not exist!");
     }
 };
 
@@ -102,7 +104,7 @@ Edge.retrieveAll = function (edgeString) {
 };
 
 Edge.returnHumanReadableString = function () {
-    var edgeString = "Edges:\n";
+    var edgeString = "Edges:<br>";
     for (i of Edge.instances) {
         if (i.type == 'composition') {
             edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
@@ -117,7 +119,7 @@ Edge.returnHumanReadableString = function () {
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
 
-        edgeString += "\n";
+        edgeString += "<br>";
     }
     return edgeString;
 };
