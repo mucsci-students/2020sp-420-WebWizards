@@ -19,7 +19,7 @@ UMLClass.instances = {};
 //creates a new UMLClass and adds it to UMLClass.instances by name
 UMLClass.add = function (name, vars = "", methods = "") {
 
-    if (!this.validateName(name)) {
+    if (!UMLClass.validateName(name)) {
         alert("Class name is invalid -- class names must begin with a letter or underscore and contain no special characters");
         return null;
     }
