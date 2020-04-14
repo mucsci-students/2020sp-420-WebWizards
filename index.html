@@ -24,13 +24,33 @@
         <script src="v/cliView.js"></script>
         <script src="c/parser.js"></script>
         <script src="m/Edge.js"></script>
-        <script src="boxLogic.js"></script>
+       <script src="boxLogic.js"></script>
         <script src="m/save.js"></script>
         <script src="buttonsLogic.js"></script>
 
         <script>
             window.addEventListener("load", pl.c.setUpGUI);
             window.addEventListener("load", pl.v.commandLine.setupUserInterface);
+        </script>
+
+        <script>
+            /* Events fired on the drag target */
+            document.ondragstart = function(event) {
+                event.dataTransfer.setData("Text", event.target.id);
+            };
+
+            /* Events fired on the drop target */
+            document.ondragover = function(event) {
+                event.preventDefault();
+            };
+
+            document.ondrop = function(event) {
+                event.preventDefault();
+                if ( event.target.className == "classBox2" ) {
+                    var data = event.dataTransfer.getData("Text");
+                    event.target.appendChild(document.getElementById(data));
+                }
+            };
         </script>
 
     </head>
@@ -114,19 +134,23 @@
             </div>
         </div> <!-- end of container -->
 
-        <table draggable="true" id="classes">
+
+        <!-- currently table build list of class, we need constructor for one class -->
+        <div id = taBle>
+            <table draggable="true" id="classes" ondragstart="drag(event)">  <!--must have draggle and ondragstrat-->
                 <h3>Classes</h3>
                 <tbody></tbody>
-        </table>
+            </table>
+        </div>
 
 
         <br>
-
-        <div id="dropzone" class="classBox2" draggable="true" ondragstart='onDragStart(event);'>
-            <!-- <span id='draggableSpan' draggable='true'ondragstart='onDragStart(event);'> -->
+        <!-- on dragover is where to drop and ondrop is doing the drop -->
+        <div id="dropArea"class="classBox2" ondrop="drop(event)" ondragover="allowDrop(event)">
             <div class="classBoxName2"> </div>
 
         </div>
+
     </body>
 
 </html>
