@@ -2,18 +2,27 @@ pl.c.parseCommand = function (command, program) {
     args = command.split(" ");
     args[0] = args[0].toLowerCase();
     console.log(program);
+    var outputString = "<br> >" + command + "<br>";
     switch (program) {
         default:
-            pl.c.defaultParser(args);
+            outputString = pl.c.defaultParser(args) + outputString;
             break;
     }
+    return outputString;
 };
 
 pl.c.defaultParser = function (args) {
+
+    var outputString = ("");
+
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-                UMLClass.add(args[i]);
+                if (UMLClass.add(args[i]))
+                    outputString = ("<br>Class " + args[i] + " created successfully!") + outputString;
+                else
+                    outputString = ("<br>Creation of class " + args[i] + " failed!") + outputString;
+
             }
             break;
 
@@ -75,38 +84,43 @@ pl.c.defaultParser = function (args) {
             break;
 
         case "list-edges":
-            alert(Edge.returnHumanReadableString());
+            outputString = Edge.returnHumanReadableString() + outputString;
             break;
 
         case "clear-edges":
             Edge.reset();
             break;
 
+        case "list-classes":
+            outputString = UMLClass.returnHumanReadableString() + outputString;
+            break;
+
 
         case "help":
-            javascript: alert("commands:\n\
-            >add class-name [class-name ...]\n\
-            >delete class-name [class-name ...]\n\
-            >export\n\
-            >clear\n\
-            >load\n\
-            >rename current-class-name new-class-name\n\
-            >add-var class-name var-name\n\
-            >add-method class-name method-name\n\
-            >delete-var class-name var-name\n\
-            >delete-var class-name method-name\n\
-            >add-edge start-class end-class\n\
-            >modify-type start-class end-class type \n\
-            >delete-edge start-class end-class\n\
-            >list-edges\n\
-            >clear-edges\n\
-            >\n\
-            ");
+            outputString = ("commands:<br>\
+            >list-classes<br>\
+            >add class-name [class-name ...]<br>\
+            >delete class-name [class-name ...]<br>\
+            >export<br>\
+            >clear<br>\
+            >load<br>\
+            >rename current-class-name new-class-name<br>\
+            >add-var class-name var-name<br>\
+            >add-method class-name method-name<br>\
+            >delete-var class-name var-name<br>\
+            >delete-var class-name method-name<br>\
+            >add-edge start-class end-class<br>\
+            >modify-type start-class end-class type <br>\
+            >delete-edge start-class end-class<br>\
+            >list-edges<br>\
+            >clear-edges<br>\
+            ") + outputString;
             break;
         default:
-            alert("Command not recognized");
+            outputString = ("Command not recognized") + outputString;
             break;
     }
     save.saveLocal(UMLClass.instances, Edge.instances);
+    return outputString;
 
 };
