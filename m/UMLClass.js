@@ -18,10 +18,16 @@ UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
 UMLClass.add = function (name, vars = "", methods = "") {
+
+    if (!this.validateName(name)) {
+        alert("Class name is invalid -- class names must begin with a letter or underscore and contain no special characters");
+        return null;
+    }
+
     if (name in UMLClass.instances) {
         alert("Class with name " + name + " already exists.");
         return null;
-    }
+    }1
 
     if ((vars === "") && (methods === "")) {
         UMLClass.instances[name] = new UMLClass(name);
@@ -33,6 +39,14 @@ UMLClass.add = function (name, vars = "", methods = "") {
         UMLClass.instances[name] = new UMLClass(name, vars.split(","), methods.split(","));
     console.log("Class " + name + " created.");
     return name;
+};
+
+UMLClass.validateName = function(proposedName) {
+    //defines a regex string starting with a letter or underscore, followed by an arbirtrary number of letters, numbers, and/or underscores
+    let compare = /^[a-zA-Z_](\w)*$/;
+    
+    return compare.test(proposedName);
+
 };
 
 UMLClass.addVar = function (className, varName) {
