@@ -69,6 +69,14 @@ pl.c.defaultParser = function (args) {
             UMLClass.deleteMethod(args[1], args[2]);
             break;
 
+        case "modify-var-type":
+            UMLClass.changeVarType(args[1], args[2], args[3]);
+            break;
+
+        case "modify-method-type":
+            UMLClass.changeMethodType(args[1], args[2], args[3]);
+            break;
+
         case "add-edge":
             Edge.add(args[1], args[2], UMLClass.instances);
             break;
@@ -95,8 +103,8 @@ pl.c.defaultParser = function (args) {
             outputString = UMLClass.returnHumanReadableString() + outputString;
             break;
 
-
         case "help":
+
             outputString = ("commands:<br>\
             >list-classes<br>\
             >add class-name [class-name ...]<br>\
@@ -109,12 +117,15 @@ pl.c.defaultParser = function (args) {
             >add-method class-name method-name<br>\
             >delete-var class-name var-name<br>\
             >delete-var class-name method-name<br>\
+>modify-var-type class-name var-name new-var-type<br>\
+            >modify-method-type class-name var-name new-method-type<br>\
             >add-edge start-class end-class<br>\
             >modify-type start-class end-class type <br>\
             >delete-edge start-class end-class<br>\
             >list-edges<br>\
             >clear-edges<br>\
             ") + outputString;
+
             break;
         default:
             outputString = ("Command not recognized") + outputString;
