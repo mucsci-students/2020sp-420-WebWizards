@@ -1,6 +1,6 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
-//defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
+//defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
 function UMLClass(name, vars = [], methods = []) {
     this.name = name;
     this.vars = vars;
@@ -18,27 +18,36 @@ UMLClass.add = function (name, vars = "", methods = "") {
         return null;
     }
 
-    if ((vars === "") && (methods === "")) {
-        UMLClass.instances[name] = new UMLClass(name);
-    } else if (methods === "") {
-        UMLClass.instances[name] = new UMLClass(name, vars.split(","));
-    } else {
-        UMLClass.instances[name] = new UMLClass(name, [], methods.split(","));
+    newVars = [];
+    newMethods = [];
+
+    if (vars !== "") {
+        for (i of (vars.split(","))) {
+            newVars.push({name: i, type: "var"});
+        }
     }
-    UMLClass.instances[name] = new UMLClass(name, vars.split(","), methods.split(","));
+
+    if (methods !== "") {
+        for (i of (methods.split(","))) {
+            newMethods.push({name: i, type: "method"});
+        }
+    }
+
+    UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
+  
     console.log("Class " + name + " created.");
     return name;
 };
 
 UMLClass.addVar = function (className, varName) {
     if (UMLClass.instances[className]) {
-        UMLClass.instances[className].vars.push(varName);
+        UMLClass.instances[className].vars.push({name: varName, type: "var"});
     }
 };
 
 UMLClass.addMethod = function (className, methodName) {
     if (UMLClass.instances[className]) {
-        UMLClass.instances[className].methods.push(methodName);
+        UMLClass.instances[className].methods.push({name: methodName, type: "method"});
     }
 };
 
@@ -47,7 +56,7 @@ UMLClass.deleteVar = function (className, varName) {
         var varIndex = -1;
 
         for (v of UMLClass.instances[className].vars) {
-            if (v === varName) {
+            if (v.name === varName) {
                 varIndex = UMLClass.instances[className].vars.indexOf(v);
             }
         }
@@ -67,7 +76,7 @@ UMLClass.deleteMethod = function (className, methodName) {
         var methodIndex = -1;
 
         for (m of UMLClass.instances[className].methods) {
-            if (m === methodName) {
+            if (m.name === methodName) {
                 methodIndex = UMLClass.instances[className].methods.indexOf(m);
             }
         }
@@ -78,6 +87,26 @@ UMLClass.deleteMethod = function (className, methodName) {
         else {
             console.log("variable not found");
             return null;
+        }
+    }
+};
+
+UMLClass.changeVarType = function (className, varName, newType) {
+    if (UMLClass.instances[className]) {
+        for (v of UMLClass.instances[className].vars) {
+            if (v.name === varName) {
+                v.type = newType;
+            }
+        }
+    }
+};
+
+UMLClass.changeVarType = function (className, methodName, newType) {
+    if (UMLClass.instances[className]) {
+        for (m of UMLClass.instances[className].methods) {
+            if (m.name === methodName) {
+                m.type = newType;
+            }
         }
     }
 };
@@ -114,6 +143,16 @@ UMLClass.destroy = function (name) {
 UMLClass.reset = function () {
     UMLClass.instances = {};
 };
+
+
+UMLClass.returnHumanReadableString = function () {
+    outputString = "";
+    for (i in UMLClass.instances) {
+        outputString += ("Name: " + i + "; Variables: " + UMLClass.instances[i].vars.join() + "; Methods: " + UMLClass.instances[i].methods.join() + "</br>");
+    }
+    return outputString;
+};
+
 
 /* export statement for jasmine testing */
 module && (module.exports = {UMLClass: UMLClass});
