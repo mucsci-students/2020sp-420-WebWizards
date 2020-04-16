@@ -6,7 +6,6 @@
 //module.exports = UMLClass.clearData;
 
 //defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
->>>>>> develop
 function UMLClass(name, vars = [], methods = []) {
     this.name = name;
     this.vars = vars;
