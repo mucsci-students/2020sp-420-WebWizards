@@ -17,15 +17,15 @@
 
 
         <script src="c/initialize.js"></script>
-        <script src="m/UMLClass.js"></script>
-        <script src="v/guiView.js"></script>
-        <script src="v/instructions.js"></script>
-        <script src="c/setUpGUI.js"></script>
-        <script src="v/cliView.js"></script>
         <script src="c/parser.js"></script>
+        <script src="c/setUpGUI.js"></script>
+        <script src="m/UMLClass.js"></script>
         <script src="m/Edge.js"></script>
-       <script src="boxLogic.js"></script>
         <script src="m/save.js"></script>
+        <script src="v/guiView.js"></script>
+        <script src="v/cliView.js"></script>
+        <script src="v/instructions.js"></script>
+        <script src="boxLogic.js"></script>
         <script src="buttonsLogic.js"></script>
 
         <script>
@@ -34,19 +34,20 @@
         </script>
 
         <script>
-            /* Events fired on the drag target */
+            // Events fired on the drag target
             document.ondragstart = function(event) {
                 event.dataTransfer.setData("Text", event.target.id);
             };
 
-            /* Events fired on the drop target */
+            // Events fired during the drag
             document.ondragover = function(event) {
                 event.preventDefault();
             };
 
+
             document.ondrop = function(event) {
                 event.preventDefault();
-                if ( event.target.className == "classBox2" ) {
+                if ( event.target.className === "classBox2" ) {
                     var data = event.dataTransfer.getData("Text");
                     event.target.appendChild(document.getElementById(data));
                 }
@@ -64,7 +65,6 @@
             <button id ="guiViewButton" type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui Mode</button>
         </div>
 
-        <!-- buttons for navigation -->
         <div class="container">
 
             <h1>UML Class Options</h1>
@@ -95,8 +95,8 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"> Fill in the class name</h4>
+                            <button type="button" class="close" data-dismiss="modal">EXIT</button>
+                            <h4 class="modal-title"> Fill in the following fields</h4>
                         </div>
                         <!--body -->
                         <div class="modal-body">
@@ -119,7 +119,7 @@
 
                                     <label>
                                         Relationships:
-                                        <input name="name" />
+                                        <input name="relationships" />
                                     </label>
                                     <br>
                                 </div>
@@ -127,28 +127,24 @@
                         </div>
                         <!-- footer -->
                         <div class="modal-footer">
-                            <p> Please review all changes before pushing button </p>
+                            <p> Please review all changes before pushing exit button </p>
                         </div>
                      </div>
                 </div>
             </div>
         </div> <!-- end of container -->
 
-
-        <!-- currently table build list of class, we need constructor for one class -->
-        <div id = taBle>
+        <div >
             <table draggable="true" id="classes" ondragstart="drag(event)">  <!--must have draggle and ondragstrat-->
                 <h3>Classes</h3>
                 <tbody></tbody>
             </table>
         </div>
 
-
         <br>
-        <!-- on dragover is where to drop and ondrop is doing the drop -->
+
         <div id="dropArea"class="classBox2" ondrop="drop(event)" ondragover="allowDrop(event)">
             <div class="classBoxName2"> </div>
-
         </div>
 
     </body>

@@ -1,4 +1,4 @@
- function allowDrop(event) {
+function allowDrop(event) {
         event.preventDefault();
         console.log("allowDrop fired");
     }

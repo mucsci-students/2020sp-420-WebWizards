@@ -1,8 +1,7 @@
-var programID = 0; //value associated with 'program' to parse current submit
-
+var programID = 0;
 
 pl.v.commandLine = {
-    //reference: https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+
     setupUserInterface: function () {
         var cli = document.getElementById("cli");
         console.log("user interface");

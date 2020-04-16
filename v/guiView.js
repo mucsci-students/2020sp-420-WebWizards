@@ -1,5 +1,3 @@
-//reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s04.html
-
 pl.v.createClass = {
     setupUserInterface: function () {
         var addButton = document.createElement("button");
@@ -24,7 +22,6 @@ pl.v.createClass = {
 
 pl.v.deleteClass = {
     setupUserInterface: function () {
-        // var deleteButton = document.forms["UMLClass"].delete;
         var deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
         document.forms["UMLClass"].append(deleteButton);
@@ -48,7 +45,6 @@ pl.v.deleteClass = {
 
 pl.v.clearAll = {
     setupUserInterface: function () {
-        // var clearAllButton = document.forms["UMLClass"].clearAll;
         var clearAllButton = document.createElement("button");
         clearAllButton.innerHTML = "Delete All Classes";
         document.forms["UMLClass"].append(clearAllButton);
@@ -90,7 +86,6 @@ pl.v.retrieveAndListAllClasses = {
 
 pl.v.load = {
     setupUserInterface: function () {
-        // var loadButton = document.forms["UMLClass"].load;
         var loadButton = document.createElement("button");
         loadButton.innerHTML = "Load Data from File";
         var loadSelector = document.createElement("input");
@@ -113,7 +108,6 @@ pl.v.load = {
 
 pl.v.export = {
     setupUserInterface: function () {
-        // var exportButton = document.forms["UMLClass"].export;
         var exportButton = document.createElement("button");
         exportButton.innerHTML = "Export Data to File";
         document.forms["UMLClass"].append(exportButton);
@@ -128,7 +122,6 @@ pl.v.export = {
 
 pl.v.refresh = {
     setupUserInterface: function () {
-        // var refreshButton = document.forms["UMLClass"].refresh;
         var refreshButton = document.createElement("button");
         refreshButton.innerHTML = "Refresh";
         document.forms["UMLClass"].append(refreshButton);

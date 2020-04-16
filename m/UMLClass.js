@@ -1,6 +1,3 @@
-// reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
-
-
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 function UMLClass(name, vars = [], methods = []) {
     this.name = name;
@@ -16,12 +13,12 @@ UMLClass.instances = {};
 UMLClass.add = function (name) {
     //if(name == null || name)
     if (name in UMLClass.instances) {
-        alert("Class " + name + " already exist.");  //needs to be replaced with proper error message
+        alert("Class " + name + " already exist.");
         return null;
     }
 
     UMLClass.instances[name] = new UMLClass(name);
-    console.log("Class " + name + " created.");    //maybe some sort of success message?
+    console.log("Class " + name + " created.");
     return name;
 };
 
