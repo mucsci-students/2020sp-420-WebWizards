@@ -103,6 +103,10 @@ pl.c.defaultParser = function (args) {
             outputString = UMLClass.returnHumanReadableString() + outputString;
             break;
 
+        case "val":
+            outputString = UMLClass.validateName(args[1]) + outputString;
+            break;
+
         case "help":
 
             outputString = ("commands:<br>\
