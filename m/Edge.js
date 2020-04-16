@@ -14,11 +14,10 @@ Edge.instances = [];
 Edge.add = function (classOne, classTwo, umlinstances) {
     if (Edge.exists(classOne, classTwo)) {
         console.log("Edge already exists!");
-        return null;
+        //return null;
     }
     if (umlinstances[classOne] && umlinstances[classTwo]) {
         Edge.instances.push(new Edge(classOne, classTwo));
-        //return Edge(classOne, classTwo);
     }
     else {
         console.log("Edge requires two valid class names!");
