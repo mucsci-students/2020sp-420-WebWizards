@@ -63,6 +63,10 @@ pl.v.clearAll = {
 
 pl.v.retrieveAndListAllClasses = {
 
+    createClassBox: function(umlclass) {
+        
+    },
+
     updateView: function () {
         var tableBodyEl = document.querySelector("table#classes>tbody");
         var new_tableBody = document.createElement('tbody');
