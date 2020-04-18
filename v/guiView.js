@@ -63,8 +63,9 @@ pl.v.clearAll = {
 
 pl.v.retrieveAndListAllClasses = {
 
+    //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
-        var classbox = document.createElement('li');
+        var classbox = document.createElement('div');
         classbox.innerHTML = umlclass.name;
         classbox.setAttribute("draggable", true);
         classbox.setAttribute("ondragstart", "drag(event)");
