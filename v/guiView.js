@@ -75,7 +75,7 @@ pl.v.retrieveAndListAllClasses = {
     },
 
     updateView: function () {
-        var tableBodyEl = document.getElementById('initialSpace');
+        var dropSpace = document.getElementById('initialSpace');
       
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
@@ -86,7 +86,7 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
 
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
-            tableBodyEl.appendChild(classbox);
+            dropSpace.appendChild(classbox);
             
         
         }
