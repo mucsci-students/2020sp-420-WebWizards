@@ -14,7 +14,7 @@ pl.v.createClass = {
     },
     handleAddButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
-        UMLClass.add(formEl.name.value);
+        UMLClass.add(formEl.name.value);        
         formEl.reset();
         pl.v.retrieveAndListAllClasses.updateView();
     }
@@ -63,16 +63,19 @@ pl.v.clearAll = {
 
 pl.v.retrieveAndListAllClasses = {
 
-    createClassBox: function(umlclass) {
-        var classbox = document.createElement("div");
+    createClassBox: function (umlclass) {
+        var classbox = document.createElement('li');
         classbox.innerHTML = umlclass.name;
-        classbox.class = "classBox";
+        classbox.setAttribute("draggable", true);
+        classbox.setAttribute("ondragstart", "drag(event)");
+        classbox.className = "classBox";
 
+        return classbox;
     },
 
     updateView: function () {
-        var tableBodyEl = document.querySelector("table#classes>tbody");
-        var new_tableBody = document.createElement('tbody');
+        var tableBodyEl = document.getElementById('initialSpace');
+      
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         Edge.retrieveAll(save.retrieveEdgeString());
@@ -80,14 +83,13 @@ pl.v.retrieveAndListAllClasses = {
 
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
-            row1 = new_tableBody.insertRow();
-            row2 = new_tableBody.insertRow();
-            row3 = new_tableBody.insertRow();
-            row1.insertCell(-1).textContent = UMLClass.instances[key].name;
-            row2.insertCell(-1).textContent = UMLClass.instances[key].vars.join(", ");
-            row3.insertCell(-1).textContent = UMLClass.instances[key].methods.join(", ");
+
+            classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
+            tableBodyEl.appendChild(classbox);
+            
+        
         }
-        tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
+        //tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }
 };
 

@@ -33,7 +33,7 @@ p{
 .classBox {
   position: relative;
   display: inline-block;
-  position: absolute;
+  /* position: absolute; */
   background-color: white;
   text-align: center;
   border: 5px solid black;
