@@ -64,7 +64,10 @@ pl.v.clearAll = {
 pl.v.retrieveAndListAllClasses = {
 
     createClassBox: function(umlclass) {
-        
+        var classbox = document.createElement("div");
+        classbox.innerHTML = umlclass.name;
+        classbox.class = "classBox";
+
     },
 
     updateView: function () {
