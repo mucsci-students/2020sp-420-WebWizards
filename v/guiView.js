@@ -75,7 +75,7 @@ pl.v.retrieveAndListAllClasses = {
     },
 
     updateView: function () {
-        var dropSpace = document.getElementById('initialSpace');
+        var initialDropSpace = document.getElementById('initialDropSpace');
       
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
@@ -86,7 +86,7 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
 
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
-            dropSpace.appendChild(classbox);
+            initialDropSpace.appendChild(classbox);
             
         
         }
