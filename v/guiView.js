@@ -14,7 +14,7 @@ pl.v.createClass = {
     },
     handleAddButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
-        UMLClass.add(formEl.name.value);        
+        UMLClass.add(formEl.name.value);
         formEl.reset();
         pl.v.retrieveAndListAllClasses.updateView();
     }
@@ -67,16 +67,18 @@ pl.v.retrieveAndListAllClasses = {
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
         classbox.innerHTML = umlclass.name;
-        classbox.setAttribute("draggable", true);
-        classbox.setAttribute("ondragstart", "drag(event)");
+        classbox.setAttribute("draggable", "true");
+        classbox.setAttribute("ondragstart", "dragstart_handler(event)");
         classbox.className = "classBox";
 
         return classbox;
     },
 
     updateView: function () {
-        var initialDropSpace = document.getElementById('initialDropSpace');
-      
+        // var initialDropSpace = document.getElementById('initialDropSpace');
+        var initialDropSpace = document.getElementsByTagName('body')[0];
+
+
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         Edge.retrieveAll(save.retrieveEdgeString());
@@ -86,9 +88,9 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
 
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
+            classbox.id = i;
             initialDropSpace.appendChild(classbox);
-            
-        
+
         }
         //tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }

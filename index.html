@@ -1,157 +1,149 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>
-            UML Editor
-        </title>
+    <title>
+        UML Editor
+    </title>
 
-        <link rel="stylesheet" type="text/css" href="umlCss.css">
-        <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-
-
-        <script src="c/initialize.js"></script>
-        <script src="c/parser.js"></script>
-        <script src="c/setUpGUI.js"></script>
-        <script src="m/UMLClass.js"></script>
-        <script src="m/Edge.js"></script>
-        <script src="m/save.js"></script>
-        <script src="v/guiView.js"></script>
-        <script src="v/cliView.js"></script>
-        <script src="v/instructions.js"></script>
-        <script src="boxLogic.js"></script>
-        <script src="buttonsLogic.js"></script>
-
-        <script>
-            window.addEventListener("load", pl.c.setUpGUI);
-            window.addEventListener("load", pl.v.commandLine.setupUserInterface);
-        </script>
-
-        <script>
-            // Events fired on the drag target
-            document.ondragstart = function(event) {
-                event.dataTransfer.setData("Text", event.target.id);
-            };
-
-            // Events fired during the drag
-            document.ondragover = function(event) {
-                event.preventDefault();
-            };
+    <link rel="stylesheet" type="text/css" href="umlCss.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
 
-            document.ondrop = function(event) {
-                event.preventDefault();
-                if ( event.target.className === "classBox2" ) {
-                    var data = event.dataTransfer.getData("Text");
-                    event.target.appendChild(document.getElementById(data));
-                }
-            };
-        </script>
+    <script src="c/initialize.js"></script>
+    <script src="c/parser.js"></script>
+    <script src="c/setUpGUI.js"></script>
+    <script src="m/UMLClass.js"></script>
+    <script src="m/Edge.js"></script>
+    <script src="m/save.js"></script>
+    <script src="v/guiView.js"></script>
+    <script src="v/cliView.js"></script>
+    <script src="v/instructions.js"></script>
+    <script src="boxLogic.js"></script>
+    <script src="buttonsLogic.js"></script>
 
-    </head>
+    <script>
+        window.addEventListener("load", pl.c.setUpGUI);
+        window.addEventListener("load", pl.v.commandLine.setupUserInterface);
+    </script>
 
-    <body>
+    <script>
+        // Events fired on the drag target
+        document.ondragstart = function (event) {
+            event.dataTransfer.setData("Text", event.target.id);
+        };
 
-        <h1 class=navBar> Welcome to our UML Editor!</h1>
-
-        <div id ="mode">
-            <button id ="cliViewButton" type="button" name="cliMode"  class="btn btn-warning btn-block">Click Here for Cli Mode </button>
-            <button id ="guiViewButton" type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui Mode</button>
-        </div>
-
-        <div class="container">
-
-            <h1>UML Class Options</h1>
-            <div id="guiView">
-                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-success btn-lg" id="addBtn">Add Class</button>
-                <button type="button" class="btn btn-danger btn-lg" id="deleteBtn">Delete Class</button>
-                <button type="button" class="btn btn-success btn-lg" id="editBtn">Edit Class</button>
-                <button type="button" class="btn btn-warning btn-lg" id="exportBtn">Export Data to File</button>
-                <button type="button" class="btn btn-info btn-lg" id="loadBtn"> Load Data from a file</button>
-                <button type="button" class="btn btn-warning btn-lg" id="deleteAllBtn"> Delete all classes</button>
-            </div>
+        // Events fired during the drag
+        document.ondragover = function (event) {
+            event.preventDefault();
+        };
 
 
-            <div id="cliView">
-                <form id="CLIForm">
-                    <div>
-                        <label>
-                        <input id="cli"> type 'help' to see commands
-                        </label>
-                    </div>
-                </form>
-            </div>
+        document.ondrop = function (event) {
+            event.preventDefault();
+            if (event.target.className === "classBox2") {
+                var data = event.dataTransfer.getData("Text");
+                event.target.appendChild(document.getElementById(data));
+            }
+        };
+    </script>
 
-            <!-- Modal (pop up box)-->
-            <div class="modal fade" id="classModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">EXIT</button>
-                            <h4 class="modal-title"> Fill in the following fields</h4>
-                        </div>
-                        <!--body -->
-                        <div class="modal-body">
-                            <form id="UMLClass">
-                                <div>
-                                    <label>
-                                        Class name:
-                                        <input name="name" />
-                                    </label>
+</head>
 
-                                    <label>
-                                        Class methods:
-                                        <input name="methods" />
-                                    </label>
+<body>
 
-                                    <label>
-                                        Class variables:
-                                        <input name="vars" />
-                                    </label>
+    <h1 class=navBar> Welcome to our UML Editor!</h1>
 
-                                    <label>
-                                        Relationships:
-                                        <input name="relationships" />
-                                    </label>
-                                    <br>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- footer -->
-                        <div class="modal-footer">
-                            <p> Please review all changes before pushing exit button </p>
-                        </div>
-                     </div>
-                </div>
-            </div>
-        </div> <!-- end of container -->
-
-        <div id = "initialDropSpace">
-           <!--  <table draggable="true" id="classes" ondragstart="drag(event)"> 
-               
-            comment: must have draggle and ondragstrat
-            
-            <h3>Classes</h3>
-                <tbody></tbody>
-            </table>
-        -->
-
+    <div id="mode">
+        <button id="cliViewButton" type="button" name="cliMode" class="btn btn-warning btn-block">Click Here for Cli
+            Mode </button>
+        <button id="guiViewButton" type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui
+            Mode</button>
     </div>
 
-        <br>
+    <div class="container">
 
-        <div id="dropArea"class="classBox2" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <div class="classBoxName2"> </div>
+        <h1>UML Class Options</h1>
+        <div id="guiView">
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-success btn-lg" id="addBtn">Add Class</button>
+            <button type="button" class="btn btn-danger btn-lg" id="deleteBtn">Delete Class</button>
+            <button type="button" class="btn btn-success btn-lg" id="editBtn">Edit Class</button>
+            <button type="button" class="btn btn-warning btn-lg" id="exportBtn">Export Data to File</button>
+            <button type="button" class="btn btn-info btn-lg" id="loadBtn"> Load Data from a file</button>
+            <button type="button" class="btn btn-warning btn-lg" id="deleteAllBtn"> Delete all classes</button>
         </div>
 
-    </body>
+
+        <div id="cliView">
+            <form id="CLIForm">
+                <div>
+                    <label>
+                        <input id="cli"> type 'help' to see commands
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <!-- Modal (pop up box)-->
+        <div class="modal fade" id="classModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">EXIT</button>
+                        <h4 class="modal-title"> Fill in the following fields</h4>
+                    </div>
+                    <!--body -->
+                    <div class="modal-body">
+                        <form id="UMLClass">
+                            <div>
+                                <label>
+                                    Class name:
+                                    <input name="name" />
+                                </label>
+
+                                <label>
+                                    Class methods:
+                                    <input name="methods" />
+                                </label>
+
+                                <label>
+                                    Class variables:
+                                    <input name="vars" />
+                                </label>
+
+                                <label>
+                                    Relationships:
+                                    <input name="relationships" />
+                                </label>
+                                <br>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- footer -->
+                    <div class="modal-footer">
+                        <p> Please review all changes before pushing exit button </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end of container -->
+
+    <div id="initialDropSpace"></div>
+
+    <br />
+
+    <div id="dropArea" class="classBox2" ondrop="drop_handler(event)" ondragover="allowDrop(event)">
+        <div class="classBoxName2"> </div>
+    </div>
+
+</body>
 
 </html>
