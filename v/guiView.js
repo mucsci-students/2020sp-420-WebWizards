@@ -88,7 +88,7 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
 
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
-            classbox.id = i;
+            classbox.id = "classbox" + i;
             initialDropSpace.appendChild(classbox);
 
         }
