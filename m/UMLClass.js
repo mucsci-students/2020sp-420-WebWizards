@@ -83,41 +83,55 @@ UMLClass.addMethod = function (className, methodNames) {
     }
 };
 
-UMLClass.deleteVar = function (className, varName) {
+UMLClass.deleteVar = function (className, varNames) {
     if (UMLClass.instances[className]) {
-        var varIndex = -1;
 
-        for (v of UMLClass.instances[className].vars) {
-            if (v.name === varName) {
-                varIndex = UMLClass.instances[className].vars.indexOf(v);
+        if (varNames !== "") {
+            for (i of varNames.split(",")) {
+                var varIndex = -1;
+
+                for (v of UMLClass.instances[className].vars) {
+                    if (v.name === i) {
+                        varIndex = UMLClass.instances[className].vars.indexOf(v);
+                    }
+                }
+
+                if (varIndex !== -1) {
+                    UMLClass.instances[className].vars.splice(varIndex, 1);
+                }
+                else {
+                    alert("variable not found");
+                }
             }
         }
 
-        if (varIndex !== -1) {
-            UMLClass.instances[className].vars.splice(varIndex, 1);
-        }
-        else {
-            alert("variable not found");
-        }
+
     }
 };
 
-UMLClass.deleteMethod = function (className, methodName) {
+UMLClass.deleteMethod = function (className, methodNames) {
     if (UMLClass.instances[className]) {
-        var methodIndex = -1;
 
-        for (m of UMLClass.instances[className].methods) {
-            if (m.name === methodName) {
-                methodIndex = UMLClass.instances[className].methods.indexOf(m);
+        if (methodNames !== "") {
+            for (i of methodNames.split(",")) {
+
+                var methodIndex = -1;
+
+                for (m of UMLClass.instances[className].methods) {
+                    if (m.name === i) {
+                        methodIndex = UMLClass.instances[className].methods.indexOf(m);
+                    }
+                }
+
+                if (methodIndex !== -1) {
+                    UMLClass.instances[className].methods.splice(methodIndex, 1);
+                }
+                else {
+                    alert("method not found");
+                }
             }
         }
 
-        if (methodIndex !== -1) {
-            UMLClass.instances[className].methods.splice(methodIndex, 1);
-        }
-        else {
-            alert("variable not found");
-        }
     }
 };
 
