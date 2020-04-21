@@ -20,6 +20,22 @@ pl.v.createClass = {
     }
 };
 
+pl.v.editClass = {
+    setupUserInterface: function() {
+        var editButton = document.createElement("button");
+        editButton.innerHTML = "Add Fields";
+        document.forms["UMLClass"].append(editButton);
+
+        editButton.addEventListener("click", pl.v.editClass.handleEditButtonClickEvent);
+    },
+
+    handleEditButtonClickEvent: function() {
+        var formEl = document.forms["UMLClass"];
+        UMLClass.addVar(formEl.name.value, formEl.vars.value);
+        UMLClass.addMethod(formEl.name.value, formEl.methods.value);
+    }
+}
+
 pl.v.deleteClass = {
     setupUserInterface: function () {
         var deleteButton = document.createElement("button");
