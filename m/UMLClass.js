@@ -149,7 +149,7 @@ UMLClass.changeVarType = function (className, varName, newType) {
     }
 };
 
-UMLClass.changeVarType = function (className, methodName, newType) {
+UMLClass.changeMethodType = function (className, methodName, newType) {
     if (UMLClass.instances[className]) {
         for (m of UMLClass.instances[className].methods) {
             if (m.name === methodName) {
@@ -195,7 +195,9 @@ UMLClass.reset = function () {
 UMLClass.returnHumanReadableString = function () {
     outputString = "";
     for (i in UMLClass.instances) {
-        outputString += ("Name: " + i + "; Variables: " + UMLClass.instances[i].vars.join() + "; Methods: " + UMLClass.instances[i].methods.join() + "</br>");
+        outputString += ("Name: " + i + "</br>");
+        outputString += ("Variables: " + UMLClass.instances[i].vars.map(e => e.type + " " + e.name).join() + "</br>");
+        outputString += ("Methods: " + UMLClass.instances[i].methods.map(e => e.type + " " + e.name).join() + "</br></br>");
     }
     return outputString;
 };
