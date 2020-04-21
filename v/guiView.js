@@ -92,12 +92,6 @@ pl.v.retrieveAndListAllClasses = {
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
             classbox.id = "classbox" + i;
             initialDropSpace.appendChild(classbox);
-            /*
-                        row = new_tableBody.insertRow();
-                        row.insertCell(-1).textContent = UMLClass.instances[key].name;
-                        row.insertCell(-1).textContent = UMLClass.instances[key].vars.map(e => e.type + " " + e.name).join();
-                        row.insertCell(-1).textContent = UMLClass.instances[key].methods.map(e => e.type + " " + e.name).join();
-                    */
         }
     }
 };
