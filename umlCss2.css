@@ -1,0 +1,67 @@
+caption{
+  font-size: 20pt;
+  color: black;
+}
+
+.navBar{
+  background-color: black;
+  color: yellow;
+  padding: 20px;
+  text-align: center;
+}
+
+
+
+.instructions{
+  border: 10px solid;
+  border-color: yellow;
+  border-radius: 2px;
+}
+
+.buttons{
+  width: 25%;
+}
+
+#cliOutput {
+  border: 5px solid;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  overflow-y: scroll;
+  height: 350px;
+  width: 60%;
+}
+
+#dragBox {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+}
+
+#mydragBox {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+
+
+#classBox {
+  position: absolute;
+  z-index: 9;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+}
+
+#classBoxName {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: yellow;
+  color: black;
+  border: 2px solid gray;
+}
