@@ -1,5 +1,6 @@
 pl.c.setUpGUI = function () {
     pl.v.createClass.setupUserInterface()
+    pl.v.editClass.setupUserInterface();
     pl.v.deleteClass.setupUserInterface()
     pl.v.clearAll.setupUserInterface()
     pl.v.retrieveAndListAllClasses.updateView()
