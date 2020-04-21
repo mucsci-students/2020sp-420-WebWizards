@@ -21,18 +21,28 @@ pl.v.createClass = {
 };
 
 pl.v.editClass = {
-    setupUserInterface: function() {
-        var editButton = document.createElement("button");
-        editButton.innerHTML = "Add Fields";
-        document.forms["UMLClass"].append(editButton);
+    setupUserInterface: function () {
+        var addFieldButton = document.createElement("button");
+        addFieldButton.innerHTML = "Add Fields";
+        document.forms["UMLClass"].append(addFieldButton);
+        addFieldButton.addEventListener("click", pl.v.editClass.handleAddFieldButtonClickEvent);
 
-        editButton.addEventListener("click", pl.v.editClass.handleEditButtonClickEvent);
+        var deleteFieldButton = document.createElement("button");
+        deleteFieldButton.innerHTML = "Delete Fields";
+        document.forms["UMLClass"].append(deleteFieldButton);
+        deleteFieldButton.addEventListener("click", pl.v.editClass.handleDeleteButtonClickEvent);
     },
 
-    handleEditButtonClickEvent: function() {
+    handleAddFieldButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
         UMLClass.addVar(formEl.name.value, formEl.vars.value);
         UMLClass.addMethod(formEl.name.value, formEl.methods.value);
+    },
+
+    handleDeleteButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        UMLClass.deleteVar(formEl.name.value, formEl.vars.value);
+        UMLClass.deleteMethod(formEl.name.value, formEl.methods.value);
     }
 }
 
