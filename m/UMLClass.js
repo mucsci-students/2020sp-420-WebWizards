@@ -72,6 +72,8 @@ UMLClass.addVar = function (className, varNames) {
     }
 };
 
+//takes in a classname and {one methodName or multiple methodName's separated by commas but no spaces} and adds the methods to the class if the class exists
+//todo: check for duplicate methods
 UMLClass.addMethod = function (className, methodNames) {
     if (UMLClass.instances[className]) {
 
@@ -83,6 +85,7 @@ UMLClass.addMethod = function (className, methodNames) {
     }
 };
 
+//takes in a classname and {one varName or multiple varName's separated by commas but no spaces} and deletes the vars from the class if the class exists
 UMLClass.deleteVar = function (className, varNames) {
     if (UMLClass.instances[className]) {
 
@@ -109,6 +112,7 @@ UMLClass.deleteVar = function (className, varNames) {
     }
 };
 
+//takes in a classname and {one methodName or multiple methodName's separated by commas but no spaces} and deletes the methods from the class if the class exists
 UMLClass.deleteMethod = function (className, methodNames) {
     if (UMLClass.instances[className]) {
 
