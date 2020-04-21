@@ -106,13 +106,18 @@ pl.v.retrieveAndListAllClasses = {
     },
 
     updateView: function () {
-        var initialDropSpace = document.getElementsByTagName('body')[0];
-
+        //var initialDropSpace = document.getElementsByTagName('body')[0];
+        var initialDropSpace = document.getElementById("initialDropSpace");
+        var dropSpace = document.getElementById("dropArea");
 
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         Edge.retrieveAll(save.retrieveEdgeString());
         keys = Object.keys(UMLClass.instances);
+
+        //temporary
+        initialDropSpace.innerHTML = "";
+        dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
 
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
