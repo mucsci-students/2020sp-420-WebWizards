@@ -77,7 +77,6 @@ pl.v.retrieveAndListAllClasses = {
     },
 
     updateView: function () {
-        // var initialDropSpace = document.getElementById('initialDropSpace');
         var initialDropSpace = document.getElementsByTagName('body')[0];
 
 
