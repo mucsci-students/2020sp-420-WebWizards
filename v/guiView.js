@@ -20,6 +20,32 @@ pl.v.createClass = {
     }
 };
 
+pl.v.editClass = {
+    setupUserInterface: function () {
+        var addFieldButton = document.createElement("button");
+        addFieldButton.innerHTML = "Add Fields";
+        document.forms["UMLClass"].append(addFieldButton);
+        addFieldButton.addEventListener("click", pl.v.editClass.handleAddFieldButtonClickEvent);
+
+        var deleteFieldButton = document.createElement("button");
+        deleteFieldButton.innerHTML = "Delete Fields";
+        document.forms["UMLClass"].append(deleteFieldButton);
+        deleteFieldButton.addEventListener("click", pl.v.editClass.handleDeleteButtonClickEvent);
+    },
+
+    handleAddFieldButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        UMLClass.addVar(formEl.name.value, formEl.vars.value);
+        UMLClass.addMethod(formEl.name.value, formEl.methods.value);
+    },
+
+    handleDeleteButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        UMLClass.deleteVar(formEl.name.value, formEl.vars.value);
+        UMLClass.deleteMethod(formEl.name.value, formEl.methods.value);
+    }
+}
+
 pl.v.deleteClass = {
     setupUserInterface: function () {
         var deleteButton = document.createElement("button");
@@ -38,6 +64,7 @@ pl.v.deleteClass = {
         var formEl = document.forms["UMLClass"];
         var name = formEl.name.value;
         UMLClass.destroy(name);
+        save.saveLocal(UMLClass.instances, Edge.instances);
         pl.v.retrieveAndListAllClasses.updateView();
 
     }
@@ -54,8 +81,10 @@ pl.v.clearAll = {
     },
 
     handleClearAllButtonClickEvent: function () {
-        if (confirm("Are you sure you want to clear the database?")) {
+        if (confirm("Are you SURE you want to clear the database?")) {
             save.clearData();
+            UMLClass.reset();
+            Edge.reset();
             pl.v.retrieveAndListAllClasses.updateView();
         }
     }
@@ -77,13 +106,18 @@ pl.v.retrieveAndListAllClasses = {
     },
 
     updateView: function () {
-        var initialDropSpace = document.getElementsByTagName('body')[0];
-
+        //var initialDropSpace = document.getElementsByTagName('body')[0];
+        var initialDropSpace = document.getElementById("initialDropSpace");
+        var dropSpace = document.getElementById("dropArea");
 
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         Edge.retrieveAll(save.retrieveEdgeString());
         keys = Object.keys(UMLClass.instances);
+
+        //temporary
+        initialDropSpace.innerHTML = "";
+        dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
 
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
