@@ -38,6 +38,7 @@ pl.v.deleteClass = {
         var formEl = document.forms["UMLClass"];
         var name = formEl.name.value;
         UMLClass.destroy(name);
+        save.saveLocal(UMLClass.instances, Edge.instances);
         pl.v.retrieveAndListAllClasses.updateView();
 
     }
