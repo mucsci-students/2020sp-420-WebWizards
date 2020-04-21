@@ -1,10 +1,9 @@
+<!-- reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03.html-->
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>
         UML Editor
     </title>
@@ -13,60 +12,128 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
 
     <script src="c/initialize.js"></script>
-    <script src="c/parser.js"></script>
-    <script src="c/setUpGUI.js"></script>
     <script src="m/UMLClass.js"></script>
-    <script src="m/Edge.js"></script>
-    <script src="m/save.js"></script>
     <script src="v/guiView.js"></script>
-    <script src="v/cliView.js"></script>
     <script src="v/instructions.js"></script>
+    <script src="c/setUpGUI.js"></script>
+    <script src="v/cliView.js"></script>
+    <script src="c/parser.js"></script>
+    <script src="m/Edge.js"></script>
     <script src="boxLogic.js"></script>
-    <script src="buttonsLogic.js"></script>
+    <script src="m/save.js"></script>
 
     <script>
         window.addEventListener("load", pl.c.setUpGUI);
         window.addEventListener("load", pl.v.commandLine.setupUserInterface);
+
+        $(document).ready(function () {
+            $("#addBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
+
+            });
+        });
+
+
+        $(document).ready(function () {
+            $("#deleteBtn").click(function () {
+                $("#addModal").modal();
+                $("#addButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
+
+            });
+        });
+
+
+        $(document).ready(function () {
+            $("#editBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#addButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
+
+            });
+        });
+
+
+        $(document).ready(function () {
+            $("#exportBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#addButton").hide();
+                $("#loadButton").hide();
+
+            });
+        });
+
+        $(document).ready(function () {
+            $("#loadBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#deleteAllButton").hide();
+                $("#exportButton").hide();
+                $("#addButton").hide();
+
+            });
+        });
+
+        $(document).ready(function () {
+            $("#deleteAllBtn").click(function () {
+                $("#addModal").modal();
+                $("#deleteButton").hide();
+                $("#editButton").hide();
+                $("#addButton").hide();
+                $("#exportButton").hide();
+                $("#loadButton").hide();
+
+            });
+        });
+
+        //logic for view control
+        $(document).ready(function () {
+            $("#cliView").hide();
+            $("#guiView").hide();
+            $("#cliViewButton").click(function () {
+                $("#cliView").show();
+                $("#guiView").hide();
+
+            });
+            $("#guiViewButton").click(function () {
+                $("#guiView").show();
+                $("#cliView").hide();
+
+            });
+        });
+
     </script>
-
-    <script>
-        // Events fired on the drag target
-        document.ondragstart = function (event) {
-            event.dataTransfer.setData("Text", event.target.id);
-        };
-
-        // Events fired during the drag
-        document.ondragover = function (event) {
-            event.preventDefault();
-        };
-
-
-        document.ondrop = function (event) {
-            event.preventDefault();
-            if (event.target.className === "classBox2") {
-                var data = event.dataTransfer.getData("Text");
-                event.target.appendChild(document.getElementById(data));
-            }
-        };
-    </script>
-
 </head>
 
 <body>
-
     <h1 class=navBar> Welcome to our UML Editor!</h1>
 
-    <div id="mode">
+    <div id=mode>
         <button id="cliViewButton" type="button" name="cliMode" class="btn btn-warning btn-block">Click Here for Cli
             Mode </button>
         <button id="guiViewButton" type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui
             Mode</button>
     </div>
 
+    <!-- buttons for navigation -->
     <div class="container">
 
         <h1>UML Class Options</h1>
@@ -131,22 +198,18 @@
                                     <br>
                                 </div>
                         </div>
+                        </form>
                         <!-- footer -->
-                        <div class="modal-footer">
-                            <p> Please review all changes before pushing exit button </p>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <p> Please review all changes before pushing button </p>
                     </div>
                 </div>
             </div>
-        </div> <!-- end of container -->
 
-        <div id="initialDropSpace"></div>
-
-        <br />
-
-        <div id="dropArea" class="classBox2" ondrop="drop_handler(event)" ondragover="allowDrop(event)">
-            <div class="classBoxName2"> </div>
-        </div>
+            <div id="dropArea" class="classBox2" ondrop="drop_handler(event)" ondragover="allowDrop(event)">
+                <div class="classBoxName2"> </div>
+            </div>
 
 </body>
 
