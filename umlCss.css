@@ -1,0 +1,96 @@
+html{
+  height: 100%;
+}
+
+caption{
+  font-size: 20pt;
+  color: black;
+}
+
+.navBar{
+  background-color: black;
+  color: yellow;
+  padding: 20px;
+  text-align: center;
+}
+
+p{
+  margin: auto;
+}
+
+
+.instructions{
+  border: 10px solid;
+  border-color: yellow;
+  border-radius: 2px;
+}
+
+.buttons{
+  width: 25%;
+}
+
+
+.classBox {
+  position: relative;
+  display: inline-block;
+  /* position: absolute; */
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+
+
+}
+
+.classBoxName {
+
+  padding: 10px;
+  cursor: move;
+  background-color: yellow;
+  color: black;
+  border: 1px solid black;
+}
+
+.classBox2 {
+  position: relative;
+  display: inline-block;
+  position: absolute;
+  background-color: white;
+  text-align: center;
+  border: 5px solid black;
+  top: 400px;
+  right: 50px;
+
+}
+
+.classBoxName2 {
+  padding: 10px;
+  cursor: move;
+  color: black;
+  border: 1px solid black;
+  width: 400px;
+  height: 200px;
+}
+
+
+
+tr{
+  border: 2px solid;
+  padding-bottom: 10px;
+
+}
+
+table{
+  cursor: move;
+  padding-left: 10px;
+}
+
+
+#cliOutput {
+  border: 5px solid;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  overflow-y: scroll;
+  height: 350px;
+  width: 60%;
+}

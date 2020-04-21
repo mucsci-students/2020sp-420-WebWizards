@@ -1,3 +1,4 @@
+
 /* export function statements for jasmine testing */
 //module.exports = Edge.add;
 //module.exports = Edge.destroy;

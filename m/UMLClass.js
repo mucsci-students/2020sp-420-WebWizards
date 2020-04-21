@@ -1,3 +1,4 @@
+//defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 /* export function statements for jasmine testing */
@@ -27,7 +28,7 @@ UMLClass.add = function (name, vars = "", methods = "") {
     if (name in UMLClass.instances) {
         alert("Class with name " + name + " already exists.");
         return null;
-    }1
+    }
 
     newVars = [];
     newMethods = [];
