@@ -85,4 +85,12 @@ table{
 }
 
 
-
+#cliOutput {
+  border: 5px solid;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  overflow-y: scroll;
+  height: 350px;
+  width: 60%;
+}
