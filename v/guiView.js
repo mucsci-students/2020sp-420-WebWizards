@@ -66,7 +66,9 @@ pl.v.retrieveAndListAllClasses = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
-        classbox.innerHTML = umlclass.name;
+        classbox.innerHTML = umlclass.name + "</br>";
+        classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
+        classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
         classbox.setAttribute("draggable", "true");
         classbox.setAttribute("ondragstart", "dragstart_handler(event)");
         classbox.className = "classBox";
@@ -97,7 +99,6 @@ pl.v.retrieveAndListAllClasses = {
                         row.insertCell(-1).textContent = UMLClass.instances[key].methods.map(e => e.type + " " + e.name).join();
                     */
         }
-        //tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }
 };
 
