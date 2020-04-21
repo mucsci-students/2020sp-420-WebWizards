@@ -35,39 +35,51 @@ UMLClass.add = function (name, vars = "", methods = "") {
 
     if (vars !== "") {
         for (i of (vars.split(","))) {
-            newVars.push({name: i, type: "var"});
+            newVars.push({ name: i, type: "var" });
         }
     }
 
     if (methods !== "") {
         for (i of (methods.split(","))) {
-            newMethods.push({name: i, type: "method"});
+            newMethods.push({ name: i, type: "method" });
         }
     }
 
     UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
-  
+
     console.log("Class " + name + " created.");
     return name;
 };
 
-UMLClass.validateName = function(proposedName) {
+UMLClass.validateName = function (proposedName) {
     //defines a regex string starting with a letter or underscore, followed by an arbirtrary number of letters, numbers, and/or underscores
     let compare = /^[a-zA-Z_](\w)*$/;
-    
+
     return compare.test(proposedName);
 
 };
 
-UMLClass.addVar = function (className, varName) {
+//takes in a classname and {one varName or multiple varName's separated by commas but no spaces} and adds the vars to the class if the class exists
+//todo: check for duplicate vars
+UMLClass.addVar = function (className, varNames) {
     if (UMLClass.instances[className]) {
-        UMLClass.instances[className].vars.push({name: varName, type: "var"});
+
+        if (varNames !== "") {
+            for (i of (varNames.split(","))) {
+                UMLClass.instances[className].vars.push({ name: i, type: "var" });
+            }
+        }
     }
 };
 
-UMLClass.addMethod = function (className, methodName) {
+UMLClass.addMethod = function (className, methodNames) {
     if (UMLClass.instances[className]) {
-        UMLClass.instances[className].methods.push({name: methodName, type: "method"});
+
+        if (methodNames !== "") {
+            for (i of methodNames.split(",")) {
+                UMLClass.instances[className].methods.push({ name: i, type: "method" });
+            }
+        }
     }
 };
 
