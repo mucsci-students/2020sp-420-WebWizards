@@ -55,8 +55,10 @@ pl.v.clearAll = {
     },
 
     handleClearAllButtonClickEvent: function () {
-        if (confirm("Are you sure you want to clear the database?")) {
+        if (confirm("Are you SURE you want to clear the database?")) {
             save.clearData();
+            UMLClass.reset();
+            Edge.reset();
             pl.v.retrieveAndListAllClasses.updateView();
         }
     }

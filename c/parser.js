@@ -42,6 +42,8 @@ pl.c.defaultParser = function (args) {
                 save.clearData();
                 UMLClass.reset();
                 Edge.reset();
+                pl.v.retrieveAndListAllClasses.updateView();
+
             }
             break;
 
