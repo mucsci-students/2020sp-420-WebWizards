@@ -2,6 +2,7 @@ pl.v.createClass = {
     setupUserInterface: function () {
         var addButton = document.createElement("button");
         addButton.innerHTML = "Add";
+        addButton.setAttribute("id","addBtn2");
         document.forms["UMLClass"].append(addButton);
 
         UMLClass.retrieveAll(save.retrieveUMLClassString());
@@ -24,11 +25,13 @@ pl.v.editClass = {
     setupUserInterface: function () {
         var addFieldButton = document.createElement("button");
         addFieldButton.innerHTML = "Add Fields";
+        addFieldButton.setAttribute("id","addFieldBtn2");
         document.forms["UMLClass"].append(addFieldButton);
         addFieldButton.addEventListener("click", pl.v.editClass.handleAddFieldButtonClickEvent);
 
         var deleteFieldButton = document.createElement("button");
         deleteFieldButton.innerHTML = "Delete Fields";
+        deleteFieldButton.setAttribute("id","deleteFieldBtn2");
         document.forms["UMLClass"].append(deleteFieldButton);
         deleteFieldButton.addEventListener("click", pl.v.editClass.handleDeleteButtonClickEvent);
     },
@@ -50,6 +53,7 @@ pl.v.deleteClass = {
     setupUserInterface: function () {
         var deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
+        deleteButton.setAttribute("id","deleteBtn2");
         document.forms["UMLClass"].append(deleteButton);
 
         deleteButton.addEventListener("click",
@@ -74,6 +78,7 @@ pl.v.clearAll = {
     setupUserInterface: function () {
         var clearAllButton = document.createElement("button");
         clearAllButton.innerHTML = "Delete All Classes";
+        clearAllButton.setAttribute("id","deleteAllBtn2");
         document.forms["UMLClass"].append(clearAllButton);
 
         clearAllButton.addEventListener("click",
@@ -133,6 +138,7 @@ pl.v.load = {
     setupUserInterface: function () {
         var loadButton = document.createElement("button");
         loadButton.innerHTML = "Load Data from File";
+        loadButton.setAttribute("id","loadBtn2");
         var loadSelector = document.createElement("input");
         loadSelector.type = "file";
         loadSelector.id = "loadfile";
@@ -155,6 +161,7 @@ pl.v.export = {
     setupUserInterface: function () {
         var exportButton = document.createElement("button");
         exportButton.innerHTML = "Export Data to File";
+        exportButton.setAttribute("id","exportBtn2");
         document.forms["UMLClass"].append(exportButton);
 
         exportButton.addEventListener("click", pl.v.export.handleExportButtonClickEvent);
@@ -169,6 +176,7 @@ pl.v.refresh = {
     setupUserInterface: function () {
         var refreshButton = document.createElement("button");
         refreshButton.innerHTML = "Refresh";
+        refreshButton.setAttribute("id","refreshBtn");
         document.forms["UMLClass"].append(refreshButton);
 
         refreshButton.addEventListener("click", pl.v.refresh.handleRefreshButtonClickEvent);

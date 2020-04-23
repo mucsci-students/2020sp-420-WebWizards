@@ -1,11 +1,15 @@
 $(document).ready(function () {
     $("#addBtn").click(function () {
         $("#classModal").modal();
-        $("#deleteButton").hide();
-        $("#editButton").hide();
-        $("#deleteAllButton").hide();
-        $("#exportButton").hide();
-        $("#loadButton").hide();
+        $("#deleteBtn2").hide();
+        $("#editBtn").hide();
+        $("#deleteAllBtn2").hide();
+        $("#exportBtn2").hide();
+        $("#loadBtn2").hide();
+        $("#addFieldBtn2").hide();
+        $("#deleteFieldBtn2").hide();
+        $("#loadfile").hide();
+
 
     });
 });
@@ -14,11 +18,29 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#deleteBtn").click(function () {
         $("#classModal").modal();
-        $("#addButton").hide();
-        $("#editButton").hide();
-        $("#deleteAllButton").hide();
-        $("#exportButton").hide();
-        $("#loadButton").hide();
+        $("#addBtn2").hide();
+        $("#editBtn2").hide();
+        $("#deleteBtn2").show();
+        $("#deleteAllBtn2").hide();
+        $("#exportBtn2").hide();
+        $("#loadBtn2").hide();
+        $("#addFieldBtn2").hide();
+        $("#loadfile").hide();
+
+    });
+});
+
+$(document).ready(function () {
+    $("#deleteAllBtn").click(function () {
+        $("#classModal").modal();
+        $("#addBtn2").hide();
+        $("#editBtn2").hide();
+        $("#deleteBtn2").hide();
+        $("#deleteAllBtn2").hide();
+        $("#exportBtn2").hide();
+        $("#loadBtn2").hide();
+        $("#addFieldBtn2").hide();
+        $("#loadfile").hide();
 
     });
 });
@@ -27,11 +49,13 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#editBtn").click(function () {
         $("#classModal").modal();
-        $("#deleteButton").hide();
-        $("#addButton").hide();
-        $("#deleteAllButton").hide();
-        $("#exportButton").hide();
-        $("#loadButton").hide();
+        $("#deleteBtn2").hide();
+        $("#addBtn2").hide();
+        $("#deleteAllBtn2").hide();
+        $("#exportBtn2").hide();
+        $("#loadBtn2").hide();
+        $("#addFieldBtn2").show();
+        $("#loadfile").hide();
 
     });
 });
@@ -40,11 +64,14 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#exportBtn").click(function () {
         $("#classModal").modal();
-        $("#deleteButton").hide();
-        $("#editButton").hide();
-        $("#deleteAllButton").hide();
-        $("#addButton").hide();
-        $("#loadButton").hide();
+        $("#deleteBtn2").hide();
+        $("#editBtn2").hide();
+        $("#deleteAllBtn2").hide();
+        $("#addBtn2").hide();
+        $("#loadBtn2").hide();
+        $("#addFieldBtn2").hide();
+        $("#deleteFieldBtn2").hide();
+        $("#loadfile").hide();
 
     });
 });
@@ -52,23 +79,29 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#loadBtn").click(function () {
         $("#classModal").modal();
-        $("#deleteButton").hide();
-        $("#editButton").hide();
-        $("#deleteAllButton").hide();
-        $("#exportButton").hide();
-        $("#addButton").hide();
+        $("#deleteBtn2").hide();
+        $("#editBtn2").hide();
+        $("#deleteAllBtn2").hide();
+        $("#exportBtn2").hide();
+        $("#addBtn2").hide();
+        $("#addFieldBtn2").hide();
+        $("#deleteFieldBtn2").hide();
+        $("#loadfile").show();
 
     });
 });
 
 $(document).ready(function () {
     $("#deleteAllBtn").click(function () {
-        $("#classModal").modal();
-        $("#deleteButton").hide();
-        $("#editButton").hide();
-        $("#addButton").hide();
-        $("#exportButton").hide();
-        $("#loadButton").hide();
+        $("#classModal2").modal();
+        $("#deleteBtn2").hide();
+        $("#editBtn2").hide();
+        $("#addBtn2").hide();
+        $("#exportBtn2").hide();
+        $("#loadBtn2").hide();
+        $("#addFieldBtn2").hide();
+        $("#deleteFieldBtn2").hide();
+        $("#loadfile").hide();
 
     });
 });
@@ -77,12 +110,12 @@ $(document).ready(function () {
 $(document).ready(function() {
     $("#cliView").hide();
     $("#guiView").hide();
-    $("#cliViewButton").click(function(){
+    $("#cliViewBtn").click(function(){
         $("#cliView").show();
         $("#guiView").hide();
 
     });
-    $("#guiViewButton").click(function(){
+    $("#guiViewBtn").click(function(){
         $("#guiView").show();
         $("#cliView").hide();
 
