@@ -1,3 +1,4 @@
+//defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 //defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
@@ -13,6 +14,12 @@ UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
 UMLClass.add = function (name, vars = "", methods = "") {
+
+    if (!UMLClass.validateName(name)) {
+        alert("Class name is invalid -- class names must begin with a letter or underscore and contain no special characters");
+        return null;
+    }
+
     if (name in UMLClass.instances) {
         console.log("Class with name " + name + " already exists.");
         return null;
@@ -23,71 +30,107 @@ UMLClass.add = function (name, vars = "", methods = "") {
 
     if (vars !== "") {
         for (i of (vars.split(","))) {
-            newVars.push({name: i, type: "var"});
+            newVars.push({ name: i, type: "var" });
         }
     }
 
     if (methods !== "") {
         for (i of (methods.split(","))) {
-            newMethods.push({name: i, type: "method"});
+            newMethods.push({ name: i, type: "method" });
         }
     }
 
     UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
-  
+
     console.log("Class " + name + " created.");
     return name;
 };
 
-UMLClass.addVar = function (className, varName) {
+UMLClass.validateName = function (proposedName) {
+    //defines a regex string starting with a letter or underscore, followed by an arbirtrary number of letters, numbers, and/or underscores
+    let compare = /^[a-zA-Z_](\w)*$/;
+
+    return compare.test(proposedName);
+
+};
+
+//takes in a classname and {one varName or multiple varName's separated by commas but no spaces} and adds the vars to the class if the class exists
+//todo: check for duplicate vars
+UMLClass.addVar = function (className, varNames) {
     if (UMLClass.instances[className]) {
-        UMLClass.instances[className].vars.push({name: varName, type: "var"});
+
+        if (varNames !== "") {
+            for (i of (varNames.split(","))) {
+                UMLClass.instances[className].vars.push({ name: i, type: "var" });
+            }
+        }
     }
 };
 
-UMLClass.addMethod = function (className, methodName) {
+//takes in a classname and {one methodName or multiple methodName's separated by commas but no spaces} and adds the methods to the class if the class exists
+//todo: check for duplicate methods
+UMLClass.addMethod = function (className, methodNames) {
     if (UMLClass.instances[className]) {
-        UMLClass.instances[className].methods.push({name: methodName, type: "method"});
+
+        if (methodNames !== "") {
+            for (i of methodNames.split(",")) {
+                UMLClass.instances[className].methods.push({ name: i, type: "method" });
+            }
+        }
     }
 };
 
-UMLClass.deleteVar = function (className, varName) {
+//takes in a classname and {one varName or multiple varName's separated by commas but no spaces} and deletes the vars from the class if the class exists
+UMLClass.deleteVar = function (className, varNames) {
     if (UMLClass.instances[className]) {
-        var varIndex = -1;
 
-        for (v of UMLClass.instances[className].vars) {
-            if (v.name === varName) {
-                varIndex = UMLClass.instances[className].vars.indexOf(v);
+        if (varNames !== "") {
+            for (i of varNames.split(",")) {
+                var varIndex = -1;
+
+                for (v of UMLClass.instances[className].vars) {
+                    if (v.name === i) {
+                        varIndex = UMLClass.instances[className].vars.indexOf(v);
+                    }
+                }
+
+                if (varIndex !== -1) {
+                    UMLClass.instances[className].vars.splice(varIndex, 1);
+                }
+                else {
+                    alert("variable not found");
+                }
             }
         }
 
-        if (varIndex !== -1) {
-            UMLClass.instances[className].vars.splice(varIndex, 1);
-        }
-        else {
-            console.log("variable not found");
-            return null;
-        }
+
     }
 };
 
-UMLClass.deleteMethod = function (className, methodName) {
+//takes in a classname and {one methodName or multiple methodName's separated by commas but no spaces} and deletes the methods from the class if the class exists
+UMLClass.deleteMethod = function (className, methodNames) {
     if (UMLClass.instances[className]) {
-        var methodIndex = -1;
 
-        for (m of UMLClass.instances[className].methods) {
-            if (m.name === methodName) {
-                methodIndex = UMLClass.instances[className].methods.indexOf(m);
+        if (methodNames !== "") {
+            for (i of methodNames.split(",")) {
+
+                var methodIndex = -1;
+
+                for (m of UMLClass.instances[className].methods) {
+                    if (m.name === i) {
+                        methodIndex = UMLClass.instances[className].methods.indexOf(m);
+                    }
+                }
+
+                if (methodIndex !== -1) {
+                    UMLClass.instances[className].methods.splice(methodIndex, 1);
+                }
+                else {
+                    alert("method not found");
+                }
             }
         }
 
-        if (methodIndex !== -1) {
-            UMLClass.instances[className].methods.splice(methodIndex, 1);
-        }
-        else {
-            console.log("variable not found");
-            return null;
-        }
     }
 };
 
@@ -101,7 +144,7 @@ UMLClass.changeVarType = function (className, varName, newType) {
     }
 };
 
-UMLClass.changeVarType = function (className, methodName, newType) {
+UMLClass.changeMethodType = function (className, methodName, newType) {
     if (UMLClass.instances[className]) {
         for (m of UMLClass.instances[className].methods) {
             if (m.name === methodName) {
@@ -148,7 +191,9 @@ UMLClass.reset = function () {
 UMLClass.returnHumanReadableString = function () {
     outputString = "";
     for (i in UMLClass.instances) {
-        outputString += ("Name: " + i + "; Variables: " + UMLClass.instances[i].vars.join() + "; Methods: " + UMLClass.instances[i].methods.join() + "</br>");
+        outputString += ("Name: " + i + "</br>");
+        outputString += ("Variables: " + UMLClass.instances[i].vars.map(e => e.type + " " + e.name).join() + "</br>");
+        outputString += ("Methods: " + UMLClass.instances[i].methods.map(e => e.type + " " + e.name).join() + "</br></br>");
     }
     return outputString;
 };

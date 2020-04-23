@@ -1,8 +1,5 @@
-//reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s04.html
-
 pl.v.createClass = {
     setupUserInterface: function () {
-        //var addButton = document.forms["UMLClass"].add;
         var addButton = document.createElement("button");
         addButton.innerHTML = "Add";
         document.forms["UMLClass"].append(addButton);
@@ -23,9 +20,34 @@ pl.v.createClass = {
     }
 };
 
+pl.v.editClass = {
+    setupUserInterface: function () {
+        var addFieldButton = document.createElement("button");
+        addFieldButton.innerHTML = "Add Fields";
+        document.forms["UMLClass"].append(addFieldButton);
+        addFieldButton.addEventListener("click", pl.v.editClass.handleAddFieldButtonClickEvent);
+
+        var deleteFieldButton = document.createElement("button");
+        deleteFieldButton.innerHTML = "Delete Fields";
+        document.forms["UMLClass"].append(deleteFieldButton);
+        deleteFieldButton.addEventListener("click", pl.v.editClass.handleDeleteButtonClickEvent);
+    },
+
+    handleAddFieldButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        UMLClass.addVar(formEl.name.value, formEl.vars.value);
+        UMLClass.addMethod(formEl.name.value, formEl.methods.value);
+    },
+
+    handleDeleteButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        UMLClass.deleteVar(formEl.name.value, formEl.vars.value);
+        UMLClass.deleteMethod(formEl.name.value, formEl.methods.value);
+    }
+}
+
 pl.v.deleteClass = {
     setupUserInterface: function () {
-        // var deleteButton = document.forms["UMLClass"].delete;
         var deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
         document.forms["UMLClass"].append(deleteButton);
@@ -42,6 +64,7 @@ pl.v.deleteClass = {
         var formEl = document.forms["UMLClass"];
         var name = formEl.name.value;
         UMLClass.destroy(name);
+        save.saveLocal(UMLClass.instances, Edge.instances);
         pl.v.retrieveAndListAllClasses.updateView();
 
     }
@@ -49,7 +72,6 @@ pl.v.deleteClass = {
 
 pl.v.clearAll = {
     setupUserInterface: function () {
-        // var clearAllButton = document.forms["UMLClass"].clearAll;
         var clearAllButton = document.createElement("button");
         clearAllButton.innerHTML = "Delete All Classes";
         document.forms["UMLClass"].append(clearAllButton);
@@ -59,8 +81,10 @@ pl.v.clearAll = {
     },
 
     handleClearAllButtonClickEvent: function () {
-        if (confirm("Are you sure you want to clear the database?")) {
+        if (confirm("Are you SURE you want to clear the database?")) {
             save.clearData();
+            UMLClass.reset();
+            Edge.reset();
             pl.v.retrieveAndListAllClasses.updateView();
         }
     }
@@ -68,28 +92,45 @@ pl.v.clearAll = {
 
 pl.v.retrieveAndListAllClasses = {
 
+    //returns Javascript node that is a visual representation of a classbox
+    createClassBox: function (umlclass) {
+        var classbox = document.createElement('div');
+        classbox.innerHTML = umlclass.name + "</br>";
+        classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
+        classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
+        classbox.setAttribute("draggable", "true");
+        classbox.setAttribute("ondragstart", "dragstart_handler(event)");
+        classbox.className = "classBox";
+
+        return classbox;
+    },
+
     updateView: function () {
-        var tableBodyEl = document.querySelector("table#classes>tbody");
-        var new_tableBody = document.createElement('tbody');
+        //var initialDropSpace = document.getElementsByTagName('body')[0];
+        var initialDropSpace = document.getElementById("initialDropSpace");
+        var dropSpace = document.getElementById("dropArea");
+
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         Edge.retrieveAll(save.retrieveEdgeString());
         keys = Object.keys(UMLClass.instances);
 
+        //temporary
+        initialDropSpace.innerHTML = "";
+        dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
+
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
-            row = new_tableBody.insertRow();
-            row.insertCell(-1).textContent = UMLClass.instances[key].name;
-            row.insertCell(-1).textContent = UMLClass.instances[key].vars.map(e => e.type + " " + e.name).join();
-            row.insertCell(-1).textContent = UMLClass.instances[key].methods.map(e => e.type + " " + e.name).join();
+
+            classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
+            classbox.id = "classbox" + i;
+            initialDropSpace.appendChild(classbox);
         }
-        tableBodyEl.parentNode.replaceChild(new_tableBody, tableBodyEl);
     }
 };
 
 pl.v.load = {
     setupUserInterface: function () {
-        // var loadButton = document.forms["UMLClass"].load;
         var loadButton = document.createElement("button");
         loadButton.innerHTML = "Load Data from File";
         var loadSelector = document.createElement("input");
@@ -112,7 +153,6 @@ pl.v.load = {
 
 pl.v.export = {
     setupUserInterface: function () {
-        // var exportButton = document.forms["UMLClass"].export;
         var exportButton = document.createElement("button");
         exportButton.innerHTML = "Export Data to File";
         document.forms["UMLClass"].append(exportButton);
@@ -127,7 +167,6 @@ pl.v.export = {
 
 pl.v.refresh = {
     setupUserInterface: function () {
-        // var refreshButton = document.forms["UMLClass"].refresh;
         var refreshButton = document.createElement("button");
         refreshButton.innerHTML = "Refresh";
         document.forms["UMLClass"].append(refreshButton);

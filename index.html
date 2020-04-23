@@ -8,11 +8,11 @@
         UML Editor
     </title>
 
-    <link rel="stylesheet" type="text/css" href="umlCss2.css">
-    <link rel= "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="umlCss.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    
+
 
     <script src="c/initialize.js"></script>
     <script src="m/UMLClass.js"></script>
@@ -23,102 +23,13 @@
     <script src="c/parser.js"></script>
     <script src="m/Edge.js"></script>
     <script src="boxLogic.js"></script>
+    <script src="buttonsLogic.js"></script>
     <script src="m/save.js"></script>
-    
+
     <script>
         window.addEventListener("load", pl.c.setUpGUI);
         window.addEventListener("load", pl.v.commandLine.setupUserInterface);
 
-        $(document).ready(function () {
-            $("#addBtn").click(function () {
-                $("#addModal").modal();
-                $("#deleteButton").hide();
-                $("#editButton").hide();
-                $("#deleteAllButton").hide();
-                $("#exportButton").hide();
-                $("#loadButton").hide();
-
-            });
-        });
-
-
-        $(document).ready(function () {
-            $("#deleteBtn").click(function () {
-                $("#addModal").modal();
-                $("#addButton").hide();
-                $("#editButton").hide();
-                $("#deleteAllButton").hide();
-                $("#exportButton").hide();
-                $("#loadButton").hide();
-
-            });
-        });
-
-
-        $(document).ready(function () {
-            $("#editBtn").click(function () {
-                $("#addModal").modal();
-                $("#deleteButton").hide();
-                $("#addButton").hide();
-                $("#deleteAllButton").hide();
-                $("#exportButton").hide();
-                $("#loadButton").hide();
-
-            });
-        });
-
-
-        $(document).ready(function () {
-            $("#exportBtn").click(function () {
-                $("#addModal").modal();
-                $("#deleteButton").hide();
-                $("#editButton").hide();
-                $("#deleteAllButton").hide();
-                $("#addButton").hide();
-                $("#loadButton").hide();
-
-            });
-        });
-
-        $(document).ready(function () {
-            $("#loadBtn").click(function () {
-                $("#addModal").modal();
-                $("#deleteButton").hide();
-                $("#editButton").hide();
-                $("#deleteAllButton").hide();
-                $("#exportButton").hide();
-                $("#addButton").hide();
-
-            });
-        });
-
-        $(document).ready(function () {
-            $("#deleteAllBtn").click(function () {
-                $("#addModal").modal();
-                $("#deleteButton").hide();
-                $("#editButton").hide();
-                $("#addButton").hide();
-                $("#exportButton").hide();
-                $("#loadButton").hide();
-
-            });
-        });
-
-        //logic for view control
-        $(document).ready(function() {
-                $("#cliView").hide();
-                $("#guiView").hide();
-                $("#cliViewButton").click(function(){
-                    $("#cliView").show();
-                    $("#guiView").hide();
-
-                });
-                $("#guiViewButton").click(function(){
-                    $("#guiView").show();
-                    $("#cliView").hide();
-
-                });
-            });
 
     </script>
 </head>
@@ -126,75 +37,67 @@
 <body>
     <h1 class=navBar> Welcome to our UML Editor!</h1>
 
-    <div id = mode>
-        <button id ="cliViewButton" type="button" name="cliMode"  class="btn btn-warning btn-block">Click Here for Cli Mode </button>
-        <button id ="guiViewButton" type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui Mode</button>
+    <div id=mode>
+        <button id="cliViewButton" type="button" name="cliMode" class="btn btn-warning btn-block">Click Here for Cli
+            Mode </button>
+        <button id="guiViewButton" type="button" name="guiMode" class="btn btn-warning btn-block">Click Here for Gui
+            Mode</button>
     </div>
 
     <!-- buttons for navigation -->
     <div class="container">
-    
-      <h1>UML Class Options</h1>
-      <div id="guiView">
-      <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-success btn-lg" id="addBtn">Add Class</button>
-      <button type="button" class="btn btn-danger btn-lg" id="deleteBtn">Delete Class</button>
-      <button type="button" class="btn btn-success btn-lg" id="editBtn">Edit Class</button>
-      <button type="button" class="btn btn-warning btn-lg" id="exportBtn">Export Data to File</button>
-      <button type="button" class="btn btn-info btn-lg" id="loadBtn"> Load Data from a file</button>
-      <button type="button" class="btn btn-warning btn-lg" id="deleteAllBtn"> Delete all classes</button>
-      </div>
-    
 
-    <div id="cliView">
-    <form id="CLIForm">
-        <div><label>
-                >
-                <input id="cli"> type 'help' to see commands
-            </label></div>
-    </form>
-    <div id = "cliOutput"></div>
-    </div>
-    <div id="dropzone" ondragover='onDragOver(event);' ondrop='onDrop(event);'>
-    <table id="classes">
-        <h3>Classes</h3>
-        <thead>
-            <tr>
-                <tbody></tbody>
-            </tr>
-        </thead>
-    </table>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="addModal" role="dialog">
-    <div class="modal-dialog">    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"> Fill in the class name</h4>
+        <h1>UML Class Options</h1>
+        <div id="guiView">
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-success btn-lg" id="addBtn">Add Class</button>
+            <button type="button" class="btn btn-danger btn-lg" id="deleteBtn">Delete Class</button>
+            <button type="button" class="btn btn-success btn-lg" id="editBtn">Edit Class</button>
+            <button type="button" class="btn btn-warning btn-lg" id="exportBtn">Export Data to File</button>
+            <button type="button" class="btn btn-info btn-lg" id="loadBtn"> Load Data from a file</button>
+            <button type="button" class="btn btn-warning btn-lg" id="deleteAllBtn"> Delete all classes</button>
         </div>
-        <!--body -->
-        <div class="modal-body">
-        <form id="UMLClass">
-            <div>
-            <label>
-                    Class name:
-                    <input name="name" />
-            </label>
-            <br>
-            <label>
-                Variables (separated by commas):
-                <input name="vars">
-            </label>
-            <br>
-            <label>
-                Methods (separated by commas):
-                <input name="methods">
-            </label>
-            <br>
-            </div>
+
+
+        <div id="cliView">
+            <form id="CLIForm">
+                <div><label>
+                        >
+                        <input id="cli"> type 'help' to see commands
+                    </label></div>
+            </form>
+            <div id="cliOutput"></div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="classModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> Fill in the class name</h4>
+                    </div>
+                    <!--body -->
+                    <div class="modal-body">
+                        <form id="UMLClass">
+                            <div>
+                                <label>
+                                    Class name:
+                                    <input name="name" />
+                                </label>
+                                <br>
+                                <label>
+                                    Variables (separated by commas):
+                                    <input name="vars">
+                                </label>
+                                <br>
+                                <label>
+                                    Methods (separated by commas):
+                                    <input name="methods">
+                                </label>
+                                <br>
+                            </div>
                     </div>
                     </form>
                     <!-- footer -->
@@ -204,26 +107,12 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="classBox" draggable="true" ondragstart='onDragStart(event);'>
-        <!-- <span id='draggableSpan' draggable='true'ondragstart='onDragStart(event);'> -->
-            <div id="classBoxName">Should be class name </div>
-            <p>Methods, instances.class.methods</p>
-            <hr></hr>
-            <p>Variables, instances.class.variables</p>
-            <hr></hr>
-            <p>Related To, instances.class.edges</p>
-       <!-- </span> -->
-        
-        
+        <div id='initialDropSpace'></div>
+        <div id="dropArea" class="classBox2" ondrop="drop_handler(event)" ondragover="allowDrop(event)">
+            <div class="classBoxName2"> </div>
+        </div>
 
-        <!-- <span ondragover='onDragOver(event);' ondrop='onDrop(event);'>
-        
-        </span> -->
-    </div>
-
-</div>    
 </body>
 
 </html>

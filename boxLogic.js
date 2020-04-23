@@ -1,28 +1,17 @@
-function onDragStart(event) {
-  event
-    .dataTransfer
-    .setData('text/plain', event.target.id);
-
-  event
-    .currentTarget
-    .style
-  }
-
-function onDragOver(event) {
+allowDrop = function (event) {
     event.preventDefault();
-  }
+    console.log("allowDrop fired");
+};
 
-function onDrop(event) {
-  const id = event
-    .dataTransfer
-    .getData('text');
-  
-  const draggableElement = document.getElementById(id);
-  const dropzone = event.target;
-    
-  dropzone.appendChild(document.getElementById(id));
-  
-  event
-    .dataTransfer
-    .clearData();
-}
+dragstart_handler = function (event) {
+    event.dataTransfer.setData("text", event.target.id);
+    console.log("drag fired");
+};
+
+drop_handler = function (event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    event.target.appendChild(document.getElementById(data));
+    console.log("dropped fired");
+};
+
