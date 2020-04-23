@@ -58,24 +58,24 @@ describe("Tests two cases for UMLclass.destroy", function () {
 });
 
 
-//TEST FOR RELATIONSHIPS(EDGES):
-describe("Tests Relationship(Edge) creations", function() {
+// //TEST FOR RELATIONSHIPS(EDGES):
+// describe("Tests Relationship(Edge) creations", function() {
 
-   /* beforeEach(function() {
-        UMLClass.add("car");
-        UMLClass.add("carB");
-    });
-    */
+//    /* beforeEach(function() {
+//         UMLClass.add("car");
+//         UMLClass.add("carB");
+//     });
+//     */
 
-    it("should define a relationship between two exisiting classes", function() {
-        expect(Edge.add('a b')).toBe(Edge.add('a b'));
-    });
+//     it("should define a relationship between two exisiting classes", function() {
+//         expect(Edge.add('a b')).toBe(Edge.add('a b'));
+//     });
 
-    it("should delete an exisiting relationship between two exisiting classes", function() {
-        expect(Edge.destroy("car, carB")).toEqual(null);
-    });
+//     it("should delete an exisiting relationship between two exisiting classes", function() {
+//         expect(Edge.destroy("car, carB")).toEqual(null);
+//     });
 
-});
+// });
 
 
    
