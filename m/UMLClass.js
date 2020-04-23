@@ -1,11 +1,6 @@
 //defines a UMLClass as containing var 'name' & arrays 'vars' and 'methods'
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
-/* export function statements for jasmine testing */
-//module.exports = UMLClass.add;
-//module.exports = UMLClass.destroy;
-//module.exports = UMLClass.clearData;
-
 //defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
 function UMLClass(name, vars = [], methods = []) {
     this.name = name;
@@ -26,7 +21,7 @@ UMLClass.add = function (name, vars = "", methods = "") {
     }
 
     if (name in UMLClass.instances) {
-        alert("Class with name " + name + " already exists.");
+        console.log("Class with name " + name + " already exists.");
         return null;
     }
 
@@ -192,6 +187,7 @@ UMLClass.reset = function () {
     UMLClass.instances = {};
 };
 
+
 UMLClass.returnHumanReadableString = function () {
     outputString = "";
     for (i in UMLClass.instances) {
@@ -201,3 +197,7 @@ UMLClass.returnHumanReadableString = function () {
     }
     return outputString;
 };
+
+
+/* export statement for jasmine testing */
+module && (module.exports = {UMLClass: UMLClass});
