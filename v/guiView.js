@@ -89,11 +89,15 @@ pl.v.clearAll = {
     }
 };
 
+
 pl.v.retrieveAndListAllClasses = {
 
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
+        var x_pos, y_pos;
         var classbox = document.createElement('div');
+        classbox.style.left = x_pos+'px';
+        classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
         classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
         classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");

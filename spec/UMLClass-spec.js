@@ -15,61 +15,64 @@ the it() block is an explanation of what the function you're testing should do.
 VERY commonly, it reads like a sentence beginning with the word "should"
 */
 
-var /*UMLClass.*/add =require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//UMLClass");
-var /*UMLClass.*/destroy=require("//Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//UMLClass");
-var /*UMLClass.*/clearData=require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//UMLClass");
-var /*Edge.*/add = require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//Edge");
-var /*Edge.*/destroy=require("/Users/quadirahj/Documents/GitHub/2020sp-420-WebWizards/m//Edge");
+require('app-module-path').addPath(__dirname + "/../");
+var UMLClass = require("m/UMLClass").UMLClass;
+var Edge = require("m/Edge").Edge;
+/*
+var add =require("m/UMLClass");
+var destroy=require("m/UMLClass");
+var clearData=require("m/UMLClass");
+var add = require("m/Edge");
+var destroy=require("m/Edge");
+*/
 
 // TESTS FOR ADD CASES:
 describe("Tests two cases for UMLclass.add", function () {
     //beforeEach(function() {
-    	//spyOn(console, 'log');
+        //spyOn(console, 'log');
     //});
 
     it ("should add class given empty instance", function() {
-    	expect(UMLClass.add("car")).toEqual("car");
-    	//expect(console.log).toHaveBeenCalled();
+        expect(UMLClass.add("car")).toEqual("car");
+        //expect(console.log).toHaveBeenCalled();
     });
 
     it ("in the case of duplicates, will not add class again", function() {
-		expect(UMLClass.add("car")).toEqual(null);
+            expect(UMLClass.add("car")).toEqual(null);
     });
 
 });
 
 //TESTS FOR DELETE CASES:
 describe("Tests two cases for UMLclass.destroy", function () {
-   
+
 
     it ("if class given exist, will delete it", function() {
-    	expect(UMLClass.destroy("car")).toEqual(null);
+        expect(UMLClass.destroy("car")).toEqual(null);
     });
 
     it ("if class given doesn't exist", function() {
-		expect(UMLClass.destroy("car")).toEqual(null);
+            expect(UMLClass.destroy("car")).toEqual(null);
     });
 
-    it ("if clear all, then all data should be cleared", function() {
-        expect(UMLClass.clearData()).toEqual(false);
-
-    });
 });
 
 
 //TEST FOR RELATIONSHIPS(EDGES):
 describe("Tests Relationship(Edge) creations", function() {
 
-    //beforeEach(function() {
-        //Edge = Edge(classOne, classTwo;
-    //});
+   /* beforeEach(function() {
+        UMLClass.add("car");
+        UMLClass.add("carB");
+    });
+    */
 
     it("should define a relationship between two exisiting classes", function() {
-        expect(Edge.add("car carB")).toEqual(Edge("car, carB"));
+        expect(Edge.add('a b')).toBe(Edge.add('a b'));
     });
 
     it("should delete an exisiting relationship between two exisiting classes", function() {
-        expect(Edge.destroy("car carB")).toEqual(null);
+        expect(Edge.destroy("car, carB")).toEqual(null);
     });
 
 });
