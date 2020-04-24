@@ -55,7 +55,7 @@ p{
   display: inline-block;
   position: absolute;
   width: 100%;
-  background-color: white;
+  background-color: rgb(172, 172, 172);
   text-align: center;
   top: 400px;
   right: 50px;

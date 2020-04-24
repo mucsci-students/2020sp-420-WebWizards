@@ -2,10 +2,12 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 //defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
-function UMLClass(name, vars = [], methods = []) {
+function UMLClass(name, vars = [], methods = [], x = 0, y = 0) {
     this.name = name;
     this.vars = vars;
     this.methods = methods;
+    this.xPos = x;
+    this.yPos = y;
 
 };
 
@@ -156,7 +158,7 @@ UMLClass.changeMethodType = function (className, methodName, newType) {
 };
 
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow.name, classRow.vars, classRow.methods);
+    return new UMLClass(classRow.name, classRow.vars, classRow.methods, classRow.xPos, classRow.yPos);
 };
 
 UMLClass.retrieveAll = function (classString) {
@@ -198,6 +200,7 @@ UMLClass.returnHumanReadableString = function () {
     }
     return outputString;
 };
+
 
 
 /* export statement for jasmine testing */
