@@ -9,6 +9,7 @@ function UMLClass(name, vars = [], methods = []) {
 
 };
 
+
 //all active UMLClasses are stored in this map, referenced by their name
 UMLClass.instances = {};
 
