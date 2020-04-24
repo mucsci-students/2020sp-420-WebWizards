@@ -118,11 +118,9 @@ pl.v.retrieveAndListAllClasses = {
 
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
-        Edge.retrieveAll(save.retrieveEdgeString());
         keys = Object.keys(UMLClass.instances);
 
-        //temporary
-        initialDropSpace.innerHTML = "";
+        //temporary?
         dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
 
         for (i = 0; i < keys.length; i++) {
@@ -131,6 +129,26 @@ pl.v.retrieveAndListAllClasses = {
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
             classbox.id = "classbox" + i;
             initialDropSpace.appendChild(classbox);
+        }
+
+    },
+
+    updateEdges: function () {
+        //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
+        Edge.retrieveAll(save.retrieveEdgeString());
+        var c = document.createElement("canvas");
+        document.getElementById("dropArea").appendChild(c);
+        c.className = "classBoxName2";
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        for (i of Edge.instances) {
+            startClass = UMLClass.instances[i.start];
+            endClass = UMLClass.instances[i.end];
+
+            ctx.moveTo(startClass.xPos, startClass.yPos);
+            ctx.lineTo(endClass.xPos, endClass.yPos);
+            ctx.stroke();
+            console.log("line drawn");
         }
     }
 };

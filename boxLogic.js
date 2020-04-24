@@ -41,5 +41,7 @@ drop_handler = function (event) {
 
     save.saveLocal(UMLClass.instances, Edge.instances);
 
+    pl.v.retrieveAndListAllClasses.updateEdges();
+
     console.log("dropped fired");
 };
