@@ -122,11 +122,8 @@ pl.v.classBox = {
     },
 
     updateClassBox: function (classname) {
-        var classbox = $("div").find(`[data-name='${classname}']`);
-        var umlclass = UMLClass.instances[classname];
-
-        classbox.remove();
-        this.addClassBox(umlclass);
+        this.deleteClassBox(classname);
+        this.addClassBox(UMLClass.instances[classname]);
     }
 };
 
