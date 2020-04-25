@@ -128,9 +128,6 @@ pl.v.retrieveAndListAllClasses = {
 
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
             classbox.id = "classbox" + i;
-<<<<<<< Updated upstream
-            initialDropSpace.appendChild(classbox);
-=======
             dropSpace.appendChild(classbox);
         }
 
@@ -154,7 +151,6 @@ pl.v.retrieveAndListAllClasses = {
             ctx.lineTo(endClass.xPos, endClass.yPos);
             ctx.stroke(1);
             console.log("line drawn");
->>>>>>> Stashed changes
         }
     }
 };
