@@ -64,7 +64,8 @@ pl.v.deleteClass = {
         var formEl = document.forms["UMLClass"];
         var name = formEl.name.value;
         UMLClass.destroy(name);
-        pl.v.retrieveAndListAllClasses.updateView();
+        // pl.v.retrieveAndListAllClasses.updateView();
+        pl.v.classBox.deleteClassBox(name);
 
     }
 };
@@ -84,14 +85,12 @@ pl.v.clearAll = {
             save.clearData();
             UMLClass.reset();
             Edge.reset();
-            pl.v.retrieveAndListAllClasses.updateView();
+            //pl.v.retrieveAndListAllClasses.updateView();
         }
     }
 };
 
-
-pl.v.retrieveAndListAllClasses = {
-
+pl.v.classBox = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
@@ -112,6 +111,15 @@ pl.v.retrieveAndListAllClasses = {
         return classbox;
     },
 
+    deleteClassBox: function (classname) {
+        //      var classbox = document.querySelectorAll('[data-name="' + classname + '"]')
+        var classbox = $("div").find(`[data-name='${classname}']`);
+        classbox.remove();
+    }
+};
+
+pl.v.retrieveAndListAllClasses = {
+
     updateView: function () {
         var dropSpace = document.getElementById("dropArea");
 
@@ -119,13 +127,10 @@ pl.v.retrieveAndListAllClasses = {
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         keys = Object.keys(UMLClass.instances);
 
-        //temporary?
-        //dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
-
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
 
-            classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
+            classbox = pl.v.classBox.createClassBox(UMLClass.instances[key]);
             classbox.id = "classbox" + i;
             dropSpace.appendChild(classbox);
         }
@@ -133,25 +138,25 @@ pl.v.retrieveAndListAllClasses = {
     },
 
     updateEdges: function () {
+        /*        
         
-
-        //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
-        Edge.retrieveAll(save.retrieveEdgeString());
-        var c = document.createElement("canvas");
-        document.getElementById("dropArea").appendChild(c);
+                //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
+                Edge.retrieveAll(save.retrieveEdgeString());
+                var c = document.createElement("canvas");
+                document.getElementById("dropArea").appendChild(c);
+                
+                var ctx = c.getContext("2d");
+                ctx.beginPath();
+                for (i of Edge.instances) {
+                    startClass = UMLClass.instances[i.start];
+                    endClass = UMLClass.instances[i.end];
         
-        var ctx = c.getContext("2d");
-        ctx.beginPath();
-        for (i of Edge.instances) {
-            startClass = UMLClass.instances[i.start];
-            endClass = UMLClass.instances[i.end];
-
-            ctx.moveTo(startClass.xPos, startClass.yPos);
-            ctx.lineTo(endClass.xPos, endClass.yPos);
-            ctx.stroke();
-            console.log("line drawn");
-        }
-        
+                    ctx.moveTo(startClass.xPos, startClass.yPos);
+                    ctx.lineTo(endClass.xPos, endClass.yPos);
+                    ctx.stroke();
+                    console.log("line drawn");
+                }
+          */
     }
 };
 
@@ -190,7 +195,7 @@ pl.v.export = {
         save.exportFile();
     }
 };
-
+/*
 pl.v.refresh = {
     setupUserInterface: function () {
         var refreshButton = document.createElement("button");
@@ -204,3 +209,4 @@ pl.v.refresh = {
         pl.v.retrieveAndListAllClasses.updateView();
     }
 }
+*/
