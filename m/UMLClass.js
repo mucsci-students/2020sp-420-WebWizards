@@ -6,6 +6,11 @@ function UMLClass(name, vars = [], methods = []) {
     this.name = name;
     this.vars = vars;
     this.methods = methods;
+<<<<<<< Updated upstream
+=======
+    this.xPos = x;
+    this.yPos = yy;
+>>>>>>> Stashed changes
 
 };
 
