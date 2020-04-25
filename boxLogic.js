@@ -3,6 +3,7 @@
 var initialX, initialY,
     curX, curY,
     xOffset = 0, yOffset = 0,
+    activeObject = null,
     active = false;
 
 
@@ -19,7 +20,8 @@ allowDrop = function (event) {
 };
 
 dragstart_handler = function (event) {
-    event.dataTransfer.setData("text", event.target.id);
+    //event.dataTransfer.setData("text", event.target.id);
+    activeObject = event.target;
 
     //code assumes mouse usage
     initialX = event.clientX - xOffset;
@@ -31,17 +33,20 @@ dragstart_handler = function (event) {
 
 drop_handler = function (event) {
     event.preventDefault();
-    var data = event.dataTransfer.getData("text");
-    event.target.appendChild(document.getElementById(data));
-    document.getElementById(data).style.transform = "translate3d(" + curX + "px, " + curY + "px, 0)";
+//    var data = event.dataTransfer.getData("text");
+   // event.target.appendChild(document.getElementById(data));
+    activeObject.style.transform = "translate(" + curX + "px, " + curY + "px)";
     
-    var umlclassName = (document.getElementById(data).getAttribute("data-name"));
+    var umlclassName = (activeObject.getAttribute("data-name"));
     UMLClass.instances[umlclassName].xPos = curX;
     UMLClass.instances[umlclassName].yPos = curY;
 
     save.saveLocal(UMLClass.instances, Edge.instances);
 
-    pl.v.retrieveAndListAllClasses.updateEdges();
+//    pl.v.retrieveAndListAllClasses.updateEdges();
+
+    activeObject = null;
+    active = false;
 
     console.log("dropped fired");
 };

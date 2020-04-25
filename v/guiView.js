@@ -94,26 +94,25 @@ pl.v.retrieveAndListAllClasses = {
 
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
-        //  var x_pos, y_pos;
         var classbox = document.createElement('div');
         //classbox.style.left = x_pos+'px';
         //classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
         classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
         classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
+
         classbox.setAttribute("draggable", "true");
         classbox.setAttribute("ondragstart", "dragstart_handler(event)");
         classbox.setAttribute("data-name", umlclass.name);
-        classbox.style.transform = "translate3d(" + umlclass.xPos + "px, " + umlclass.yPos + "px, 0)";
-        console.log(umlclass.xPos + ", " + umlclass.yPos);
+        classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
+
+        console.log(umlclass.xPos + ", " + umlclass.yPos);
 
         return classbox;
     },
 
     updateView: function () {
-        //var initialDropSpace = document.getElementsByTagName('body')[0];
-        var initialDropSpace = document.getElementById("dropArea");
         var dropSpace = document.getElementById("dropArea");
 
         var keys = [], key = "", row = {}, i = 0;
@@ -121,24 +120,26 @@ pl.v.retrieveAndListAllClasses = {
         keys = Object.keys(UMLClass.instances);
 
         //temporary?
-        dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
+        //dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
 
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
 
             classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
             classbox.id = "classbox" + i;
-            initialDropSpace.appendChild(classbox);
+            dropSpace.appendChild(classbox);
         }
 
     },
 
     updateEdges: function () {
+        
+
         //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
         Edge.retrieveAll(save.retrieveEdgeString());
         var c = document.createElement("canvas");
         document.getElementById("dropArea").appendChild(c);
-        c.className = "classBoxName2";
+        
         var ctx = c.getContext("2d");
         ctx.beginPath();
         for (i of Edge.instances) {
@@ -150,6 +151,7 @@ pl.v.retrieveAndListAllClasses = {
             ctx.stroke();
             console.log("line drawn");
         }
+        
     }
 };
 
