@@ -138,8 +138,8 @@ pl.v.retrieveAndListAllClasses = {
 
         //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
         Edge.retrieveAll(save.retrieveEdgeString());
-        var c = document.createElement("canvas");
         document.getElementById("dropArea").appendChild(c);
+        var c = document.getElementById("canvas");
         
         var ctx = c.getContext("2d");
         ctx.beginPath();
@@ -149,7 +149,7 @@ pl.v.retrieveAndListAllClasses = {
 
             ctx.moveTo(startClass.xPos, startClass.yPos);
             ctx.lineTo(endClass.xPos, endClass.yPos);
-            ctx.stroke(1);
+            ctx.stroke();
             console.log("line drawn");
         }
     }

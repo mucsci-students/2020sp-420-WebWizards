@@ -2,12 +2,12 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 //defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
-function UMLClass(name, vars = [], methods = []) {
+function UMLClass(name, vars = [], methods = [], x = 0, y = 0) {
     this.name = name;
     this.vars = vars;
     this.methods = methods;
     this.xPos = x;
-    this.yPos = yy;
+    this.yPos = y;
 
 };
 

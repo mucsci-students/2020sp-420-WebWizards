@@ -33,7 +33,7 @@ p{
 .classBox {
   position: relative;
   display: inline-block;
-  margin: 5px;
+  margin: 20px;
   padding: 25px;
   background-color: white;
   text-align: center;
@@ -51,14 +51,14 @@ p{
 }
 
 .dropArea {
-  position: relative;
+  
   display: inline-block;
   position: absolute;
-  width: 100%;
-  background-color: white;
+  width:1180px; 
+  height:700px; 
+  background-color: rgb(172, 172, 172);
   text-align: center;
-  top: 400px;
-  right: 50px;
+
 
 }
 
@@ -91,4 +91,17 @@ table{
   overflow-y: scroll;
   height: 350px;
   width: 60%;
+}
+
+#canvas-wrap { 
+  position:relative; 
+  width:800px; 
+  height:600px; 
+}
+
+#canvas-wrap canvas { 
+  position:absolute; 
+  top:0; 
+  left:0; 
+  z-index: 0;
 }
