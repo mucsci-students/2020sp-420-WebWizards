@@ -119,6 +119,10 @@ pl.c.defaultParser = function (args) {
             outputString = UMLClass.validateName(args[1]) + outputString;
             break;
 
+        case "reset-pos":
+            pl.v.classBox.resetPosition(args[1]);
+            break;
+
         case "help":
 
             outputString = ("commands:<br>\
@@ -140,6 +144,7 @@ pl.c.defaultParser = function (args) {
             >delete-edge start-class end-class<br>\
             >list-edges<br>\
             >clear-edges<br>\
+            >reset-pos class-name<br>\
             ") + outputString;
 
             break;

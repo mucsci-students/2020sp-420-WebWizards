@@ -117,19 +117,35 @@ pl.v.classBox = {
     },
 
     deleteClassBox: function (classname) {
-        var classbox = $("div").find(`[data-name='${classname}']`);
-        classbox.remove();
+        this.getClassBox(classname).remove();
     },
 
     updateClassBox: function (classname) {
         this.deleteClassBox(classname);
         this.addClassBox(UMLClass.instances[classname]);
+    },
+
+    resetPosition: function (classname) {
+        UMLClass.instances[classname].xPos = 0;
+        UMLClass.instances[classname].yPos = 0;
+        this.updateClassBox(classname);
+    },
+
+    getClassBox: function (classname) {
+        return $("div").find(`[data-name='${classname}']`);
     }
 };
 
 pl.v.retrieveAndListAllClasses = {
 
     updateView: function () {
+
+        var existingClassBoxes = document.getElementsByClassName("classBox");
+        for (var i = 0; i < existingClassBoxes.length; ++i) {
+            existingClassBoxes[i].remove();
+            console.log('removed');
+        }
+
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         keys = Object.keys(UMLClass.instances);
