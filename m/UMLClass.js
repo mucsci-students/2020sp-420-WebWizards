@@ -16,6 +16,7 @@ function UMLClass(name, vars = [], methods = [], x = 0, y = 0) {
 UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
+//returns UMLClass
 UMLClass.add = function (name, vars = "", methods = "") {
 
     if (!UMLClass.validateName(name)) {
@@ -43,10 +44,14 @@ UMLClass.add = function (name, vars = "", methods = "") {
         }
     }
 
-    UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
+    newUmlClass = new UMLClass(name, newVars, newMethods);
+
+    //UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
+    UMLClass.instances[name] = newUmlClass;
 
     console.log("Class " + name + " created.");
-    return name;
+    // return name;
+    return newUmlClass;
 };
 
 UMLClass.validateName = function (proposedName) {

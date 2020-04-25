@@ -18,8 +18,11 @@ pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-                if (UMLClass.add(args[i]))
+                var classReturn = UMLClass.add(args[i]);
+                if (classReturn) {
                     outputString = ("<br>Class " + args[i] + " created successfully!") + outputString;
+                    pl.v.classBox.addClassBox(classReturn);
+                }
                 else
                     outputString = ("<br>Creation of class " + args[i] + " failed!") + outputString;
 
@@ -58,26 +61,32 @@ pl.c.defaultParser = function (args) {
 
         case "add-var":
             UMLClass.addVar(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "add-method":
             UMLClass.addMethod(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "delete-var":
             UMLClass.deleteVar(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "delete-method":
             UMLClass.deleteMethod(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "modify-var-type":
             UMLClass.changeVarType(args[1], args[2], args[3]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "modify-method-type":
             UMLClass.changeMethodType(args[1], args[2], args[3]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "add-edge":

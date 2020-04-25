@@ -14,9 +14,10 @@ pl.v.createClass = {
     },
     handleAddButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
-        UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
+        var newUMlClass = UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
-        pl.v.retrieveAndListAllClasses.updateView();
+        //pl.v.retrieveAndListAllClasses.updateView();
+        pl.v.classBox.addClassBox(newUMlClass);
     }
 };
 
@@ -106,35 +107,40 @@ pl.v.classBox = {
         classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
 
-        console.log(umlclass.xPos + ", " + umlclass.yPos);
-
         return classbox;
     },
 
+    addClassBox: function (umlclass) {
+        var classbox = pl.v.classBox.createClassBox(umlclass);
+        var dropSpace = document.getElementById("dropArea");
+        dropSpace.appendChild(classbox);
+    },
+
     deleteClassBox: function (classname) {
-        //      var classbox = document.querySelectorAll('[data-name="' + classname + '"]')
         var classbox = $("div").find(`[data-name='${classname}']`);
         classbox.remove();
+    },
+
+    updateClassBox: function (classname) {
+        var classbox = $("div").find(`[data-name='${classname}']`);
+        var umlclass = UMLClass.instances[classname];
+
+        classbox.remove();
+        this.addClassBox(umlclass);
     }
 };
 
 pl.v.retrieveAndListAllClasses = {
 
     updateView: function () {
-        var dropSpace = document.getElementById("dropArea");
-
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         keys = Object.keys(UMLClass.instances);
 
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
-
-            classbox = pl.v.classBox.createClassBox(UMLClass.instances[key]);
-            classbox.id = "classbox" + i;
-            dropSpace.appendChild(classbox);
+            pl.v.classBox.addClassBox(UMLClass.instances[key]);
         }
-
     },
 
     updateEdges: function () {
