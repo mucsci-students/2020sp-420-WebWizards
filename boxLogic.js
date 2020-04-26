@@ -1,52 +1,46 @@
 //https://www.kirupa.com/html5/drag.htm
 
-var initialX, initialY,
-    curX, curY,
-    xOffset = 0, yOffset = 0,
+var
+    //initialX, initialY,
+    //    curX, curY,
+    //    xOffset = 0, yOffset = 0,
     activeObject = null,
     active = false;
 
 
-allowDrop = function (event) {
-    event.preventDefault();
+drag_handler = function (event) {
+    if (active) {
+        activeObject.currentX = event.clientX - activeObject.initialX;
+        activeObject.currentY = event.clientY - activeObject.initialY;
+        activeObject.xOffset = activeObject.currentX;
+        activeObject.yOffset = activeObject.currentY;
+        console.log(activeObject.currentX + ", " + activeObject.currentY);
 
-    curX = event.clientX - initialX;
-    curY = event.clientY - initialY;
-    xOffset = curX;
-    yOffset = curY;
-    console.log(curX + ", " + curY);
+        activeObject.style.transform = "translate(" + activeObject.currentX + "px, " + activeObject.currentY + "px)";
+    }
 
-    console.log("allowDrop fired");
 };
 
 dragstart_handler = function (event) {
-    //event.dataTransfer.setData("text", event.target.id);
-    activeObject = event.target;
-
-    //code assumes mouse usage
-    initialX = event.clientX - xOffset;
-    initialY = event.clientY - yOffset;
     active = true;
-
-    console.log("drag fired");
+    activeObject = event.target;
+    if (activeObject !== null) {
+        if (!activeObject.xOffset) {
+            activeObject.xOffset = 0;
+        }
+        if (!activeObject.yOffset) {
+            activeObject.yOffset = 0;
+        }
+        activeObject.initialX = event.clientX - activeObject.xOffset;
+        activeObject.initialY = event.clientY - activeObject.yOffset;
+    }
 };
 
 drop_handler = function (event) {
-    event.preventDefault();
-//    var data = event.dataTransfer.getData("text");
-   // event.target.appendChild(document.getElementById(data));
-    activeObject.style.transform = "translate(" + curX + "px, " + curY + "px)";
-    
-    var umlclassName = (activeObject.getAttribute("data-name"));
-    UMLClass.instances[umlclassName].xPos = curX;
-    UMLClass.instances[umlclassName].yPos = curY;
-
-    save.saveLocal(UMLClass.instances, Edge.instances);
-
-//    pl.v.retrieveAndListAllClasses.updateEdges();
-
-    activeObject = null;
+    if (activeObject !== null) {
+        activeObject.initialX = activeObject.currentX;
+        activeObject.initialY = activeObject.currentY;
+    }
     active = false;
-
-    console.log("dropped fired");
+    activeObject = null;
 };

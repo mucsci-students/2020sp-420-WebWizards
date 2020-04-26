@@ -68,7 +68,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="addModal" role="dialog">
+        <div class="modal fade" id="classModal" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -106,7 +106,7 @@
             </div>
         </div>
 
-        <div id="dropArea" ondrop="drop_handler(event)" ondragover="allowDrop(event)"></div>
+        <div id="dropArea" onmousedown="dragstart_handler(event)" onmouseup="drop_handler(event)" onmousemove="drag_handler(event)"></div>
 
 </body>
 

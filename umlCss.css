@@ -54,9 +54,12 @@ p{
 #dropArea {
   display: inline-block;
   position: absolute;
-  width: 100%;
+  display: flex;
+  width: 50%;
   background-color: rgb(172, 172, 172);
   text-align: center;
+  overflow: hidden;
+  align-items: center;
  /* top: 400px;
   right: 50px;
 */
