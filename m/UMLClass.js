@@ -16,6 +16,7 @@ function UMLClass(name, vars = [], methods = [], x = 0, y = 0) {
 UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
+//returns UMLClass
 UMLClass.add = function (name, vars = "", methods = "") {
 
     if (!UMLClass.validateName(name)) {
@@ -43,10 +44,14 @@ UMLClass.add = function (name, vars = "", methods = "") {
         }
     }
 
-    UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
+    newUmlClass = new UMLClass(name, newVars, newMethods);
+
+    //UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
+    UMLClass.instances[name] = newUmlClass;
 
     console.log("Class " + name + " created.");
-    return name;
+    // return name;
+    return newUmlClass;
 };
 
 UMLClass.validateName = function (proposedName) {
@@ -158,7 +163,7 @@ UMLClass.changeMethodType = function (className, methodName, newType) {
 };
 
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow.name, classRow.vars, classRow.methods);
+    return new UMLClass(classRow.name, classRow.vars, classRow.methods, classRow.xPos, classRow.yPos);
 };
 
 UMLClass.retrieveAll = function (classString) {
@@ -200,6 +205,7 @@ UMLClass.returnHumanReadableString = function () {
     }
     return outputString;
 };
+
 
 
 /* export statement for jasmine testing */

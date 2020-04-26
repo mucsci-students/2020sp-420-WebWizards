@@ -50,17 +50,19 @@ p{
   border: 1px solid black;
 }
 
-.dropArea {
-  
+
+#dropArea {
   display: inline-block;
   position: absolute;
-  width:1180px; 
-  height:700px; 
+  display: flex;
+  width: 100%;
   background-color: rgb(172, 172, 172);
   text-align: center;
-
-
+  overflow: hidden;
+  align-items: center;
+  height: 75%;
 }
+
 
 .classBoxName2 {
   padding: 10px;
@@ -70,7 +72,7 @@ p{
 }
 
 
-
+/*
 tr{
   border: 2px solid;
   padding-bottom: 10px;
@@ -81,7 +83,7 @@ table{
   cursor: move;
   padding-left: 10px;
 }
-
+*/
 
 #cliOutput {
   border: 5px solid;
@@ -93,15 +95,8 @@ table{
   width: 60%;
 }
 
-#canvas-wrap { 
-  position:relative; 
-  width:800px; 
-  height:600px; 
-}
-
-#canvas-wrap canvas { 
-  position:absolute; 
-  top:0; 
-  left:0; 
-  z-index: 0;
+svg {
+  width: 100%;
+  height: 75%;
+  z-index: -1;
 }
