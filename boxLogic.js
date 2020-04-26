@@ -1,11 +1,6 @@
 //https://www.kirupa.com/html5/drag.htm
 
-var
-    //initialX, initialY,
-    //    curX, curY,
-    //    xOffset = 0, yOffset = 0,
-    activeObject = null,
-    active = false;
+var activeObject = null, active = false;
 
 
 drag_handler = function (event) {
@@ -24,12 +19,14 @@ drag_handler = function (event) {
 dragstart_handler = function (event) {
     active = true;
     activeObject = event.target;
+    classname = activeObject.getAttribute("data-name");
+
     if (activeObject !== null) {
         if (!activeObject.xOffset) {
-            activeObject.xOffset = 0;
+            activeObject.xOffset = UMLClass.instances[classname].xPos;
         }
         if (!activeObject.yOffset) {
-            activeObject.yOffset = 0;
+            activeObject.yOffset = UMLClass.instances[classname].yPos;
         }
         activeObject.initialX = event.clientX - activeObject.xOffset;
         activeObject.initialY = event.clientY - activeObject.yOffset;
