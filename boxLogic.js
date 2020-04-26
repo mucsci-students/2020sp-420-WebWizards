@@ -12,6 +12,8 @@ drag_handler = function (event) {
         console.log(activeObject.currentX + ", " + activeObject.currentY);
 
         activeObject.style.transform = "translate(" + activeObject.currentX + "px, " + activeObject.currentY + "px)";
+
+        pl.v.retrieveAndListAllClasses.updateEdges();
     }
 
 };

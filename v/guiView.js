@@ -166,17 +166,19 @@ pl.v.retrieveAndListAllClasses = {
         //https://www.w3schools.com/graphics/svg_line.asp
         Edge.retrieveAll(save.retrieveEdgeString());
         var c = document.getElementById("edgeDraw");
+        c.innerHTML = "";
 
         for (i of Edge.instances) {
-            startClass = UMLClass.instances[i.start];
-            endClass = UMLClass.instances[i.end];
+            startClass = pl.v.classBox.getClassBox(i.start);
+            endClass = pl.v.classBox.getClassBox(i.end);
 
-            var line = document.createElement("line");
-            line.setAttribute('x1', startClass.xPos);
-            line.setAttribute('y1', startClass.yPos);
-            line.setAttribute('x2', endClass.xPos);
-            line.setAttribute('y2', endClass.yPos);
-            line.setAttribute("style", "stroke:rgb(0,0,0);stroke-width:3")
+            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute('x1', startClass.position().left);
+            line.setAttribute('y1', startClass.position().top);
+            line.setAttribute('x2', endClass.position().left);
+            line.setAttribute('y2', endClass.position().top);
+            line.setAttribute("stroke", "black");
+            line.setAttribute("stroke-width", "5");
 
             c.appendChild(line);
 

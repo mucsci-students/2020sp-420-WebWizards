@@ -91,6 +91,7 @@ pl.c.defaultParser = function (args) {
 
         case "add-edge":
             Edge.add(args[1], args[2], UMLClass.instances);
+            pl.v.retrieveAndListAllClasses.updateEdges();
             break;
 
         case "modify-type":
@@ -101,6 +102,8 @@ pl.c.defaultParser = function (args) {
 
         case "delete-edge":
             Edge.destroy(args[1], args[2]);
+            save.saveLocal(UMLClass.instances, Edge.instances);
+            pl.v.retrieveAndListAllClasses.updateEdges();
             break;
 
         case "list-edges":
@@ -109,6 +112,7 @@ pl.c.defaultParser = function (args) {
 
         case "clear-edges":
             Edge.reset();
+            pl.v.retrieveAndListAllClasses.updateEdges();
             break;
 
         case "list-classes":
