@@ -156,28 +156,33 @@ pl.v.retrieveAndListAllClasses = {
             key = keys[i];
             pl.v.classBox.addClassBox(UMLClass.instances[key]);
         }
+
+        pl.v.retrieveAndListAllClasses.updateEdges();
     },
 
     updateEdges: function () {
-        /*        
-        
-                //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
-                Edge.retrieveAll(save.retrieveEdgeString());
-                var c = document.createElement("canvas");
-                document.getElementById("dropArea").appendChild(c);
-                
-                var ctx = c.getContext("2d");
-                ctx.beginPath();
-                for (i of Edge.instances) {
-                    startClass = UMLClass.instances[i.start];
-                    endClass = UMLClass.instances[i.end];
-        
-                    ctx.moveTo(startClass.xPos, startClass.yPos);
-                    ctx.lineTo(endClass.xPos, endClass.yPos);
-                    ctx.stroke();
-                    console.log("line drawn");
-                }
-          */
+
+        //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
+        //https://www.w3schools.com/graphics/svg_line.asp
+        Edge.retrieveAll(save.retrieveEdgeString());
+        var c = document.getElementById("edgeDraw");
+
+        for (i of Edge.instances) {
+            startClass = UMLClass.instances[i.start];
+            endClass = UMLClass.instances[i.end];
+
+            var line = document.createElement("line");
+            line.setAttribute('x1', startClass.xPos);
+            line.setAttribute('y1', startClass.yPos);
+            line.setAttribute('x2', endClass.xPos);
+            line.setAttribute('y2', endClass.yPos);
+            line.setAttribute("style", "stroke:rgb(0,0,0);stroke-width:3")
+
+            c.appendChild(line);
+
+            console.log("line drawn");
+        }
+
     }
 };
 
