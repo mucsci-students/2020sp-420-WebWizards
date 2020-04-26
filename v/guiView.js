@@ -178,9 +178,49 @@ pl.v.retrieveAndListAllClasses = {
             line.setAttribute('x2', endClass.position().left);
             line.setAttribute('y2', endClass.position().top);
             line.setAttribute("stroke", "black");
-            line.setAttribute("stroke-width", "5");
+            line.setAttribute("stroke-width", "2");
 
+            //if relationship type is realization, line should be dotted with filled
+            if (i.type === "realization") {
+                line.setAttribute("stroke-dasharray", "10");
+            }
+
+            var arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            var arrowSize = 10;
+
+            //if relationship type is composition or aggregation, line should have a diamond at start element
+            //if relationship type is inheritance or realization, line should have an arrow pointing to end element
+            //if relationship type is inheritance, the line should be solid and the arrow open. if relation, then dotted line and closed arrow
+            //if relationship type is composition, diamond should be filled. if aggregation, then "open"
+            if ((i.type === "composition") || (i.type === "aggregation")) {
+                //sets arrow at start class location
+                var arrowOrigin = { "x": startClass.position().left, "y": startClass.position().top - 5 };
+                
+                //sets arrow to be diamond shape
+                arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] - arrowSize} ${arrowOrigin["x"] + 2.0 * arrowSize} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
+
+            }
+
+            else if ((i.type === "inheritance") || (i.type === "realization")) {
+                //sets arrow at end class location
+                var arrowOrigin = { "x": endClass.position().left, "y": endClass.position().top - 5 };
+                
+                //sets arrow to be triangle shape
+                arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize * 2.0} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
+
+            }
+
+
+            if ((i.type === "aggregation") || (i.type === "inheritance")) {
+                //code to set the arrow/diamond shape to be open
+                arrow.setAttribute("fill", "none");
+                arrow.setAttribute("stroke", "black");
+                arrow.setAttribute("stroke-width", "2");
+            }
+
+            c.appendChild(arrow);
             c.appendChild(line);
+
 
             console.log("line drawn");
         }
