@@ -65,6 +65,7 @@ pl.v.deleteClass = {
         var formEl = document.forms["UMLClass"];
         var name = formEl.name.value;
         UMLClass.destroy(name);
+        Edge.deleteClassRelationships(name);
         // pl.v.retrieveAndListAllClasses.updateView();
         pl.v.classBox.deleteClassBox(name);
 
