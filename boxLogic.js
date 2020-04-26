@@ -40,6 +40,10 @@ drop_handler = function (event) {
     if (activeObject !== null) {
         activeObject.initialX = activeObject.currentX;
         activeObject.initialY = activeObject.currentY;
+
+        classname = activeObject.getAttribute("data-name");
+        UMLClass.instances[classname].xPos = activeObject.initialX;
+        UMLClass.instances[classname].yPos = activeObject.initialY;     
     }
     active = false;
     activeObject = null;
