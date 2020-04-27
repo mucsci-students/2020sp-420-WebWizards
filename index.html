@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src="node_modules\save-svg-as-png\lib\saveSvgAsPng.js"></script>
 
     <script src="c/initialize.js"></script>
     <script src="m/UMLClass.js"></script>
@@ -106,10 +106,9 @@
         </div>
     </div>
 
-    <div id="dropArea" onmousedown="dragstart_handler(event)" onmouseup="drop_handler(event)"
-        onmousemove="drag_handler(event)">
+    <div id="dropArea" onmousedown="dragstart_handler(event)" onmouseup="drop_handler(event)" onmousemove="drag_handler(event)">
     </div>
-    <svg id="edgeDraw" width ="673", height ="615.75", style="background-color:rgb(172, 172, 172)">
+    <svg id="edgeDraw" width ="673", height ="615.75", xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     </svg>
 
 </body>

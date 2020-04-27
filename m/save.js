@@ -83,5 +83,18 @@ save = {
 
         reader.readAsText(f);
 
+    },
+
+    exportSVGImage: function () {
+
+        let exportString = document.getElementById("edgeDraw").outerHTML;
+        let dataUri = 'data:application/svg;charset=utf-8,' + encodeURIComponent(exportString);
+        console.log(dataUri);
+        let defaultFileName = 'umlDiagram.svg';
+        let linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', defaultFileName);
+        linkElement.click();
+
     }
 };
