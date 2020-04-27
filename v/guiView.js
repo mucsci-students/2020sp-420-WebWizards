@@ -16,7 +16,6 @@ pl.v.createClass = {
         var formEl = document.forms["UMLClass"];
         var newUMlClass = UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
-        //pl.v.retrieveAndListAllClasses.updateView();
         pl.v.classBox.addClassBox(newUMlClass);
     }
 };
@@ -110,16 +109,11 @@ pl.v.classBox = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
-        //classbox.style.left = x_pos+'px';
-        //classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
         classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
         classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
 
-        /*
-        classbox.setAttribute("draggable", "true");
-        classbox.setAttribute("ondragstart", "dragstart_handler(event)");
-        */
+       
         classbox.setAttribute("data-name", umlclass.name);
         classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
@@ -322,18 +316,3 @@ pl.v.export = {
         save.exportFile();
     }
 };
-/*
-pl.v.refresh = {
-    setupUserInterface: function () {
-        var refreshButton = document.createElement("button");
-        refreshButton.innerHTML = "Refresh";
-        document.forms["UMLClass"].append(refreshButton);
-
-        refreshButton.addEventListener("click", pl.v.refresh.handleRefreshButtonClickEvent);
-    },
-
-    handleRefreshButtonClickEvent: function () {
-        pl.v.retrieveAndListAllClasses.updateView();
-    }
-}
-*/
