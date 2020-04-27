@@ -96,16 +96,11 @@ pl.v.classBox = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
-        //classbox.style.left = x_pos+'px';
-        //classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
         classbox.innerHTML += umlclass.vars.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
-        classbox.innerHTML += umlclass.methods.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
+        classbox.innerHTML += umlclass.methods.map(e =>"- " + e.type + ": " + e.name + "</br>").join("");
 
-        /*
-        classbox.setAttribute("draggable", "true");
-        classbox.setAttribute("ondragstart", "dragstart_handler(event)");
-        */
+       
         classbox.setAttribute("data-name", umlclass.name);
         classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
