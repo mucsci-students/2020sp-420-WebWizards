@@ -161,6 +161,53 @@ pl.v.retrieveAndListAllClasses = {
         pl.v.retrieveAndListAllClasses.updateEdges();
     },
 
+    drawClassesOnSVG: function () {
+        var c = document.getElementById("edgeDraw");
+
+        var keys = [], key = "", row = {}, i = 0;
+        UMLClass.retrieveAll(save.retrieveUMLClassString());
+        keys = Object.keys(UMLClass.instances);
+
+        for (i = 0; i < keys.length; i++) {
+            key = keys[i];
+            classname = UMLClass.instances[key].name;
+            var classbox = pl.v.classBox.getClassBox(classname);
+            var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            var xVal = (classbox.position().left - 10);
+            text.setAttribute("x", xVal);
+            text.setAttribute("y", classbox.position().top);
+
+            /*
+            text.setAttribute('x', i.xPos);
+            text.setAttribute('y', i.yPos);
+        */
+            var namespan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+            namespan.setAttribute('x', xVal);
+            namespan.setAttribute('dy', '1em');
+            namespan.innerHTML = classname;
+            text.appendChild(namespan);
+
+            for (v of UMLClass.instances[key].vars) {
+                var varspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+                varspan.setAttribute('x', xVal);
+                varspan.setAttribute('dy', '1em');
+                varspan.innerHTML = v.type + " " + v.name;
+                text.appendChild(varspan);
+            }
+
+            for (m of UMLClass.instances[key].methods) {
+                var methodspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+                methodspan.setAttribute('x', xVal);
+                methodspan.setAttribute('dy', '1em');
+                methodspan.innerHTML = m.type + " " + m.name;
+                text.appendChild(methodspan);
+            }
+
+            c.appendChild(text);
+
+        }
+    },
+
     updateEdges: function () {
 
         //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
@@ -196,7 +243,7 @@ pl.v.retrieveAndListAllClasses = {
             if ((i.type === "composition") || (i.type === "aggregation")) {
                 //sets arrow at start class location
                 var arrowOrigin = { "x": startClass.position().left, "y": startClass.position().top - 5 };
-                
+
                 //sets arrow to be diamond shape
                 arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] - arrowSize} ${arrowOrigin["x"] + 2.0 * arrowSize} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
 
@@ -205,7 +252,7 @@ pl.v.retrieveAndListAllClasses = {
             else if ((i.type === "inheritance") || (i.type === "realization")) {
                 //sets arrow at end class location
                 var arrowOrigin = { "x": endClass.position().left, "y": endClass.position().top - 5 };
-                
+
                 //sets arrow to be triangle shape
                 arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize * 2.0} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
 
