@@ -49,3 +49,12 @@ RELATIONSHIPS:
    To delete an relationship, type "delete-edge" followed by a the source and destination of the edge you want to delete and press Enter key. 
   
    To delete all of the stored edges, type "clear-edges" and press Enter key.
+
+CREATING A GRAPH:
+
+  To create a graph you will have to drag the wanted class boxes into the gray colored drop area in order to view the specified relationships in a graph form
+
+EXPORT AN IMAGE:
+
+  Click "Export Data to File" and then click the appropriate exporting format (SVG OR PNG). You then need to save the file to your computer in the appropriate spot.
+
