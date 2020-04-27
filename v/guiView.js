@@ -102,7 +102,7 @@ pl.v.exportSVG = {
 
     handleExportSVGButtonClickEvent: function () {
         pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
-        save.exportImage();
+        save.exportSVGImage();
     }
 };
 

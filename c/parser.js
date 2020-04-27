@@ -43,8 +43,13 @@ pl.c.defaultParser = function (args) {
 
         case "export-svg":
             pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
-            save.exportImage();
+            save.exportSVGImage();
             break;
+
+        case "export-png":
+            pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
+            saveSvgAsPng(document.getElementById("edgeDraw"), "umlDiagram.png");
+                break;
 
         case "clear":
             if (confirm("Are you sure you want to clear the database?")) {
