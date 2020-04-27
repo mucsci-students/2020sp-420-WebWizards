@@ -100,7 +100,20 @@ pl.v.exportSVG = {
 
     handleExportSVGButtonClickEvent: function () {
         pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
-        save.exportImage();
+        save.exportSVGImage();
+    }
+};
+pl.v.exportPNG = {
+    setupUserInterface: function () {
+        var exportPNGButton = document.createElement("button");
+        exportPNGButton.innerHTML = "Export Diagram as PNG";
+        document.forms["UMLClass"].append(exportPNGButton);
+        exportPNGButton.addEventListener('click', pl.v.exportPNG.handleExportSVGButtonClickEvent);
+    },
+
+    handleExportSVGButtonClickEvent: function () {
+        pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
+        saveSvgAsPng(document.getElementById("edgeDraw"), "umlDiagram.png");
     }
 };
 
@@ -186,7 +199,7 @@ pl.v.retrieveAndListAllClasses = {
 
        
             var lines = [];
-            lines[0] = classname;
+            lines[0] = "NAME: " + classname;
             for (v of UMLClass.instances[key].vars) {
                 lines.push(v.type + " " + v.name);
             }
@@ -199,6 +212,7 @@ pl.v.retrieveAndListAllClasses = {
                 span.setAttribute('x', xVal);
                 span.setAttribute('dy', '1em');
                 span.setAttribute("fill", "blue");
+                span.setAttribute("font-weight", "bold");
                 span.innerHTML = l;
                 text.appendChild(span);
             }

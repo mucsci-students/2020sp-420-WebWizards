@@ -85,7 +85,7 @@ save = {
 
     },
 
-    exportImage: function () {
+    exportSVGImage: function () {
 
         let exportString = document.getElementById("edgeDraw").outerHTML;
         let dataUri = 'data:application/svg;charset=utf-8,' + encodeURIComponent(exportString);
