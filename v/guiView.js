@@ -106,9 +106,9 @@ pl.v.exportSVG = {
 pl.v.exportPNG = {
     setupUserInterface: function () {
         var exportPNGButton = document.createElement("button");
-        exportSVGButton.innerHTML = "Export Diagram as PNG";
+        exportPNGButton.innerHTML = "Export Diagram as PNG";
         document.forms["UMLClass"].append(exportPNGButton);
-        exportSVGButton.addEventListener('click', pl.v.exportSVG.handleExportSVGButtonClickEvent);
+        exportPNGButton.addEventListener('click', pl.v.exportPNG.handleExportSVGButtonClickEvent);
     },
 
     handleExportSVGButtonClickEvent: function () {
