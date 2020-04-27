@@ -92,6 +92,20 @@ pl.v.clearAll = {
     }
 };
 
+pl.v.exportSVG = {
+    setupUserInterface: function () {
+        var exportSVGButton = document.createElement("button");
+        exportSVGButton.innerHTML = "Export Diagram as SVG";
+        document.forms["UMLClass"].append(exportSVGButton);
+        exportSVGButton.addEventListener('click', pl.v.exportSVG.handleExportSVGButtonClickEvent);
+    },
+
+    handleExportSVGButtonClickEvent: function () {
+        pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
+        save.exportImage();
+    }
+};
+
 pl.v.classBox = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
@@ -199,7 +213,7 @@ pl.v.retrieveAndListAllClasses = {
                 span.innerHTML = l;
                 text.appendChild(span);
             }
-            
+
             c.appendChild(text);
 
         }
