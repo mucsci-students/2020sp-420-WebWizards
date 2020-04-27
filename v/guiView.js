@@ -181,28 +181,24 @@ pl.v.retrieveAndListAllClasses = {
             text.setAttribute('x', i.xPos);
             text.setAttribute('y', i.yPos);
         */
-            var namespan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
-            namespan.setAttribute('x', xVal);
-            namespan.setAttribute('dy', '1em');
-            namespan.innerHTML = classname;
-            text.appendChild(namespan);
 
+            var lines = [];
+            lines[0] = classname;
             for (v of UMLClass.instances[key].vars) {
-                var varspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
-                varspan.setAttribute('x', xVal);
-                varspan.setAttribute('dy', '1em');
-                varspan.innerHTML = v.type + " " + v.name;
-                text.appendChild(varspan);
+                lines.push(v.type + " " + v.name);
             }
-
             for (m of UMLClass.instances[key].methods) {
-                var methodspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
-                methodspan.setAttribute('x', xVal);
-                methodspan.setAttribute('dy', '1em');
-                methodspan.innerHTML = m.type + " " + m.name;
-                text.appendChild(methodspan);
+                lines.push(m.type + " " + m.name);
             }
 
+            for (l of lines) {
+                var span = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+                span.setAttribute('x', xVal);
+                span.setAttribute('dy', '1em');
+                span.innerHTML = l;
+                text.appendChild(span);
+            }
+            
             c.appendChild(text);
 
         }
