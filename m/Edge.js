@@ -11,13 +11,16 @@ function Edge(classOne, classTwo, edgeType = "composition") {
 Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
-Edge.add = function (classOne, classTwo, umlinstances) {
+Edge.add = function (classOne, classTwo, umlinstances, edgeType = "") {
     if (Edge.exists(classOne, classTwo)) {
         console.log("Edge already exists!");
-        //return null;
+        return;
     }
     if (umlinstances[classOne] && umlinstances[classTwo]) {
-        Edge.instances.push(new Edge(classOne, classTwo));
+        if (edgeType === "")
+            Edge.instances.push(new Edge(classOne, classTwo));
+        else
+            Edge.instances.push(new Edge(classOne, classTwo, edgeType));
     }
     else {
         console.log("Edge requires two valid class names!");
@@ -126,4 +129,4 @@ Edge.reset = function () {
 };
 
 /* export statement for jasmine testing */
-module && (module.exports = {Edge: Edge});
+module && (module.exports = { Edge: Edge });

@@ -70,6 +70,24 @@ pl.v.deleteClass = {
     }
 };
 
+pl.v.createEdge = {
+    setupUserInterface: function () {
+        var edgeButton = document.createElement("button");
+        edgeButton.innerHTML = "Create Relationship Between Classes";
+        document.forms["UMLClass"].append(edgeButton);
+
+        edgeButton.addEventListener("click", pl.v.createEdge.handleCreateEdgeButtonClickEvent);
+    },
+    handleCreateEdgeButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        var startClass = formEl.name.value;
+        var endClass = formEl.name2.value;
+        var edgeType = formEl.edgetype.value;
+        Edge.add(startClass, endClass, UMLClass.instances, edgeType);
+        pl.v.retrieveAndListAllClasses.updateEdges();
+    }
+};
+
 pl.v.clearAll = {
     setupUserInterface: function () {
         var clearAllButton = document.createElement("button");
@@ -85,7 +103,7 @@ pl.v.clearAll = {
             save.clearData();
             UMLClass.reset();
             Edge.reset();
-          
+
         }
     }
 };
@@ -125,7 +143,7 @@ pl.v.classBox = {
         classbox.innerHTML += umlclass.vars.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
         classbox.innerHTML += umlclass.methods.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
 
-       
+
         classbox.setAttribute("data-name", umlclass.name);
         classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
@@ -197,7 +215,7 @@ pl.v.retrieveAndListAllClasses = {
             text.setAttribute("x", xVal);
             text.setAttribute("y", classbox.position().top);
 
-       
+
             var lines = [];
             lines[0] = "NAME: " + classname;
             for (v of UMLClass.instances[key].vars) {
