@@ -16,7 +16,6 @@ pl.v.createClass = {
         var formEl = document.forms["UMLClass"];
         var newUMlClass = UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
-        //pl.v.retrieveAndListAllClasses.updateView();
         pl.v.classBox.addClassBox(newUMlClass);
     }
 };
@@ -66,7 +65,6 @@ pl.v.deleteClass = {
         var name = formEl.name.value;
         UMLClass.destroy(name);
         Edge.deleteClassRelationships(name);
-        // pl.v.retrieveAndListAllClasses.updateView();
         pl.v.classBox.deleteClassBox(name);
 
     }
@@ -87,8 +85,22 @@ pl.v.clearAll = {
             save.clearData();
             UMLClass.reset();
             Edge.reset();
-            //pl.v.retrieveAndListAllClasses.updateView();
+          
         }
+    }
+};
+
+pl.v.exportSVG = {
+    setupUserInterface: function () {
+        var exportSVGButton = document.createElement("button");
+        exportSVGButton.innerHTML = "Export Diagram as SVG";
+        document.forms["UMLClass"].append(exportSVGButton);
+        exportSVGButton.addEventListener('click', pl.v.exportSVG.handleExportSVGButtonClickEvent);
+    },
+
+    handleExportSVGButtonClickEvent: function () {
+        pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
+        save.exportImage();
     }
 };
 
@@ -96,16 +108,11 @@ pl.v.classBox = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
-        //classbox.style.left = x_pos+'px';
-        //classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
         classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
         classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
 
-        /*
-        classbox.setAttribute("draggable", "true");
-        classbox.setAttribute("ondragstart", "dragstart_handler(event)");
-        */
+       
         classbox.setAttribute("data-name", umlclass.name);
         classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
@@ -161,6 +168,46 @@ pl.v.retrieveAndListAllClasses = {
         pl.v.retrieveAndListAllClasses.updateEdges();
     },
 
+    drawClassesOnSVG: function () {
+        var c = document.getElementById("edgeDraw");
+
+        var keys = [], key = "", row = {}, i = 0;
+        UMLClass.retrieveAll(save.retrieveUMLClassString());
+        keys = Object.keys(UMLClass.instances);
+
+        for (i = 0; i < keys.length; i++) {
+            key = keys[i];
+            classname = UMLClass.instances[key].name;
+            var classbox = pl.v.classBox.getClassBox(classname);
+            var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            var xVal = (classbox.position().left - 10);
+            text.setAttribute("x", xVal);
+            text.setAttribute("y", classbox.position().top);
+
+       
+            var lines = [];
+            lines[0] = classname;
+            for (v of UMLClass.instances[key].vars) {
+                lines.push(v.type + " " + v.name);
+            }
+            for (m of UMLClass.instances[key].methods) {
+                lines.push(m.type + " " + m.name);
+            }
+
+            for (l of lines) {
+                var span = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+                span.setAttribute('x', xVal);
+                span.setAttribute('dy', '1em');
+                span.setAttribute("fill", "blue");
+                span.innerHTML = l;
+                text.appendChild(span);
+            }
+
+            c.appendChild(text);
+
+        }
+    },
+
     updateEdges: function () {
 
         //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
@@ -196,7 +243,7 @@ pl.v.retrieveAndListAllClasses = {
             if ((i.type === "composition") || (i.type === "aggregation")) {
                 //sets arrow at start class location
                 var arrowOrigin = { "x": startClass.position().left, "y": startClass.position().top - 5 };
-                
+
                 //sets arrow to be diamond shape
                 arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] - arrowSize} ${arrowOrigin["x"] + 2.0 * arrowSize} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
 
@@ -205,7 +252,7 @@ pl.v.retrieveAndListAllClasses = {
             else if ((i.type === "inheritance") || (i.type === "realization")) {
                 //sets arrow at end class location
                 var arrowOrigin = { "x": endClass.position().left, "y": endClass.position().top - 5 };
-                
+
                 //sets arrow to be triangle shape
                 arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize * 2.0} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
 
@@ -264,18 +311,3 @@ pl.v.export = {
         save.exportFile();
     }
 };
-/*
-pl.v.refresh = {
-    setupUserInterface: function () {
-        var refreshButton = document.createElement("button");
-        refreshButton.innerHTML = "Refresh";
-        document.forms["UMLClass"].append(refreshButton);
-
-        refreshButton.addEventListener("click", pl.v.refresh.handleRefreshButtonClickEvent);
-    },
-
-    handleRefreshButtonClickEvent: function () {
-        pl.v.retrieveAndListAllClasses.updateView();
-    }
-}
-*/

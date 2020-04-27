@@ -41,6 +41,11 @@ pl.c.defaultParser = function (args) {
             save.exportFile();
             break;
 
+        case "export-svg":
+            pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
+            save.exportImage();
+            break;
+
         case "clear":
             if (confirm("Are you sure you want to clear the database?")) {
                 save.clearData();
@@ -135,6 +140,7 @@ pl.c.defaultParser = function (args) {
             >add class-name [class-name ...]<br>\
             >delete class-name [class-name ...]<br>\
             >export<br>\
+            >export-svg<br>\
             >clear<br>\
             >load<br>\
             >rename current-class-name new-class-name<br>\
