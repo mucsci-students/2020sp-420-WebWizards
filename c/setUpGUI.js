@@ -6,6 +6,6 @@ pl.c.setUpGUI = function () {
     pl.v.retrieveAndListAllClasses.updateView()
     pl.v.export.setupUserInterface()
     pl.v.load.setupUserInterface()
-  //  pl.v.refresh.setupUserInterface();
+  
 }
 
