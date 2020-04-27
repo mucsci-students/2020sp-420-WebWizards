@@ -24,3 +24,17 @@ The functions in this file expect copies of UMLClass.instances and Edge.instance
 contains the function pl.c.setUpGUI(), which is called by index.html upon page load. setUpGUI() calls a number of functions in v/guiView.js
 #### parser.js
 is largely composed of a switch statement that defines the response to CLI input
+
+#### View Files
+
+#### cliView.js
+contains logic for handling cli input
+
+#### guiView.js
+contains the logic, buttons, and modals for creating a GUI interface
+
+#### instrustions.js
+contains logic to display instructions to the user
+
+#### validation.js
+

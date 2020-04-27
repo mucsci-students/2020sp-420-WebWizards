@@ -3,7 +3,7 @@
 
 name: runTest.js CI
 
-on: [push, pull_request]
+on: [push]
  
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x, 13.x]
+        node-version: [8.x, 10.x]
 
     steps:
     - name: Git checkout

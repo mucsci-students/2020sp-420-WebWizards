@@ -1,6 +1,3 @@
-/* export function statements for jasmine testing */
-//module.exports = Edge.add;
-//module.exports = Edge.destroy;
 
 //defines an Edge relationship as the names of two classes and a defaulted type of composition
 function Edge(classOne, classTwo, edgeType = "composition") {
@@ -14,16 +11,19 @@ function Edge(classOne, classTwo, edgeType = "composition") {
 Edge.instances = [];
 
 //given two UMLClass's, creates new Edge and adds it to Edge.instances
-Edge.add = function (classOne, classTwo, umlinstances) {
+Edge.add = function (classOne, classTwo, umlinstances, edgeType = "") {
     if (Edge.exists(classOne, classTwo)) {
-        alert("Edge already exists!");
-        return null;
+        console.log("Edge already exists!");
+        return;
     }
     if (umlinstances[classOne] && umlinstances[classTwo]) {
-        Edge.instances.push(new Edge(classOne, classTwo));
+        if (edgeType === "")
+            Edge.instances.push(new Edge(classOne, classTwo));
+        else
+            Edge.instances.push(new Edge(classOne, classTwo, edgeType));
     }
     else {
-        alert("Edge requires two valid class names!");
+        console.log("Edge requires two valid class names!");
     }
 };
 
@@ -50,10 +50,10 @@ Edge.modifyRelationshipType = function (classOne, classTwo, newType) {
             }
         }
         if (!edgeFound)
-            alert("Edge to modify does not exist!");
+            console.log("Edge to modify does not exist!");
     }
     else {
-        alert("Non-valid type entered!")
+        console.log("Non-valid type entered!")
     }
 };
 
@@ -70,7 +70,7 @@ Edge.destroy = function (classOne, classTwo) {
         Edge.instances.splice(edgeIndex, 1);
     }
     else {
-        alert("Edge does not exist!");
+        console.log("Edge does not exist!");
     }
 };
 
@@ -104,7 +104,7 @@ Edge.retrieveAll = function (edgeString) {
 };
 
 Edge.returnHumanReadableString = function () {
-    var edgeString = "Edges:\n";
+    var edgeString = "Edges:<br>";
     for (i of Edge.instances) {
         if (i.type == 'composition') {
             edgeString += (i.start + " ---<+> " + i.end + " of type " + i.type);
@@ -119,7 +119,7 @@ Edge.returnHumanReadableString = function () {
             edgeString += (i.start + " - - -> " + i.end + " of type " + i.type);
         }
 
-        edgeString += "\n";
+        edgeString += "<br>";
     }
     return edgeString;
 };
@@ -127,3 +127,6 @@ Edge.returnHumanReadableString = function () {
 Edge.reset = function () {
     Edge.instances = [];
 };
+
+/* export statement for jasmine testing */
+module && (module.exports = { Edge: Edge });

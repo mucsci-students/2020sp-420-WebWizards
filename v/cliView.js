@@ -1,8 +1,7 @@
-var programID = 0; //value associated with 'program' to parse current submit
-
+var programID = 0;
 
 pl.v.commandLine = {
-    //reference: https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+
     setupUserInterface: function () {
         var cli = document.getElementById("cli");
         console.log("user interface");
@@ -18,10 +17,10 @@ pl.v.commandLine = {
 
     handleCommandLineSubmit: function () {
         var formEl = document.forms["CLIForm"];
-        pl.c.parseCommand(formEl.cli.value, programID);
+        document.getElementById("cliOutput").innerHTML = (pl.c.parseCommand(formEl.cli.value, programID)) + document.getElementById("cliOutput").innerHTML;
         console.log("handle command line submit");
         formEl.reset();
-        pl.v.retrieveAndListAllClasses.updateView();
+      
     }
 };
 
