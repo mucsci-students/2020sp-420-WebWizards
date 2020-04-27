@@ -65,7 +65,6 @@ pl.v.deleteClass = {
         var name = formEl.name.value;
         UMLClass.destroy(name);
         Edge.deleteClassRelationships(name);
-        // pl.v.retrieveAndListAllClasses.updateView();
         pl.v.classBox.deleteClassBox(name);
 
     }
@@ -86,7 +85,7 @@ pl.v.clearAll = {
             save.clearData();
             UMLClass.reset();
             Edge.reset();
-            //pl.v.retrieveAndListAllClasses.updateView();
+          
         }
     }
 };
@@ -185,11 +184,7 @@ pl.v.retrieveAndListAllClasses = {
             text.setAttribute("x", xVal);
             text.setAttribute("y", classbox.position().top);
 
-            /*
-            text.setAttribute('x', i.xPos);
-            text.setAttribute('y', i.yPos);
-        */
-
+       
             var lines = [];
             lines[0] = classname;
             for (v of UMLClass.instances[key].vars) {
