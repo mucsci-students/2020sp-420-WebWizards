@@ -18,8 +18,11 @@ pl.c.defaultParser = function (args) {
     switch (args[0]) {
         case "add":
             for (i = 1; i < args.length; i++) {
-                if (UMLClass.add(args[i]))
+                var classReturn = UMLClass.add(args[i]);
+                if (classReturn) {
                     outputString = ("<br>Class " + args[i] + " created successfully!") + outputString;
+                    pl.v.classBox.addClassBox(classReturn);
+                }
                 else
                     outputString = ("<br>Creation of class " + args[i] + " failed!") + outputString;
 
@@ -30,6 +33,7 @@ pl.c.defaultParser = function (args) {
             for (i = 1; i < args.length; i++) {
                 UMLClass.destroy(args[i]);
                 Edge.deleteClassRelationships(args[i]);
+                pl.v.classBox.deleteClassBox(args[i]);
             }
             break;
 
@@ -57,40 +61,50 @@ pl.c.defaultParser = function (args) {
 
         case "add-var":
             UMLClass.addVar(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "add-method":
             UMLClass.addMethod(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "delete-var":
             UMLClass.deleteVar(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "delete-method":
             UMLClass.deleteMethod(args[1], args[2]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "modify-var-type":
             UMLClass.changeVarType(args[1], args[2], args[3]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "modify-method-type":
             UMLClass.changeMethodType(args[1], args[2], args[3]);
+            pl.v.classBox.updateClassBox(args[1]);
             break;
 
         case "add-edge":
             Edge.add(args[1], args[2], UMLClass.instances);
+            pl.v.retrieveAndListAllClasses.updateEdges();
             break;
 
         case "modify-type":
             Edge.modifyRelationshipType(args[1], args[2], args[3]);
             console.log("--" + Edge.returnHumanReadableString());
             save.saveLocal(UMLClass.instances, Edge.instances);
+            pl.v.retrieveAndListAllClasses.updateEdges();
             break;
 
         case "delete-edge":
             Edge.destroy(args[1], args[2]);
+            save.saveLocal(UMLClass.instances, Edge.instances);
+            pl.v.retrieveAndListAllClasses.updateEdges();
             break;
 
         case "list-edges":
@@ -99,6 +113,7 @@ pl.c.defaultParser = function (args) {
 
         case "clear-edges":
             Edge.reset();
+            pl.v.retrieveAndListAllClasses.updateEdges();
             break;
 
         case "list-classes":
@@ -107,6 +122,10 @@ pl.c.defaultParser = function (args) {
 
         case "val":
             outputString = UMLClass.validateName(args[1]) + outputString;
+            break;
+
+        case "reset-pos":
+            pl.v.classBox.resetPosition(args[1]);
             break;
 
         case "help":
@@ -130,6 +149,7 @@ pl.c.defaultParser = function (args) {
             >delete-edge start-class end-class<br>\
             >list-edges<br>\
             >clear-edges<br>\
+            >reset-pos class-name<br>\
             ") + outputString;
 
             break;

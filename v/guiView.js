@@ -14,9 +14,10 @@ pl.v.createClass = {
     },
     handleAddButtonClickEvent: function () {
         var formEl = document.forms["UMLClass"];
-        UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
+        var newUMlClass = UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
-        pl.v.retrieveAndListAllClasses.updateView();
+        //pl.v.retrieveAndListAllClasses.updateView();
+        pl.v.classBox.addClassBox(newUMlClass);
     }
 };
 
@@ -64,8 +65,9 @@ pl.v.deleteClass = {
         var formEl = document.forms["UMLClass"];
         var name = formEl.name.value;
         UMLClass.destroy(name);
-        save.saveLocal(UMLClass.instances, Edge.instances);
-        pl.v.retrieveAndListAllClasses.updateView();
+        Edge.deleteClassRelationships(name);
+        // pl.v.retrieveAndListAllClasses.updateView();
+        pl.v.classBox.deleteClassBox(name);
 
     }
 };
@@ -85,47 +87,145 @@ pl.v.clearAll = {
             save.clearData();
             UMLClass.reset();
             Edge.reset();
-            pl.v.retrieveAndListAllClasses.updateView();
+            //pl.v.retrieveAndListAllClasses.updateView();
         }
     }
 };
 
-pl.v.retrieveAndListAllClasses = {
-
+pl.v.classBox = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
+        //classbox.style.left = x_pos+'px';
+        //classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
         classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
         classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
+
+        /*
         classbox.setAttribute("draggable", "true");
         classbox.setAttribute("ondragstart", "dragstart_handler(event)");
+        */
+        classbox.setAttribute("data-name", umlclass.name);
+        classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
 
         return classbox;
     },
 
-    updateView: function () {
-        //var initialDropSpace = document.getElementsByTagName('body')[0];
-        var initialDropSpace = document.getElementById("initialDropSpace");
+    addClassBox: function (umlclass) {
+        var classbox = pl.v.classBox.createClassBox(umlclass);
         var dropSpace = document.getElementById("dropArea");
+        dropSpace.appendChild(classbox);
+    },
+
+    deleteClassBox: function (classname) {
+        this.getClassBox(classname).remove();
+    },
+
+    updateClassBox: function (classname) {
+        this.deleteClassBox(classname);
+        this.addClassBox(UMLClass.instances[classname]);
+    },
+
+    resetPosition: function (classname) {
+        UMLClass.instances[classname].xPos = 0;
+        UMLClass.instances[classname].yPos = 0;
+        this.updateClassBox(classname);
+    },
+
+    getClassBox: function (classname) {
+        return $("div").find(`[data-name='${classname}']`);
+    }
+};
+
+pl.v.retrieveAndListAllClasses = {
+
+    updateView: function () {
+
+        var existingClassBoxes = document.getElementsByClassName("classBox");
+        for (var i = 0; i < existingClassBoxes.length; ++i) {
+            existingClassBoxes[i].remove();
+            console.log('removed');
+        }
 
         var keys = [], key = "", row = {}, i = 0;
         UMLClass.retrieveAll(save.retrieveUMLClassString());
-        Edge.retrieveAll(save.retrieveEdgeString());
         keys = Object.keys(UMLClass.instances);
-
-        //temporary
-        initialDropSpace.innerHTML = "";
-        dropSpace.innerHTML = "<div class='classBoxName2'> </div>";
 
         for (i = 0; i < keys.length; i++) {
             key = keys[i];
-
-            classbox = pl.v.retrieveAndListAllClasses.createClassBox(UMLClass.instances[key]);
-            classbox.id = "classbox" + i;
-            initialDropSpace.appendChild(classbox);
+            pl.v.classBox.addClassBox(UMLClass.instances[key]);
         }
+
+        pl.v.retrieveAndListAllClasses.updateEdges();
+    },
+
+    updateEdges: function () {
+
+        //https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto
+        //https://www.w3schools.com/graphics/svg_line.asp
+        Edge.retrieveAll(save.retrieveEdgeString());
+        var c = document.getElementById("edgeDraw");
+        c.innerHTML = "";
+
+        for (i of Edge.instances) {
+            startClass = pl.v.classBox.getClassBox(i.start);
+            endClass = pl.v.classBox.getClassBox(i.end);
+
+            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute('x1', startClass.position().left);
+            line.setAttribute('y1', startClass.position().top);
+            line.setAttribute('x2', endClass.position().left);
+            line.setAttribute('y2', endClass.position().top);
+            line.setAttribute("stroke", "black");
+            line.setAttribute("stroke-width", "2");
+
+            //if relationship type is realization, line should be dotted with filled
+            if (i.type === "realization") {
+                line.setAttribute("stroke-dasharray", "10");
+            }
+
+            var arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            var arrowSize = 10;
+
+            //if relationship type is composition or aggregation, line should have a diamond at start element
+            //if relationship type is inheritance or realization, line should have an arrow pointing to end element
+            //if relationship type is inheritance, the line should be solid and the arrow open. if relation, then dotted line and closed arrow
+            //if relationship type is composition, diamond should be filled. if aggregation, then "open"
+            if ((i.type === "composition") || (i.type === "aggregation")) {
+                //sets arrow at start class location
+                var arrowOrigin = { "x": startClass.position().left, "y": startClass.position().top - 5 };
+                
+                //sets arrow to be diamond shape
+                arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] - arrowSize} ${arrowOrigin["x"] + 2.0 * arrowSize} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
+
+            }
+
+            else if ((i.type === "inheritance") || (i.type === "realization")) {
+                //sets arrow at end class location
+                var arrowOrigin = { "x": endClass.position().left, "y": endClass.position().top - 5 };
+                
+                //sets arrow to be triangle shape
+                arrow.setAttribute("points", `${arrowOrigin["x"]} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize * 2.0} ${arrowOrigin["y"]} ${arrowOrigin["x"] + arrowSize} ${arrowOrigin["y"] + arrowSize}`);
+
+            }
+
+
+            if ((i.type === "aggregation") || (i.type === "inheritance")) {
+                //code to set the arrow/diamond shape to be open
+                arrow.setAttribute("fill", "none");
+                arrow.setAttribute("stroke", "black");
+                arrow.setAttribute("stroke-width", "2");
+            }
+
+            c.appendChild(arrow);
+            c.appendChild(line);
+
+
+            console.log("line drawn");
+        }
+
     }
 };
 
@@ -164,7 +264,7 @@ pl.v.export = {
         save.exportFile();
     }
 };
-
+/*
 pl.v.refresh = {
     setupUserInterface: function () {
         var refreshButton = document.createElement("button");
@@ -178,3 +278,4 @@ pl.v.refresh = {
         pl.v.retrieveAndListAllClasses.updateView();
     }
 }
+*/
