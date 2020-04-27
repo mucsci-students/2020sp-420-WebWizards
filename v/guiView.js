@@ -195,6 +195,7 @@ pl.v.retrieveAndListAllClasses = {
                 var span = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
                 span.setAttribute('x', xVal);
                 span.setAttribute('dy', '1em');
+                span.setAttribute("fill", "blue");
                 span.innerHTML = l;
                 text.appendChild(span);
             }
