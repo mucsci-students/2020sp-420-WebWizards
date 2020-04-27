@@ -59,59 +59,59 @@
         </div>
 
 
-        <div id="cliView">
-            <form id="CLIForm">
-                <div><label>
-                        >
-                        <input id="cli"> type 'help' to see commands
-                    </label></div>
-            </form>
-            <div id="cliOutput"></div>
-        </div>
+    <div id="cliView">
+        <form id="CLIForm">
+            <div><label>
+                    >
+                    <input id="cli"> type 'help' to see commands
+                </label></div>
+        </form>
+        <div id="cliOutput"></div>
+    </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="classModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"> Fill in the class name</h4>
-                    </div>
-                    <!--body -->
-                    <div class="modal-body">
-                        <form id="UMLClass">
-                            <div>
-                                <label>
-                                    Class name:
-                                    <input name="name" />
-                                </label>
-                                <br>
-                                <label>
-                                    Variables (separated by commas):
-                                    <input name="vars">
-                                </label>
-                                <br>
-                                <label>
-                                    Methods (separated by commas):
-                                    <input name="methods">
-                                </label>
-                                <br>
-                            </div>
-                    </div>
-                    </form>
-                    <!-- footer -->
+    <!-- Modal -->
+    <div class="modal fade" id="classModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Fill in the class name</h4>
                 </div>
-                <div class="modal-footer">
-                    <p> Please review all changes before pushing button </p>
+                <!--body -->
+                <div class="modal-body">
+                    <form id="UMLClass">
+                        <div>
+                            <label>
+                                Class name:
+                                <input name="name" />
+                            </label>
+                            <br>
+                            <label>
+                                Variables (separated by commas):
+                                <input name="vars">
+                            </label>
+                            <br>
+                            <label>
+                                Methods (separated by commas):
+                                <input name="methods">
+                            </label>
+                            <br>
+                        </div>
                 </div>
+                </form>
+                <!-- footer -->
+            </div>
+            <div class="modal-footer">
+                <p> Please review all changes before pushing button </p>
             </div>
         </div>
+    </div>
 
-        <div id='initialDropSpace'></div>
-        <div id="dropArea" class="classBox2" ondrop="drop_handler(event)" ondragover="allowDrop(event)">
-            <div class="classBoxName2"> </div>
-        </div>
+    <div id="dropArea" onmousedown="dragstart_handler(event)" onmouseup="drop_handler(event)" onmousemove="drag_handler(event)">
+    </div>
+    <svg id="edgeDraw" length = "1000" height = "1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    </svg>
 
 </body>
 

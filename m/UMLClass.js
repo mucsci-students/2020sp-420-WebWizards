@@ -2,17 +2,21 @@
 // reference: https://web-engineering.info/tech/JsFrontendApp/book/ch03s02.html
 
 //defines a UMLClass as containing var 'name' & maps 'vars' and 'methods'
-function UMLClass(name, vars = [], methods = []) {
+function UMLClass(name, vars = [], methods = [], x = 0, y = 0) {
     this.name = name;
     this.vars = vars;
     this.methods = methods;
+    this.xPos = x;
+    this.yPos = y;
 
 };
+
 
 //all active UMLClasses are stored in this map, referenced by their name
 UMLClass.instances = {};
 
 //creates a new UMLClass and adds it to UMLClass.instances by name
+//returns UMLClass
 UMLClass.add = function (name, vars = "", methods = "") {
 
     if (!UMLClass.validateName(name)) {
@@ -40,10 +44,14 @@ UMLClass.add = function (name, vars = "", methods = "") {
         }
     }
 
-    UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
+    newUmlClass = new UMLClass(name, newVars, newMethods);
+
+    //UMLClass.instances[name] = new UMLClass(name, newVars, newMethods);
+    UMLClass.instances[name] = newUmlClass;
 
     console.log("Class " + name + " created.");
-    return name;
+    // return name;
+    return newUmlClass;
 };
 
 UMLClass.validateName = function (proposedName) {
@@ -155,7 +163,7 @@ UMLClass.changeMethodType = function (className, methodName, newType) {
 };
 
 UMLClass.convertRec2Obj = function (classRow) {
-    return new UMLClass(classRow.name, classRow.vars, classRow.methods);
+    return new UMLClass(classRow.name, classRow.vars, classRow.methods, classRow.xPos, classRow.yPos);
 };
 
 UMLClass.retrieveAll = function (classString) {
@@ -197,6 +205,7 @@ UMLClass.returnHumanReadableString = function () {
     }
     return outputString;
 };
+
 
 
 /* export statement for jasmine testing */
