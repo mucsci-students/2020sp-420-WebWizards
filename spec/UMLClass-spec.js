@@ -18,44 +18,74 @@ VERY commonly, it reads like a sentence beginning with the word "should"
 require('app-module-path').addPath(__dirname + "/../");
 var UMLClass = require("m/UMLClass").UMLClass;
 var Edge = require("m/Edge").Edge;
+
+describe("jasmine.objectContaining", function() {
+    var MLClass;
+  
+    beforeEach(function() {
+      foo = {
+        a: 1,
+        b: 2,
+        bar: "baz"
+      };
+    });
+  
+    it("matches objects with the expect key/value pairs", function() {
+      expect(foo).toEqual(jasmine.objectContaining({
+        bar: "baz"
+      }));
+      expect(foo).not.toEqual(jasmine.objectContaining({
+        c: 37
+      }));
+    });
+  
 /*
 var add =require("m/UMLClass");
 var destroy=require("m/UMLClass");
 var clearData=require("m/UMLClass");
 var add = require("m/Edge");
 var destroy=require("m/Edge");
+
 */
 
 // TESTS FOR ADD CASES:
-describe("Tests two cases for UMLclass.add", function () {
-    //beforeEach(function() {
-        //spyOn(console, 'log');
-    //});
+// describe("Tests case for UMLclass.add", function () {
+//     //beforeEach(function() {
+//         //spyOn(console, 'log');
+//     //});
 
-    it ("should add class given empty instance", function() {
-        expect(UMLClass.add("car")).toEqual("car");
-        //expect(console.log).toHaveBeenCalled();
-    });
+//     it ("should add class given empty instance", function() {
+        
+        
+//         // var vars = "var1";
+//         // var methods = "meth1";
+//         expect(UMLClass.add(name = "test1")).toEqual({ name: 'test1', vars: [  ], methods: [  ], xPos: 0, yPos: 0 });
+//         //expect(console.log).toHaveBeenCalled();
+//     });
 
-    it ("in the case of duplicates, will not add class again", function() {
-            expect(UMLClass.add("car")).toEqual(null);
-    });
+    // it ("in the case of duplicates, will not add class again", function() {
+    //         expect(UMLClass.add("car")).toEqual(null);
+    // });
 
-});
-
-//TESTS FOR DELETE CASES:
-describe("Tests two cases for UMLclass.destroy", function () {
-
-
-    it ("if class given exist, will delete it", function() {
-        expect(UMLClass.destroy("car")).toEqual(null);
-    });
-
-    it ("if class given doesn't exist", function() {
-            expect(UMLClass.destroy("car")).toEqual(null);
-    });
+//     it ("add edges", function() {
+//         expect(Edge.add("class1","class2")).toEqual("");
+// });
 
 });
+
+// //TESTS FOR DELETE CASES:
+// describe("Tests two cases for UMLclass.destroy", function () {
+
+
+//     it ("if class given exist, will delete it", function() {
+//         expect(UMLClass.destroy("car")).toEqual(null);
+//     });
+
+//     it ("if class given doesn't exist", function() {
+//             expect(UMLClass.destroy("car")).toEqual(null);
+//     });
+
+// });
 
 
 //TEST FOR RELATIONSHIPS(EDGES):
