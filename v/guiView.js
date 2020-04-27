@@ -99,8 +99,8 @@ pl.v.classBox = {
         //classbox.style.left = x_pos+'px';
         //classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
-        classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
-        classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
+        classbox.innerHTML += umlclass.vars.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
+        classbox.innerHTML += umlclass.methods.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
 
         /*
         classbox.setAttribute("draggable", "true");
