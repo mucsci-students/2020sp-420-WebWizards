@@ -122,8 +122,8 @@ pl.v.classBox = {
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
         classbox.innerHTML = umlclass.name + "</br>";
-        classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
-        classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
+        classbox.innerHTML += umlclass.vars.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
+        classbox.innerHTML += umlclass.methods.map(e => "- " + e.type + ": " + e.name + "</br>").join("");
 
        
         classbox.setAttribute("data-name", umlclass.name);
