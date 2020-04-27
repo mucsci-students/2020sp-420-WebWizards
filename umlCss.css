@@ -60,9 +60,6 @@ p{
   text-align: center;
   overflow: hidden;
   align-items: center;
- /* top: 400px;
-  right: 50px;
-*/
 height: 75%;
 }
 
@@ -75,26 +72,13 @@ height: 75%;
 }
 
 
-/*
-tr{
-  border: 2px solid;
-  padding-bottom: 10px;
-
-}
-
-table{
-  cursor: move;
-  padding-left: 10px;
-}
-*/
-
 #cliOutput {
   border: 5px solid;
   background-color: black;
   color: white;
   font-family: monospace;
   overflow-y: scroll;
-  height: 350px;
+  height: 450px;
   width: 60%;
 }
 

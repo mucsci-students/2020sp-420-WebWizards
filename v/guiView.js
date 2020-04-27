@@ -16,7 +16,6 @@ pl.v.createClass = {
         var formEl = document.forms["UMLClass"];
         var newUMlClass = UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
-        //pl.v.retrieveAndListAllClasses.updateView();
         pl.v.classBox.addClassBox(newUMlClass);
     }
 };
@@ -66,7 +65,6 @@ pl.v.deleteClass = {
         var name = formEl.name.value;
         UMLClass.destroy(name);
         Edge.deleteClassRelationships(name);
-        // pl.v.retrieveAndListAllClasses.updateView();
         pl.v.classBox.deleteClassBox(name);
 
     }
@@ -87,7 +85,7 @@ pl.v.clearAll = {
             save.clearData();
             UMLClass.reset();
             Edge.reset();
-            //pl.v.retrieveAndListAllClasses.updateView();
+          
         }
     }
 };
@@ -123,16 +121,11 @@ pl.v.classBox = {
     //returns Javascript node that is a visual representation of a classbox
     createClassBox: function (umlclass) {
         var classbox = document.createElement('div');
-        //classbox.style.left = x_pos+'px';
-        //classbox.style.top = y_pos+'px';
         classbox.innerHTML = umlclass.name + "</br>";
         classbox.innerHTML += umlclass.vars.map(e => e.type + " " + e.name + "</br>").join("");
         classbox.innerHTML += umlclass.methods.map(e => e.type + " " + e.name + "</br>").join("");
 
-        /*
-        classbox.setAttribute("draggable", "true");
-        classbox.setAttribute("ondragstart", "dragstart_handler(event)");
-        */
+       
         classbox.setAttribute("data-name", umlclass.name);
         classbox.style.transform = "translate(" + umlclass.xPos + "px, " + umlclass.yPos + "px)";
         classbox.className = "classBox";
@@ -204,11 +197,7 @@ pl.v.retrieveAndListAllClasses = {
             text.setAttribute("x", xVal);
             text.setAttribute("y", classbox.position().top);
 
-            /*
-            text.setAttribute('x', i.xPos);
-            text.setAttribute('y', i.yPos);
-        */
-
+       
             var lines = [];
             lines[0] = "NAME: " + classname;
             for (v of UMLClass.instances[key].vars) {
