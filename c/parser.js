@@ -43,8 +43,13 @@ pl.c.defaultParser = function (args) {
 
         case "export-svg":
             pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
-            save.exportImage();
+            save.exportSVGImage();
             break;
+
+        case "export-png":
+            pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
+            saveSvgAsPng(document.getElementById("edgeDraw"), "umlDiagram.png");
+                break;
 
         case "clear":
             if (confirm("Are you sure you want to clear the database?")) {
@@ -148,7 +153,7 @@ pl.c.defaultParser = function (args) {
             >add-method class-name method-name[,method-name,method-name ...]<br>\
             >delete-var class-name var-name[,var-name,var-name ...]<br>\
             >delete-var class-name method-name[,method-name,method-name ...]<br>\
->modify-var-type class-name var-name new-var-type<br>\
+            >modify-var-type class-name var-name new-var-type<br>\
             >modify-method-type class-name var-name new-method-type<br>\
             >add-edge start-class end-class<br>\
             >modify-type start-class end-class type <br>\

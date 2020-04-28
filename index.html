@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src="node_modules\save-svg-as-png\lib\saveSvgAsPng.js"></script>
 
     <script src="c/initialize.js"></script>
     <script src="m/UMLClass.js"></script>
@@ -89,17 +89,31 @@
                             <br>
                             <label>
                                 Variables (separated by commas):
-                                <input name="vars">
+                                <input name="vars" />
                             </label>
                             <br>
                             <label>
                                 Methods (separated by commas):
-                                <input name="methods">
+                                <input name="methods" />
+                            </label>
+                            <br>
+                            <br>
+                            <label>
+                                2nd Class name (if creating relationship):
+                                <input name="name2" />
                             </label>
                             <label>
                                 Realated to: (separated by commas):
                                 <input name="methods">
                             </label>
+                            <br>
+                            <label>
+                                Relationship type (optional):
+                                <input name="edgetype" />
+                                <br>
+                                [composition, inheritance, aggregation, realization]
+                            </label>
+                            <br>
                             <br>
                         </div>
                 </div>
@@ -114,7 +128,7 @@
 
     <div id="dropArea" onmousedown="dragstart_handler(event)" onmouseup="drop_handler(event)" onmousemove="drag_handler(event)">
     </div>
-    <svg id="edgeDraw" length = "1000" height = "1000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg id="edgeDraw" length = "673" height = "615.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     </svg>
 
 </body>
