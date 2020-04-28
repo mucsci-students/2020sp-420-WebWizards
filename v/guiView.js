@@ -18,6 +18,14 @@ pl.v.createClass = {
         var newUMlClass = UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
         pl.v.classBox.addClassBox(newUMlClass);
+    },
+    handleCreateEdgeButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        var startClass = formEl.name.value;
+        var endClass = formEl.name2.value;
+        var edgeType = formEl.edgetype.value;
+        Edge.add(startClass, endClass, UMLClass.instances, edgeType);
+        pl.v.retrieveAndListAllClasses.updateEdges();
     }
 };
 
@@ -78,6 +86,7 @@ pl.v.createEdge = {
     setupUserInterface: function () {
         var edgeButton = document.createElement("button");
         edgeButton.innerHTML = "Create Relationship Between Classes";
+        edgeButton.setAttribute("id","edgeBtn");
         document.forms["UMLClass"].append(edgeButton);
 
         edgeButton.addEventListener("click", pl.v.createEdge.handleCreateEdgeButtonClickEvent);
@@ -91,6 +100,25 @@ pl.v.createEdge = {
         pl.v.retrieveAndListAllClasses.updateEdges();
     }
 };
+
+pl.v.deleteEdge = {
+    setupUserInterface: function () {
+        var deleteEdgeButton = document.createElement("button");
+        deleteEdgeButton.innerHTML = "Delete Relationship Between Classes";
+        deleteEdgeButton.setAttribute("id","deleteEdgeBtn");
+        document.forms["UMLClass"].append(deleteEdgeButton);
+
+        deleteEdgeButton.addEventListener("click", pl.v.deleteEdge.handleDeleteEdgeButtonClickEvent);
+    },
+    handleDeleteEdgeButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        var classOne = formEl.name.value;
+        var classTwo = formEl.name2.value;
+        Edge.destroy(classOne, classTwo);
+        pl.v.retrieveAndListAllClasses.updateEdges();
+    }
+};
+
 
 pl.v.clearAll = {
     setupUserInterface: function () {
@@ -117,6 +145,7 @@ pl.v.exportSVG = {
     setupUserInterface: function () {
         var exportSVGButton = document.createElement("button");
         exportSVGButton.innerHTML = "Export Diagram as SVG";
+        exportSVGButton.setAttribute("id", "exportSVGBtn");
         document.forms["UMLClass"].append(exportSVGButton);
         exportSVGButton.addEventListener('click', pl.v.exportSVG.handleExportSVGButtonClickEvent);
     },
@@ -130,6 +159,7 @@ pl.v.exportPNG = {
     setupUserInterface: function () {
         var exportPNGButton = document.createElement("button");
         exportPNGButton.innerHTML = "Export Diagram as PNG";
+        exportPNGButton.setAttribute("id","exportPNGBtn");
         document.forms["UMLClass"].append(exportPNGButton);
         exportPNGButton.addEventListener('click', pl.v.exportPNG.handleExportSVGButtonClickEvent);
     },

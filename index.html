@@ -53,6 +53,7 @@
             <button type="button" class="btn btn-success btn-lg" id="addBtn">Add Class</button>
             <button type="button" class="btn btn-danger btn-lg" id="deleteBtn">Delete Class</button>
             <button type="button" class="btn btn-success btn-lg" id="editBtn">Edit Class </button>
+            <button type="button" class="btn btn-success btn-lg" id="relBtn">Edit Relationships </button>
             <button type="button" class="btn btn-warning btn-lg" id="exportBtn">Export Data to File</button>
             <button type="button" class="btn btn-info btn-lg" id="loadBtn"> Load Data from a file</button>
             <button type="button" class="btn btn-warning btn-lg" id="deleteAllBtn"> Delete all classes</button>
@@ -76,38 +77,38 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"> Fill in the class name</h4>
+                    <h4 id="modalTitle" class="modal-title"> Fill in the class name</h4>
                 </div>
                 <!--body -->
                 <div class="modal-body">
                     <form id="UMLClass">
                         <div>
-                            <label>
+                            <label id="classLabel">
                                 Class name:
                                 <input name="name" />
                             </label>
                             <br>
-                            <label>
+                            <label id="varLabel">
                                 Variables (separated by commas):
                                 <input name="vars" />
                             </label>
                             <br>
-                            <label>
+                            <label id="methLabel">
                                 Methods (separated by commas):
                                 <input name="methods" />
                             </label>
                             <br>
                             <br>
-                            <label>
-                                2nd Class name (if creating relationship):
+                            <label id="relationshipLabel">
+                                2nd Class name:
                                 <input name="name2" />
                             </label>
-                            <label>
+                            <!-- <label>
                                 Realated to: (separated by commas):
                                 <input name="methods">
-                            </label>
+                            </label> -->
                             <br>
-                            <label>
+                            <label id="relationshipTypeLabel">
                                 Relationship type (optional):
                                 <input name="edgetype" />
                                 <br>
