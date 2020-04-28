@@ -3,7 +3,7 @@ $(document).ready(function () {
         $("#classModal").modal();
         //$("#addBtn2").show();
         $("#deleteBtn2").hide();
-        $("#editBtn").hide();
+        $("#editBtn").show();
         $("#deleteAllBtn2").hide();
         $("#exportBtn2").hide();
         $("#loadBtn2").hide();
