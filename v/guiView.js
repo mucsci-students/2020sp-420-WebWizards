@@ -2,6 +2,7 @@ pl.v.createClass = {
     setupUserInterface: function () {
         var addButton = document.createElement("button");
         addButton.innerHTML = "Add";
+        addButton.setAttribute("id","addBtn2");
         document.forms["UMLClass"].append(addButton);
 
         UMLClass.retrieveAll(save.retrieveUMLClassString());
@@ -17,6 +18,14 @@ pl.v.createClass = {
         var newUMlClass = UMLClass.add(formEl.name.value, formEl.vars.value, formEl.methods.value);
         formEl.reset();
         pl.v.classBox.addClassBox(newUMlClass);
+    },
+    handleCreateEdgeButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        var startClass = formEl.name.value;
+        var endClass = formEl.name2.value;
+        var edgeType = formEl.edgetype.value;
+        Edge.add(startClass, endClass, UMLClass.instances, edgeType);
+        pl.v.retrieveAndListAllClasses.updateEdges();
     }
 };
 
@@ -24,11 +33,13 @@ pl.v.editClass = {
     setupUserInterface: function () {
         var addFieldButton = document.createElement("button");
         addFieldButton.innerHTML = "Add Fields";
+        addFieldButton.setAttribute("id","addFieldBtn2");
         document.forms["UMLClass"].append(addFieldButton);
         addFieldButton.addEventListener("click", pl.v.editClass.handleAddFieldButtonClickEvent);
 
         var deleteFieldButton = document.createElement("button");
         deleteFieldButton.innerHTML = "Delete Fields";
+        deleteFieldButton.setAttribute("id","deleteFieldBtn2");
         document.forms["UMLClass"].append(deleteFieldButton);
         deleteFieldButton.addEventListener("click", pl.v.editClass.handleDeleteButtonClickEvent);
     },
@@ -50,6 +61,7 @@ pl.v.deleteClass = {
     setupUserInterface: function () {
         var deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
+        deleteButton.setAttribute("id","deleteBtn2");
         document.forms["UMLClass"].append(deleteButton);
 
         deleteButton.addEventListener("click",
@@ -74,6 +86,7 @@ pl.v.createEdge = {
     setupUserInterface: function () {
         var edgeButton = document.createElement("button");
         edgeButton.innerHTML = "Create Relationship Between Classes";
+        edgeButton.setAttribute("id","edgeBtn");
         document.forms["UMLClass"].append(edgeButton);
 
         edgeButton.addEventListener("click", pl.v.createEdge.handleCreateEdgeButtonClickEvent);
@@ -88,10 +101,30 @@ pl.v.createEdge = {
     }
 };
 
+pl.v.deleteEdge = {
+    setupUserInterface: function () {
+        var deleteEdgeButton = document.createElement("button");
+        deleteEdgeButton.innerHTML = "Delete Relationship Between Classes";
+        deleteEdgeButton.setAttribute("id","deleteEdgeBtn");
+        document.forms["UMLClass"].append(deleteEdgeButton);
+
+        deleteEdgeButton.addEventListener("click", pl.v.deleteEdge.handleDeleteEdgeButtonClickEvent);
+    },
+    handleDeleteEdgeButtonClickEvent: function () {
+        var formEl = document.forms["UMLClass"];
+        var classOne = formEl.name.value;
+        var classTwo = formEl.name2.value;
+        Edge.destroy(classOne, classTwo);
+        pl.v.retrieveAndListAllClasses.updateEdges();
+    }
+};
+
+
 pl.v.clearAll = {
     setupUserInterface: function () {
         var clearAllButton = document.createElement("button");
         clearAllButton.innerHTML = "Delete All Classes";
+        clearAllButton.setAttribute("id","deleteAllBtn2");
         document.forms["UMLClass"].append(clearAllButton);
 
         clearAllButton.addEventListener("click",
@@ -112,6 +145,7 @@ pl.v.exportSVG = {
     setupUserInterface: function () {
         var exportSVGButton = document.createElement("button");
         exportSVGButton.innerHTML = "Export Diagram as SVG";
+        exportSVGButton.setAttribute("id", "exportSVGBtn");
         document.forms["UMLClass"].append(exportSVGButton);
         exportSVGButton.addEventListener('click', pl.v.exportSVG.handleExportSVGButtonClickEvent);
     },
@@ -125,6 +159,7 @@ pl.v.exportPNG = {
     setupUserInterface: function () {
         var exportPNGButton = document.createElement("button");
         exportPNGButton.innerHTML = "Export Diagram as PNG";
+        exportPNGButton.setAttribute("id","exportPNGBtn");
         document.forms["UMLClass"].append(exportPNGButton);
         exportPNGButton.addEventListener('click', pl.v.exportPNG.handleExportSVGButtonClickEvent);
     },
@@ -312,6 +347,7 @@ pl.v.load = {
     setupUserInterface: function () {
         var loadButton = document.createElement("button");
         loadButton.innerHTML = "Load Data from File";
+        loadButton.setAttribute("id","loadBtn2");
         var loadSelector = document.createElement("input");
         loadSelector.type = "file";
         loadSelector.id = "loadfile";
@@ -334,6 +370,7 @@ pl.v.export = {
     setupUserInterface: function () {
         var exportButton = document.createElement("button");
         exportButton.innerHTML = "Export Data to File";
+        exportButton.setAttribute("id","exportBtn2");
         document.forms["UMLClass"].append(exportButton);
 
         exportButton.addEventListener("click", pl.v.export.handleExportButtonClickEvent);
