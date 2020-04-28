@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#addBtn").click(function () {
         $("#classModal").modal();
-        //$("#addBtn2").show();
+        $("#addBtn2").show();
         $("#deleteBtn2").hide();
         $("#editBtn").show();
         $("#deleteAllBtn2").hide();
@@ -15,6 +15,10 @@ $(document).ready(function () {
         $("#exportPNGBtn").hide();
         $("#exportSVGBtn").hide();
         $("#edgeBtn").hide();
+        $("#varLabel").show();
+        $("#methLabel").show();
+        $("#classLabel").show();
+
         document.getElementById("addBtn2").innerHTML = "Add New Class";
         document.getElementById("modalTitle").innerHTML = "Please fill out class name along with any variable and methods";
         
@@ -70,7 +74,7 @@ $(document).ready(function () {
         $("#edgeBtn").hide();
         $("#varLabel").show();
         $("#methLabel").show();
-        document.getElementById("modalTitle").innerHTML = "Enter Class Name To Edit along with vars and methods";
+        document.getElementById("modalTitle").innerHTML = "Enter Class Name To Edit Classes Vars and Methods";
 
     });
 });
