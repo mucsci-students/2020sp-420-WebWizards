@@ -42,13 +42,17 @@ save = {
     },
 
     rename: function (oldName, newName) {
-        this.saveLocal();
+        //replaces all instances of oldName with newName in localStorage
+        //provided the instance of oldName is in quotation marks,
+        //because it would do no good to have classes "class1" and "a"
+        //and end up with "clbss1" and "b" when attempting to rename "a" -> "b"
+        var oN = '"' + oldName + '"';
+        var nN = '"' + newName + '"';
         const dataString = localStorage["storage"];
-        const regex = new RegExp(oldName, "&&");
-        const newDataString = dataString.replace(regex, newName);
+        const newDataString = dataString.replace(new RegExp(oN, 'g'), nN);
         localStorage["storage"] = newDataString;
+        console.log(newDataString);
 
-        this.retrieveAll();
     },
 
     clearData: function () {
