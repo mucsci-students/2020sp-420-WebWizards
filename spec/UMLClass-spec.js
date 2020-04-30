@@ -19,94 +19,79 @@ require('app-module-path').addPath(__dirname + "/../");
 var UMLClass = require("m/UMLClass").UMLClass;
 var Edge = require("m/Edge").Edge;
 
-describe("jasmine.objectContaining", function() {
-    var MLClass;
+
+//TESTS FOR ADD CASES:
+// describe("Tests case for UMLclass.add", function () {
+//     it ("should add class using gui add", function() {  
+//         //We need to test the add function insertings a name first, seems easiest
+
+//         //UMLClass.instances[name] = newUmlClass;  TESTING INSTANCES use toContain!
+//         //TESTING new added class as string, can use Regex toMatch!
+
+//         //UMLClass.add = function (name, vars = "", methods = "")
+//         //UMLCLass.add returns newUmlClass
+
+//         // This is the structure of a newUmlClass below
+//           //  newUmlClass = new UMLClass(name, newVars, newMethods);
+
+//         // first do the add, then see if instances contains name var we set to add function
+//         // var testClass = (UMLClass.add = function(name ="", vars = "", methods = "") {
+//         //   var idk = "help";
+//         //   return new UMLClass(name, newVars, newMethods); 
+//         // });
+//         // var result = testClass(name,vars,methods);
+//         // expect(UMLClass.add()).toBe(" our test var");
+//         //expect(UMLClass.instances).toHaveProperty(our test name);
+//         UMLClass.add()
+//         var newUmlClass =  UMLClass(name = "weNeedTesting", newVars = [], newMethods = []);
+//         expect(UMLClass.instances).toHavePro(newUmlClass);
+//        
+//     });
+
+//   });    
+
+  // EXAMPLE
+  // describe("Stock Portfolio App Tests", function() {
+  //   it("calcSideFundInterest() should return a value that is greater than the supplied fund value.", function() {
+  //     var calcSideFundInterest = function(fundValue, dailyInt, period) {
+  //       return fundValue * (dailyInt * period);
+  //     };
+  //     var fundValue = 1000, 
+  //         dailyInt  = 0.00356, 
+  //         period    = 7;
+  //     var result = calcSideFundInterest(fundValue, dailyInt, period);
+  //     expect(result).toBeGreaterThan(fundValue);
+  //   });
+  // });
+
+  // Trying to make from EXAMPLE
+  // describe("Add test", function() {
+  //   it("calcSideFundInterest() should return a value that is greater than the supplied fund value.", function() {
+  //     var calcSideFundInterest = function(fundValue, dailyInt, period) {
+  //       return fundValue * (dailyInt * period);
+  //     };
+  //     var fundValue = 1000, 
+  //         dailyInt  = 0.00356, 
+  //         period    = 7;
+  //     var newclass = UMLClass(name, newVars, newMethods);
+  //     expect(newclass).toBe(fundValue);
+  //   });
+  // });
+
+  describe("jasmine.objectContaining", function() {
+    //var UMLCLass;
   
     beforeEach(function() {
-      foo = {
-        a: 1,
-        b: 2,
-        bar: "baz"
+      UMLClass= {
+        name: "test",
+        newVars: {},
+        newMethods: {}
       };
     });
   
     it("matches objects with the expect key/value pairs", function() {
-      expect(foo).toEqual(jasmine.objectContaining({
-        bar: "baz"
-      }));
-      expect(foo).not.toEqual(jasmine.objectContaining({
-        c: 37
+      expect(UMLClass).toEqual(jasmine.objectContaining({
+        name: "test"
       }));
     });
-  
-/*
-var add =require("m/UMLClass");
-var destroy=require("m/UMLClass");
-var clearData=require("m/UMLClass");
-var add = require("m/Edge");
-var destroy=require("m/Edge");
-
-*/
-
-// TESTS FOR ADD CASES:
-// describe("Tests case for UMLclass.add", function () {
-//     //beforeEach(function() {
-//         //spyOn(console, 'log');
-//     //});
-
-//     it ("should add class given empty instance", function() {
-        
-        
-//         // var vars = "var1";
-//         // var methods = "meth1";
-//         expect(UMLClass.add(name = "test1")).toEqual({ name: 'test1', vars: [  ], methods: [  ], xPos: 0, yPos: 0 });
-//         //expect(console.log).toHaveBeenCalled();
-//     });
-
-    // it ("in the case of duplicates, will not add class again", function() {
-    //         expect(UMLClass.add("car")).toEqual(null);
-    // });
-
-//     it ("add edges", function() {
-//         expect(Edge.add("class1","class2")).toEqual("");
-// });
-
-});
-
-// //TESTS FOR DELETE CASES:
-// describe("Tests two cases for UMLclass.destroy", function () {
-
-
-//     it ("if class given exist, will delete it", function() {
-//         expect(UMLClass.destroy("car")).toEqual(null);
-//     });
-
-//     it ("if class given doesn't exist", function() {
-//             expect(UMLClass.destroy("car")).toEqual(null);
-//     });
-
-// });
-
-
-//TEST FOR RELATIONSHIPS(EDGES):
-// describe("Tests Relationship(Edge) creations", function() {
-
-//    /* beforeEach(function() {
-//         UMLClass.add("car");
-//         UMLClass.add("carB");
-//     });
-//     */
-
-//     it("should define a relationship between two exisiting classes", function() {
-//         expect(Edge.add('a b')).toBe(Edge.add('a b'));
-//     });
-
-//     it("should delete an exisiting relationship between two exisiting classes", function() {
-//         expect(Edge.destroy("car, carB")).toEqual(null);
-//     });
-
-// });
-
-
-   
-
+  });
