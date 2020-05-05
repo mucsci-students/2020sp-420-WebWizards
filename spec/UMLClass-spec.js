@@ -19,93 +19,87 @@ require('app-module-path').addPath(__dirname + "/../");
 var UMLClass = require("m/UMLClass").UMLClass;
 var Edge = require("m/Edge").Edge;
 
-describe("jasmine.objectContaining", function() {
-    var MLClass;
-  
-    beforeEach(function() {
-      foo = {
-        a: 1,
-        b: 2,
-        bar: "baz"
-      };
-    });
-  
-    it("matches objects with the expect key/value pairs", function() {
-      expect(foo).toEqual(jasmine.objectContaining({
-        bar: "baz"
-      }));
-      expect(foo).not.toEqual(jasmine.objectContaining({
-        c: 37
-      }));
-    });
-  
-/*
-var add =require("m/UMLClass");
-var destroy=require("m/UMLClass");
-var clearData=require("m/UMLClass");
-var add = require("m/Edge");
-var destroy=require("m/Edge");
-
-*/
-
-// TESTS FOR ADD CASES:
-// describe("Tests case for UMLclass.add", function () {
-//     //beforeEach(function() {
-//         //spyOn(console, 'log');
-//     //});
-
-//     it ("should add class given empty instance", function() {
-        
-        
-//         // var vars = "var1";
-//         // var methods = "meth1";
-//         expect(UMLClass.add(name = "test1")).toEqual({ name: 'test1', vars: [  ], methods: [  ], xPos: 0, yPos: 0 });
-//         //expect(console.log).toHaveBeenCalled();
-//     });
-
-    // it ("in the case of duplicates, will not add class again", function() {
-    //         expect(UMLClass.add("car")).toEqual(null);
-    // });
-
-//     it ("add edges", function() {
-//         expect(Edge.add("class1","class2")).toEqual("");
+// describe("Tests two cases for Add", function() {
+//   it("UMLclass.add() should return a new class added to the Uml instances", function() {
+//     var UMLClass.add = function(name, vars = "", methods = "") {
+//       return name;
+//     };
+//     var name = "car", 
+//         vars  = "", 
+//         mathods    = "";
+//     var result = UMLClass.add(name, vars, methods);
+//     expect(result).toMatch("car");
+//   });
 // });
 
-});
+//   // TESTS FOR ADD CASES:
+// describe("Tests two cases for UMLclass.add", function () {
+//   //beforeEach(function() {
+//       //spyOn(console, 'log');
+//   //});
+
+//   it ("should add class given empty instance", function() {
+//       expect(UMLClass.add("car")).toEqual("car");
+//       //expect(console.log).toHaveBeenCalled();
+//   });
+
+//   it ("in the case of duplicates, will not add class again", function() {
+//           expect(UMLClass.add("car")).toEqual(null);
+//   });
+
+// });
 
 // //TESTS FOR DELETE CASES:
 // describe("Tests two cases for UMLclass.destroy", function () {
 
 
-//     it ("if class given exist, will delete it", function() {
-//         expect(UMLClass.destroy("car")).toEqual(null);
-//     });
+//   it ("if class given exist, will delete it", function() {
+//       expect(UMLClass.destroy("car")).toEqual(null);
+//   });
 
-//     it ("if class given doesn't exist", function() {
-//             expect(UMLClass.destroy("car")).toEqual(null);
-//     });
+//   it ("if class given doesn't exist", function() {
+//           expect(UMLClass.destroy("car")).toEqual(null);
+//   });
 
 // });
 
 
-//TEST FOR RELATIONSHIPS(EDGES):
+// //TEST FOR RELATIONSHIPS(EDGES):
 // describe("Tests Relationship(Edge) creations", function() {
 
-//    /* beforeEach(function() {
-//         UMLClass.add("car");
-//         UMLClass.add("carB");
-//     });
-//     */
+//  /* beforeEach(function() {
+//       UMLClass.add("car");
+//       UMLClass.add("carB");
+//   });
+//   */
 
-//     it("should define a relationship between two exisiting classes", function() {
-//         expect(Edge.add('a b')).toBe(Edge.add('a b'));
-//     });
+//   it("should define a relationship between two exisiting classes", function() {
+//       expect(Edge.add('a b')).toBe(Edge.add('a b'));
+//   });
 
-//     it("should delete an exisiting relationship between two exisiting classes", function() {
-//         expect(Edge.destroy("car, carB")).toEqual(null);
-//     });
+//   it("should delete an exisiting relationship between two exisiting classes", function() {
+//       expect(Edge.destroy("car, carB")).toEqual(null);
+//   });
 
 // });
+
+describe("jasmine.objectContaining", function() {
+  //var UMLCLass;
+
+  beforeEach(function() {
+    UMLClass= {
+      name: "test",
+      newVars: {},
+      newMethods: {}
+    };
+  });
+
+  it("matches objects with the expect key/value pairs", function() {
+    expect(UMLClass).toEqual(jasmine.objectContaining({
+      name: "test"
+    }));
+  });
+});
 
 
    
