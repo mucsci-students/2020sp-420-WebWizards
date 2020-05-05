@@ -49,7 +49,7 @@ pl.c.defaultParser = function (args) {
         case "export-png":
             pl.v.retrieveAndListAllClasses.drawClassesOnSVG();
             saveSvgAsPng(document.getElementById("edgeDraw"), "umlDiagram.png");
-                break;
+            break;
 
         case "clear":
             if (confirm("Are you sure you want to clear the database?")) {
@@ -65,8 +65,13 @@ pl.c.defaultParser = function (args) {
             pl.v.cliLoad();
             break;
 
+        case "clearbox":
+            pl.v.classBox.clearAll();
+            break;
+
         case "rename":
             save.rename(args[1], args[2]);
+            pl.v.retrieveAndListAllClasses.updateView();
             break;
 
         case "add-var":
@@ -168,6 +173,7 @@ pl.c.defaultParser = function (args) {
             outputString = ("Command not recognized") + outputString;
             break;
     }
+
     save.saveLocal(UMLClass.instances, Edge.instances);
     return outputString;
 
