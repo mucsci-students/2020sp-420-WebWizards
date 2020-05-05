@@ -67,7 +67,7 @@ pl.v.deleteClass = {
         deleteButton.addEventListener("click",
             pl.v.deleteClass.handleDeleteButtonClickEvent);
         window.addEventListener("beforeunload", function () {
-            save.saveLocal(UMLClass.instances, Edge.instances);
+            // save.saveLocal(UMLClass.instances, Edge.instances);
         });
 
     },
@@ -201,6 +201,11 @@ pl.v.classBox = {
         this.addClassBox(UMLClass.instances[classname]);
     },
 
+    renameClassBox: function (oldname, newname) {
+        this.deleteClassBox(oldname);
+        this.addClassBox(UMLClass.instances[newname]);
+    },
+
     resetPosition: function (classname) {
         UMLClass.instances[classname].xPos = 0;
         UMLClass.instances[classname].yPos = 0;
@@ -209,6 +214,10 @@ pl.v.classBox = {
 
     getClassBox: function (classname) {
         return $("div").find(`[data-name='${classname}']`);
+    },
+
+    clearAll: function () {
+        document.getElementById("dropArea").innerHTML = "";
     }
 };
 
@@ -216,13 +225,9 @@ pl.v.retrieveAndListAllClasses = {
 
     updateView: function () {
 
-        var existingClassBoxes = document.getElementsByClassName("classBox");
-        for (var i = 0; i < existingClassBoxes.length; ++i) {
-            existingClassBoxes[i].remove();
-            console.log('removed');
-        }
-
         var keys = [], key = "", row = {}, i = 0;
+        UMLClass.reset();
+        pl.v.classBox.clearAll();
         UMLClass.retrieveAll(save.retrieveUMLClassString());
         keys = Object.keys(UMLClass.instances);
 
