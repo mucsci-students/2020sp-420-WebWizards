@@ -1,5 +1,5 @@
 # WebWizards UML Editor - Developer Guide
-![runTest.js CI](https://github.com/mucsci-students/2020sp-420-WebWizards/workflows/runTest.js%20CI/badge.svg)
+
 ## Running the application
 This application is created with "plain vanilla" HTML, Javascript, and CSS -- so you should be able to [clone the repository](https://github.com/mucsci-students/2020sp-420-WebWizards.git) and open index.html in your favorite web browser.
 
